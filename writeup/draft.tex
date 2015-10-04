@@ -1,5 +1,4 @@
 
-
 \documentclass[twoside]{article}
 
 
@@ -9,6 +8,7 @@
 \usepackage[T1]{fontenc}
 \linespread{1.05} % Palatino needs more space between lines
 \usepackage{microtype}
+\usepackage{textcomp}
 
 
 % ------
@@ -17,12 +17,12 @@
 \usepackage[font=it]{caption}
 \usepackage{paralist}
 \usepackage{multicol, hyperref, graphicx}
+\usepackage{parskip}
 
 % ------
 % Lettrines
 \usepackage{lettrine}
 \usepackage{color}
-
 
 % ------
 % Abstract
@@ -101,6 +101,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{float}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -108,215 +109,326 @@
 \maketitle
 \thispagestyle{fancy}
 %========================ABSTRACT====================================
+
 \begin{abstract}
 \fontsize{12pt}{12pt}
 \selectfont
-\noindent Apples, oranges, and the most obscure Dylan song too---is any article a few clicks from Philosophy? The surprising answer is yes, $95\%$ of the time (according to a popular blog post).
 
-Wikipedia is the largest, most meticulously indexed collection of human knowledge ever amassed. Yet, we have never closely examined the curious web tying one entry to another. By following the first link in an article, we connect entries to form a directed network within Wikipedia: Wikpedia's First Link Network. Our aim is to study Wikipedia's First Link Network for insight into the topics, ideas, people, objects, and events we link. ((improve this sentence))
+Apples, oranges, and the most obscure Dylan song too---is everything a few clicks from Philosophy? In Wikipedia, the surprising answer is yes. 
 
-We first map the First Link Network by algorithmically parsing the first link. Then, apply a river network model to identify the basins of attraction, loop structure, and characterize the many paths from one page's first link to the next. ((wording is unclear: as if there are many paths from one page))
+Wikipedia is the largest, most meticulously indexed collection of human knowledge ever amassed. Yet, we have never closely examined the naturally formed web tying one entry to another. By following the first link in an article, we connect entries to form a directed network within Wikipedia: Wikipedia's First Link Network. Here we study Wikipedia's First Link Network for insight into how we link the largest collection of topics, ideas, people, objects, and events.  Structurally, we discover Wikipedia's First Link Network is by many metrics a scale-free network with Philosophy at a salient center by many orders of magnitude. 
+We also learn the network generalizes specific events, objects, or phenomena to broader basins around Community, State, and Science. 
 
-\red{rewrite abstract}
 
+\green{
+conclusions to mention
+\begin{itemize}
+    \item finding many small-world phenomenan in the number of first links flowing through a page, the path lenghts, and ...\\
+    \item also cementing Philosophy as an extremely peculiar article, orders of magnitude away from other article in Wikipedia by our metrics.
+    \item links generalize specific event, object, or phenomemon to a broader concept. Mention synonyms
+\end{itemize}
+}
 \end{abstract}
 
-%==================================BASE====================================================
+\fontsize{11pt}{11pt}
+\selectfont
 
-\begin{multicols}{2}
+%========================INTRODUCTION====================================
+At no point in history has a larger or more meticulously indexed collection of human knowledge existed.
+((cite))
+In amassing such an awe-inspiring collection, we formed an equally impressive web. 
+Through the efforts of millions of individuals, working independently,
+((cite))
+we naturally linked topics, inventions, people, objects, places, and events across space and time.
+The web we weaved, and continue to weave, is a wealth of information not only about those notable inventions, 
+places, figures, and ideas, but also about \textit{relationships} among them.
+Here we study the relationships in this naturally arising web through the hyperlinks connecting one article to another.
 
-\lettrine[nindent=0em,lines=2]{A}t no point in history has a larger or more meticulously indexed collection of human knowledge existed \cite{1}. In amassing such an awe-inspiring collection, we naturally linked topics, inventions, people, objects, places, and events 
-\footnote{while anyone with internet access is free to contribute "neutral, cited information," it's worth noting the population of contributors is not necessarily representative of the overall english speaking population. Notably, the contributors are overwhelmingly male ((cite, expand)).} across space and time. The web we weaved, and continue to weave, is a wealth of information about those notable inventions, places, figures, and ideas, but also about us: the ones weaving the web. Here we explore this web as a directed network formed by the first link connecting one article to another.
+We build Wikipedia's First Link Network by following the first link, not in parenthesis, inside the main body of each article in the English version of Wikipedia. 
+For the directed network to meaningfully reflect how we associate one article to another, we exclude links in parenthesis, 
+disregarding pronunciation keys or disambiguations.
+We also exclude any links in the side-bar elements, as well as any links to external pages, files, or WikiMedia 
+projects outside of Wikipedia (such as Wiktionary).
+((footnote: this also stays true to the original blog post))
+The result is a directed network placing every article in a broader web of ideas.
 
-We build Wikipedia's First link network by following the first link, not in parenthesis, inside the main body of each article of the English version of Wikipedia. For the directed network to meaningfully reflect how we associate one article to another, we exclude links in parenthesis containing pronunciation keys or disambiguations. We also exclude any links in the side-bar elements, as well as any links to external pages, files, or other WikiMedia projects outstide of Wikipedia such as Wiktionary ((lookup others))
-\footnote{
-These constraints are the same which led to the popular blog post/s claiming nearly every article is within fewer than 20 first links away from philosophy. 
-}
-thus, forming a true network of Wikipedia.
 
-\includegraphics[scale=0.18]{graphics/wiki_train.png}
-\ \\
+%===========================Data_and_Parsing================================
+\section{Constructing the First Link Network}
 
-\section{Making a Map: Finding the First Links}
-To map Wikipedia's First Link Network, we use the freely-available xml dump of all 4.7 million English articles \cite{2}. We analyze the snapshot provided on November 2014, representing the state of Wikipedia at the time. Knowing Wikipedia is an ever-evolving project with 10 edits every second and 750 new article per day on average \cite{3}, our aim is to characterize the dynamics of the First Link Network, not to record a particular link between one page to another. 
+To map Wikipedia's First Link Network, we use the freely-available XML dump of the English Wikipedia. 
+Rather than rely on a sample of articles from which to generalize, we opted to process the entirety of Wikipedia, 
+eliminating any statistical error due to sampling.
+We analyze the snapshot provided on November 2014, representing the state of Wikipedia at the time.
+The November raw dump consists of 11 million articles: 4.7 million unique articles along with redirects
+and disambiguations.
+Knowing Wikipedia is an ever-evolving project with 10 edits every second and 750 new articles per day on average
+((cite)), our aim is to characterize the dynamics of the First Link Network, not record a particular link between one
+article and another.
 
-The xml dump provided demarkates article elements in in Media Wiki markup, a markup language with special syntax for links. 
-Media Wiki markup also includes templates for audio files, images, side-bar information.
-While a human can accurately idenfity the first link, to map the entire First Link Network of 4.7 million pages, we programmatically untangled the body text from side-bar, header box, and bad link elements.
+Wikipedia renders and stores articles in MediaWiki markup, a markup language with syntax and keywords to format and mark elements in a page. Along with special syntax for links, MediaWiki markup includes templates for audio files, images, and side-bar
+information.
+While a human can accurately identify the first link, to map the entire First Link Network of 11 million articles, we programmatically untangled the body text from side-bar, header box, and bad link elements.
 
-While some libraries exist for Media Wiki Markup, we opted to develop our own algorithm for parsing the first link in the xml version of each article. 
-\footnote{Approaches using existing libraries led to several bugs including trouble with nested links, nested parenthesis, unclosed tags, escape characters as well as compatibility with other libraries used to parse the xml.}
-Our parsing algorithm aimed to: 1. squash the initial bugs 2. eliminate the need for several passes. To process an article with one pass, we developed a hierachical system of flags:
+While some libraries exist for MediaWiki Markup, we opted to develop our own algorithm for parsing the first link in the XML version of each article. 
+\footnote{Approaches using existing libraries led to several bugs 
+including trouble with nested links, nested parenthesis, unclosed tags, escape characters 
+as well as compatibility with other libraries used to parse the XML.}
+Our parsing algorithm aimed to: 
+1. squash the initial bugs 
+2. eliminate the need for several passes. 
+To process an article with one pass, we developed a hierarchical system of flags:
 \begin{itemize}
-    \item Flag 1: inside template?
+    \item[Flag 1:] inside template?
     \begin{itemize}
-        \item Flag 2: inside <ref>, <div>?
+        \item[Flag 2:] inside <ref>, <div>?
         \begin{itemize}
-            \item Flag 3: inside ()?
+            \item[Flag 3:] inside ()?
         \end{itemize}
     \end{itemize}
 \end{itemize}
+((better graphic to come))
+
+The algorithm loops in three-character chunks to account for potentially nested elements, 
+shifting by one character steps through the article markup.
+If any markup triggers for a flag are detected a flag is raised. 
+Once a flag is raised, we stop processing and proceed to the next character
+until the flag's closing markup is detected.
+A first link is identified only if Flags 1, 2, and 3 are all off.
+In this case, the entire link is retrieved. 
+We then confirm the link is valid by filtering for MediaWiki keywords indicating external page or other projects
+as well as common file extensions for 
+((cite))
+images, audio files, and the like.
+The first link of an article is then the earliest valid link with unraised flags.
+
+To process the entirety of Wikipedia, we distributed the parsing and processing of the XML dump
+across 112 cores of the UVM supercomputer cluster
+((cite))
+We then joined the results to form a hash table containing every Wikipedia article and its corresponding
+first link. The resulting network is the basis of our analysis.
 
-The algorithm loops in three characters chunks, shifting by one character steps through the article markup. Proceeding in three character chuncks eliminates any nesting issues. If any flag triggers are detected the Flag is raised. Once a flag is raised, we stop processing and proceed to the next character. A first link is correctly identified only if Flags 1, 2, and 3 are all off. Then the entire link is retrieved. We then confirm whether the link is legitimate, meaning it does not link to an image, audio file, external page or other Wikimedia project via keyword triggers provided by Wiki Media \cite{4}. The first link of an article is then the earliest link in the text to pass all three flags and the false link check.
+
+%========================Traversing the Network====================================
+\section{Traversing the Network}
 
+To understand the structure of Wikipedia's First Link Network, we
+aimed to characterize the dynamics of the flow from one article to another. 
+Do links tend towards a particular article, group of articles, or groups of articles? 
+What is the flow of links through a typical article?
+What types of cycle (loop) structures exist in the network?
+What are typical paths from one article to loop or a dead end (invalid link)? 
+((add other questions we end up answering))
+Are there exceptionally long or short paths? 
+Are there articles funneling the flow of links towards a particular path?
+In answering these questions about the directed network, we aimed to characterize 
+how so many independent articles relate to each other.
+
+The n-degree, or number of links directly pointing to a particular article,
+while a natural measure, fails to fully capture the dynamics needed to answer these questions.
+The n-degree measures only the particular set of links to a particular article, 
+rather than the richer dynamics of how the links flow through the network: 
+where articles tend, what the typical and atypical 
+paths through the network are, which articles funnel relatively more links and so on. 
 
-Instead of relying on a sample of articles from which to generalize, we opted to process all 11.blah articles in the xml dump containing the 4.7 million articles along with redirected pages and disambugations, which we filter. To process the entirety of Wikipedia, we divided the xml dump into collections of articles, distributing the processing across 112 cores of the UVM sueprcomputer cluster. We then obtained a complete map of the First Link Network.
+Consequently, we developed three metrics to capture the dynamics of how the First Links flow. 
+First, we traverse the network to measure the accumulated number of visits each article receives as we 
+follow every possible link path: \\
 
+\begin{figure}[H]
+\centering
+    \caption{traversing the network}
+\begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=\textwidth]{graphics/traverse_algo.png}
+\end{subfigure}
+\end{figure}
 
-\subsection*{testing the algorithm}
-\section{Using the Map: Navigating the First Links}
+((diagram and explain))
 
-\textcolor{red}{reword the shit below}
-\gray{
-quote analysis from other areas/dodds paper: Droplets accumulating\\
-first paper by Dodds cites Horton-Strahler (leaf pruning) not drop accumulation
-}
+Second, we traverse the network in the same manner, but end our paths once we enter a cycle (loop in the network).
+We call the accumulated number of visits, the number of traversal funnels, because we quantify
+which articles funnel more link paths in particular direction or cycle.
 
-To understand the structure of Wikipedia's First Link Network, we need to understand how the links flow from one page to another. The procedure, inspired by work in networks/enviromental something ((ask dodds)) is to treat each page as a starting point.
+Finally, we can also track the path length, or the number of links until we repeat an article or reach an invalid link.
+Additionally, by recording the history of articles we traverse to map cycles in the network.
+The three metrics: traversal visits, traversals funnels, and path length, along with our path history
+yield a powerful arsenal of information with which to study the network. 
+We can effectively answer questions about how the First Links Flow, identify both peculiar and popular
+articles (and groups of articles), as well as link paths.
 
-We follow the path of the first links until we reach either a dead link--a page linking to an invalid link (a file, another wikimedia project, or an external webpage)-- or a loop, where one page in the path is revisted.
 
-What we can then measure are various metrics including the number of pages whose path leads to a particular page ((confusing wording)), the path length, even loops of a particular size. Combining these measures, we can then examine are particular properties of how pages related: for example the most popular two-loops.
 
-Thus, from the directed network of First Links, we associate to each node several properties. Fortunately, we need not worry about issues of sampling error or statistiacal accuracy, since we do not rely on any sampling. Instead, thanks to the VACC we are able to follow every single possible path, tallying the properties of each node in the network.
+%========================Results====================================
+\section{Discoveries}
 
-Whether philosophy or another page is at the center of Wikipedia's First Link Network is a question about the page with the most traverses. More importantly, instead of a mere page, we can precisely identify the exact loop structure (or basin) where most pages feed. 
+We traversed every possible path through the network, measuring the accumulated number of traversal visits.
+We traversed a total of 232.4 million first links.
 
-Not only this, we can answer whether the top loop or page is in fact special--whether the number of pages feeding into the page/loop is measurably different from the other top pages/basins.
+\subsection{Traversal Visits}
 
-((add diagram to explain flow of procedure))
+As a distribution, the number traversal visits per article appears scale-free. The majority of articles have fewer than 30 traversal visits, while few 
+have 5 order of magnitude more traversal visits. 
+Specifically, $99.$((fill in 99.something)) $\%$ of articles have fewer than $100$ traversal visits; nearly $80\%$ have none. 
+Meanwhile, the highest ranking 30 articles have ((blah of the traversal visits)).
 
+((diagram))
 
-\section{The Stories of our Journey: our results}
+The highest ranking articles include Philosophy alongside related articles such as "Existence", "Quality", and "Reality".
+Other high ranking articles include similarly foundational ideas or abstracted disciplines such as "Science", "Biology", 
+"Community", "State", "Earth", "Human Geography", "Information", and "Communication".
 
-\subsection{Clicks (beans...)}
-Distribution is zipf's law:
-((plot))
-8.6 million of the 11 million pages in our raw dataset (11 million includes redirects to the subset of 4.2 million actual pages) have no clicks, with less than 1\% of pages accruing more than 100 clicks (precisely 8.56 million of the 11 have no visits).
+((diagram: highest ranking articles))
 
-((maybe sample and graph log-log to see if it's linear to justify zipf's law))
+The recurrence of an exact number of traversal visits suggests some articles are part of a cycle. 
+The "Philosophy" article for example sits in what seems like a cycle of seven other articles; "Hypothesis" appears to sit in a 
+cycle of 6 other articles including "Experiment", "Fact", and "Knowledge".
 
-average number of visits is 21.
 
-Even examining only the 1000 pages with the most page visist, we find a majority have no visit:
 
-\includegraphics[scale=0.5]{graphics/top_1k_pages.png}
+((support characterization of high ranking articles as abstract foundational ideas ))\\
+((maybe add synonym analysis here))\\
 
-Of the top 100 pages, we see fewer than 30, contain an overwhelming majority of the traversals 6, 7 million:
+To confirm the suggested cycle structure, we recorded the history of articles traversed along a path. 
 
-\includegraphics[scale=0.5]{graphics/top_100_pages.png}
+\subsection{Network Cycles}
+By tracking the articles traversed we were able to identify the cycle structures
+by the reappearance of an article in our path history.
+We first identified 2-cycles, meaning a pair of articles with first link pointing to one another.
+Of the 11 million articles, 84 thousand are 2-cycles. 
+The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly so) rather than different, yet connected ideas:
+"Health Care" and "Medical Case Management", "Broadcasting House" and "BBC", "Secondary Education" and "Secondary School".
 
-Maximum number of traversals is 7.4 million, but the mean is a mere 20 visits. 
+((diagram, check why some don't have a matching number of visits))
 
-The top 7 pages, the ones with teh most visits comprise a loop around philosophy:
+Outside of the highest ranking 2-cycles, the typical 2-cycle signals a connection between different, yet very closely related ideas. 
+Link patterns such as inventor to product ("Voere" to "VEC-91"), event to organizer ("Poetry Bus Tour" to "Weave Books"), and book to author ("Anatomy of Britain" to "Anthony Sampson").
 
-\includegraphics[scale=0.5]{graphics/top_pages_list.png}
+Similarly, 3-cycles captured a synonymous or close relation among 3 articles: "Tree of life (Biology)", "Tree of life (disambiguation)", 
+and "Tree of life"; "Cinema of India", "Indian Cinema", and "Telugu Cinema". Once we extend our cycle size beyond a length of 6 however, 
+"Philosophy" along with the remaining list of high ranking articles by traversal visits dominate.
 
-\subsection{Longest Path}
+((diagram of 3-cycles))\\
+((diagram of cycles beyond length 10))
 
-The longest first link path span around 365 pages. These paths traverse calendar related pages including religious calendars such as Orthodox Liturgics and history pages. The Eastern Orthodox Liturgics pages for example are dated. Visit any page's Orthodox Liturgics and the first link will send to tomorrow's liturgics. The enxt days links to the following day's liturgics. Curiously, these are complete loops. The last calendar day of the year, simply links back to the first restarting the loop. Other notable pages with a path length of 80 include the legislative assembly of Ontario, 1868 in the UK, 
+The longest cycle in the network spans 365 articles of Eastern Orthodox Liturgics for each calendar day. 
+Curiously, on the last calendar day, the last article simply links back to January 1, forming a 365-cycle.
+Other lengthy cycles span 60-75 articles including collections of articles on national histories such as "Japanese Eras" 
+or judicial bodies such as the "Legislative Assembly of Ontario".
 
 
-\subsection{Loops - basics}
-Although the loop of 7 pages around philosophy does attract the greatest number of visits, several other loops around natural fundamental concepts also exist. 
-The top non-philosophy basins include a basin around community, another around landmass. 
+\subsection{Basins}
+We can group articles lying on the same path to identify basins of path-connected articles, not necessarily forming a perfectly closed cycle.
+Ranking basins by traversal visits, we find many of highest ranking basins are around "Philosophy" as we might expect. 
+Looking beyond "Philosophy" however, we find high ranking basins around similarly foundational ideas:
+"Community", "Landmass", "Federal Government", "Presentation", and "Belief System". 
+These concepts naturally emerge from the First Link Network potentially indicating pillars, which 
+anchor specific knowledge in a broader, simpler concept.
 
-Identifying basins explains the structure of the network, but it doesn't reveal which page/s are a funnel for the basin. By following a similar approach and measuring where the drop accumulation is funneled we find:
 
+\subsection{Path Length}
 
-\includegraphics[scale=0.5]{graphics/top_funnels.png}
+In addition to identifying cycles and cycle lengths, we also measure the traversal path length, which includes articles outside
+of cycles. 
+Path length measures the number of links traversed until a repeated or invalid link. 
+We discovered the longest path length is also 365, matching the longest cycle of Orthodox Liturgics. 
+We also found similarly lengthy paths following the evolution of a place or topic through time: 
+"1953 in Scotland" or "1569s Architecture", with articles sequentially proceeding by year, decade or era.
 
+Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
+The most common path length is 29, with an interquartile range (26, 30).
+The distribution of path lengths is similarly scale-free with few articles at the extreme of 365 path lengths, while the majority 
+is between 26-30: 
 
-confirming philosophy is indeed the largest funnel for the philosophy loop, implying it is in fact at the center of wikipedia. Nonetheless, curious foundational funnels also surface such as the word presentation, Tree of life (biology), Geographical regions such as Southern Europe, the US Constituion, health care and BBC. 
-This amalgamation mixes both foundational topics, confirming teh theory whereby the first link generalizes a specific page by hooking it to a broader concept. The list also highlights broader topics that are perhaps less foundational, but seem to be at the forefront of people's minds. Health Care while not a foundational discipline such as biology or philosophy ranks at the top perhaps due to the importance we as a society attach to it. Similarly BBC, Hip Hop Music surface perhpas out of a cultural ttraction. 
+((diagram of path length distribution))
 
 
-\red{how many two loops are there compared to the rest of wikipedia?}
 
-In addition to measuring pages that funnel to accumulation, we can also measure true loops instead of just basins. These are pages which sit in a closed loop as opposed ones leading to a dead link.
+\subsection{Traversal Funnels}
 
-Furthermore, since we can rank pages, we can rank loops based on the measure associated with each page. We first examine two loops:
+Measuring only traversal visits however is limiting as it does not distinguish whether a particular article in a cycle 
+is a funnel, directing many more paths inside the cycle than others. 
+To distinguish among articles in a cycle, we also measured traversal funnels, or the number of 
+paths an article directs towards a cycle. Here we count the number of traversal visits up to a cycle, 
+so that accumulation does not flow to all articles in a cycle.
+The importance here is to distinguish an article that happens to be connected to another article with many traversal visits 
+from an article directly funneling many paths.
 
-\includegraphics[scale=0.4]{graphics/top_2loops.png}
+Measuring traversal funnels reveals a dramatically different structure where "Philosophy" dramatically stands out: 
 
-Two loops reveal ideas that are closely linked to each other or nealry synomous such a secondary school the place wher esecondary education takes place. A lecture which is a form of a presentation, or fedualism and its examples. 
+((funnels diagram))
 
-Investigating the list beyond simply the top pages, but looking at a typical 2-loop we find a more natural link between (where typical means between 5 and 15 visits) linking a person to what they are most known for: say a book and author: Anatomy of Britain links to Anthony Sampson (and the reverse; an inventor and their invention: Voere and VEC-91; and an event links to the creator of the event: Peotry Bus Tour links to Wave Books.
+Philosophy is not only a stand out with its number of traversal visits, but also by the number articles "Philosophy" funnels into
+its cycle: ((99.something)) $\%$. 
+The second contributor to the cycle is "Reality" with a mere $.2\%$ of accumulated traversals visits in the cycle.
+Even next to the contribution of other articles funneling into other cycles, "Philosophy" is a singularity, dwarfing
+the traversal feeds of "Presentation" the second highest ranking article: 
+a mere $0.4\%$ of the traversal feeds "Philosophy" holds.
+Nevertheless, the other high ranking funnels are remarkably topical, culturally and politically important ideas.  For example, "Health Care", a recently high-contested legislative topic ((add google results trend)) appears high on the list
+as it does in google search terms or ((media articles?)).
+Other high ranking articles include key historical events such as the "Cold War" or critical scarce resource with recent 
+media discussion such as "Fossil Fuel".
+This coincidence of recent relevance and traversal feed rank suggests the First Link Network measurably represents
+meaningful relationships not only among ideas, but also to society ((english speaking)). 
 
 
-While often a less intimate connection, 3-loops reveal a similar pattern. The top ranking 3-loops are:
+%========================Conclusion====================================
+\section{Reflections}
 
-\includegraphics[scale=0.4]{graphics/top_3loops.png}
+The findings here should only be considered within the limitations of their context.
+We examined only the English version of Wikipedia at a particular moment in time.
+Furthermore, we only studied the first link in the main body of each article
+as a means to related one article to another. Finally, Wikipedia, while the largest 
+collection of human knowledge, is rife with the biases of the many contributing editors--
+male middle aged ((substantiate and confirm)). Nevertheless, the findings do reveal
+generalizable relationships, point to foundational notions, and uncover many curiosities.
 
 
-There are 74k true 3loops.
+Among the curiosities is the multiple appearance of scale-free distributions within the network. 
+The three metrics we developed: path length, traversal visits, and traversal funnels are all marked 
+by scale-free distributions. Few articles have most traversal visits, few paths have an exceptionally long path length, and even fewer
+articles are responsible for funneling most paths. When measured against the traversal funnels, 
+"Philosophy" emerges as an exceptional article by orders of magnitude. 
+Nevertheless, many other foundational ideas emerged naturally within the First Link Network. 
+Basins around "Community", "State", and "Science" reveal a foundational structure within the network. 
+More curious is the emergence of recently prominent political and economics topics such as "Fossil Fuel" and "Health Care" 
+within the highest ranking funnels. 
+Wikipedia seems to reflect not only timeless foundations, but also the topical (at least within English speaking society).
 
-\subsection{Later: Visualize loops}
 
-\href{http://projects.flowingdata.com/tut/interactive_network_demo/ }{D3 Example 1}
+These findings form the basis for future work towards the creation of a taxonomy where 
+every idea, event, or object sits within a hierarchy of connected notions.
+The taxonomy would extend a traditional word thesaurus beyond mere synonyms to a related hierarchy of concepts.
+Applications could range from an enhanced thesaurus of ideas to psychological insights into how human form associations.
+Specifically, an ever-evolving reference of related hierarchical concepts can be applied to search engine algorithms 
+or natural language processing.
 
-\href{http://christophergandrud.github.io/d3Network/}{simple D3 Network}
 
-\section{Conclusion}
-
-\gray{Next: word stem to see how broader ideas are related (taxonomy of ideas).
-    * Broader: what if we consider all links (or first par)? other languages? 
-        * popular page by links to it. }
-
-\gray{* Is the network stable over time? 
-        * analyze a few newer datasets. }
-
-The analysis remarkably demonstrates the links in Wikipedia truly exihibit a power-law like distribution where most pages link up to a handful of pages. Furthermore, Philosophy does occupy not only a special place inside the most popular basin of attraction. Not only that, the philosophy page itself is the page through which the feeds flow. This implies there is something special even from a mathematical standpoint. Philosophy isn't just a popular link, it lies in an exceptionally high percentage, unique to its loop.
-
-Aside from the philosophy loop, other foundational concepts also emerge as the centers for basins of attraction. Fundamental concepts such as community, government, or philosophy. The network also has a prelevance of 2-loops ((find exact proportion or number)) which link two closely associated concepts such as an inventor or the invention as well as tie synonyms together. Other artifacts such as tremendously long loops based around calendar days demonstrate how we group ideas such as holidays, hisotiric events, or religious, not by their ties to other ideas, but first by where they fall on calendar days. 
-
-
-Based on the flow from specific pages to more general concepts, the results also agree with the heuristic provided here. Whereby, we link a very specific page to a broader concept, then to an ever broader concept. For example, the Wikipedia page for Banana links to fruit, then botanical then, ((confirm, fill-in)) then biology, then science and eventually philosophy. It is curious that Wikipedia, the largest encyclopedia, which by its very meaning aims to capture information about all branches of human knowledge, has naturally evolved through the works of ((x million editors/edits)) so that Knowledge, philsophy are the center links, occupying such a special place. 
-
-\end{multicols}
-
-
-\subsection{Terms (aka style guide)}
-
-use article instead of page
-
-traversal = node weight
-path length = degree of separation from a cluster
-path is the flow from one page until a dead link or a repeated article
-
-cycle (permutation from abstract algebra) instead of loop
-
-basin of attraction or cluster? as opposed to cycle
-
-invalid link (instead of dead or bad link)
-
-
-To Do:
-\textcolor{red}{
-\begin{enumerate}
-    \item Add limitations of work: snap shot in time, parsing is imperfect
-    \item Add better graphics
-    \item post code and results to github (add link to paper)
-\end{enumerate}}
-
-
+%========================Style Guide====================================
 \newpage
+\section*{Style Guide}
 
-\begin{thebibliography}{10}
-\bibitem{1}
-\href{ http://www.technologyreview.com/featuredstory/520446/the-decline-of-wikipedia/}{"The Decline of Wikipedia", MIT Tech Review}
+\begin{itemize}
+\item Web Terms
+    \begin{itemize}
+        \item \bt{article} instead of page
+        \item \bt{invalid link} (instead of dead or bad link)
+    \end{itemize}
+\item Measurements
+    \begin{itemize}
+        \item \bt{traversals visits} = node weight based on number of paths crossing an article.
+        \item \bt{path length} = number of articles traversed until an invalid link or a repeated article
+        \item \bt{traversal funnels} = traversals before a cycle is reached.
+    \end{itemize}
+\item Network Properties
+    \begin{itemize}
+        \item \bt{cycle} = permutation or a true loop
+        \item \bt{path-connected articles} for both cycles and articles along the same path leading to an 
+    invalid link
+        \item \bt{basin} a path-connected group of articles (not necessarily forming a cycle)
+    \end{itemize}
+\end{itemize}
 
-\bibitem{2}
-\href{https://en.wikipedia.org/wiki/Wikipedia:Database_download}{Wikipedia Database Download}
+- add quotes around article names: Philosophy should be "Philosophy"
 
-\bibitem{3}
-\href{https://en.wikipedia.org/wiki/Wikipedia:Statistics}{Wikipedia Statistics}
-
-\bibitem{4}
-\href{http://en.wikipedia.org/wiki/Help:Special_page}{Media Markup Special Pages}
-\end{thebibliography}
-
-
-
+- add thank you to RJ for pointing out the Blog Post
 \end{document}
-

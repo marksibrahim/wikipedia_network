@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1442437975 "draft.tex" "draft.pdf" "draft" 1442437978
+["pdflatex"] 1443979126 "rough.tex" "rough.pdf" "rough" 1443979129
   "/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2014/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2014/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm" 1136768653 2532 9ad73cf4dd2173a847f2a5f5608e0b9a ""
@@ -89,9 +89,6 @@
   "/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1401025944 1445653 26a0aacf3d70032b1ec192e8c7792117 ""
   "/usr/local/texlive/2014/texmf-var/web2c/pdftex/pdflatex.fmt" 1401025990 3832012 904d82bdcc8abf2b1cd296990b82553b ""
   "/usr/local/texlive/2014/texmf.cnf" 1401025936 577 a59edbde8d3a8c549d0eeaab1739e2ff ""
-  "draft.aux" 1442437978 1709 f0329c748e35dbad6d0260134a596881 ""
-  "draft.out" 1442437978 604 aa5eb838ff6e6c61a04d99170a0a5b60 ""
-  "draft.tex" 1442437973 18400 1b6427e3bf117cb99777442dc1a07e38 ""
   "graphics/top_100_pages.png" 1440624183 18004 f26e962857a729ee04e48664d2252201 ""
   "graphics/top_1k_pages.png" 1440624174 18111 ab230dd8abfe695d48f973c529238220 ""
   "graphics/top_2loops.png" 1440625763 77834 602c588de1b147f6ba90d02d7b31f4ff ""
@@ -99,8 +96,11 @@
   "graphics/top_funnels.png" 1440625285 62239 3da3d202c14af8dc063d4e7f35b044db ""
   "graphics/top_pages_list.png" 1440624687 60948 130f0b8e6d8c7b681af1f715aae0cb32 ""
   "graphics/wiki_train.png" 1442304090 520399 276c8ed2220dbb511fc9668a12235458 ""
+  "rough.aux" 1443979128 1709 f0329c748e35dbad6d0260134a596881 ""
+  "rough.out" 1443979128 604 aa5eb838ff6e6c61a04d99170a0a5b60 ""
+  "rough.tex" 1443979121 18400 1b6427e3bf117cb99777442dc1a07e38 ""
   (generated)
-  "draft.log"
-  "draft.pdf"
-  "draft.aux"
-  "draft.out"
+  "rough.log"
+  "rough.aux"
+  "rough.pdf"
+  "rough.out"
