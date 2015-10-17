@@ -205,7 +205,8 @@ Our parsing algorithm aimed to:
 2. eliminate the need for several passes. 
 To process an article with one pass, we developed a hierarchical system of flags:
 \begin{itemize}
-    \item[Flag 1:] inside template?
+    \item[Flag 1:] inside Wikimedia template?\\
+        * \bt{trigger}: \{\{
     \begin{itemize}
         \item[Flag 2:] inside <ref>, <div>?
         \begin{itemize}
@@ -320,13 +321,23 @@ Meanwhile, the highest ranking 30 articles have an extremely disproportionate nu
 \begin{figure}[H]
 \centering
     \caption{distribution of traversal visits}
-    \begin{subfigure}[b]{\textwidth}
-        \includegraphics[width=\textwidth]{graphics/top_1k_100_pages.png}
-    \end{subfigure}
+        \includegraphics[width=\textwidth]{graphics/traversals_per_article.png}
 \end{figure}
 
-\red{[[change title from "pages" to "articles" for consistency]]} \\
-\red{[[justify scale-free with log-log or power measure]]} \\
+distribution of visits blah blah
+\begin{figure}[H]
+\centering
+\caption{traversal visit distribution of highest ranking articles}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{graphics/top_1k_article_traversals.png}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{graphics/top_100_article_traversals.png}
+\end{subfigure}
+\end{figure}
+
 
 The highest ranking articles include Philosophy alongside related articles such as "Existence", "Quality", and "Reality".
 Other high ranking articles include similarly foundational ideas or abstracted disciplines such as "Science", "Biology", 
@@ -335,10 +346,9 @@ Other high ranking articles include similarly foundational ideas or abstracted d
 \begin{figure}[H]
 \centering
     \caption{highest ranking articles by number of traversals}
-    \begin{subfigure}[b]{0.8\textwidth}
-        \includegraphics[width=\textwidth, angle=-90]{graphics/top_articles_list.png}
-    \end{subfigure}
+        \includegraphics[width=0.6\textwidth]{graphics/articles_ranked.png}
 \end{figure}
+
 
 The recurrence of an exact number of traversal visits suggests some articles are part of a cycle. 
 The "Philosophy" article for example sits in what seems like a cycle of seven other articles; "Hypothesis" appears to sit in a 
@@ -347,6 +357,19 @@ To confirm the suggested cycle structure, we recorded the history of articles tr
 
 
 \subsubsection{Measure Number of Synonyms}
+
+\green{
+number of synonyms
+top 100 articles, average:
+5.0 
+9.1 (excluding zero)
+median: 7.0
+
+remaining articles average:
+0.5
+5.8 (excluding zero)
+median: 3.0
+}
 \red{
 [[ add synonym analysis to support characterization of high ranking articles
 as abstract foundational notions. \\
