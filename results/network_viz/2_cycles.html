@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<!-- based on http://bl.ocks.org/mbostock/1153292 -->
+<meta charset="utf-8">
+<head>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<style>
+
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+#licensing {
+  fill: green;
+}
+
+.link.licensing {
+  stroke: green;
+}
+
+.link.resolved {
+  stroke-dasharray: 0,1 1;
+  stroke: rgba(147, 161, 161, 0.33);
+}
+
+circle {
+  fill: hsla(0, 38%, 69%, 0.92);
+  stroke: #93a1a1;
+  stroke-width: 1.5px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+text {
+  font: 10px sans-serif;
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+
+</style>
+</head>
+<body>
+<div style="width: 100px; padding-top: 4cm; padding-left: 1cm; float: left;">
+<p style="font-size: 12px"> sized according to the number of traversal visits</p>
+
+<svg style="padding-top: .1cm">
+<!-- legend circles-->
+<circle r="30"  cx="30" cy="30" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="20"  cx="30" cy="40" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="10"  cx="30" cy="50" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+
+<!-- legend labels -->
+<text x="60" y="30" 
+    font-family="Open Sans"
+    font-size="8px"
+    fill="#93a1a1">--- 31,000 traversal visits</text>
+<text x="50" y="40" 
+    font-family="Open Sans"
+    font-size="8px"
+    fill="#93a1a1">------ 19,000 traversal visits</text>
+<text x="40" y="50" 
+    font-family="Open Sans"
+    font-size="8px"
+    fill="#93a1a1">--------- 10,000 traversal visits</text>
+</svg>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script>
+
+// http://blog.thomsonreuters.com/index.php/mobile-patent-suits-graphic-of-the-day/
+var links = [
+  {source: "Lecture", target: "Presentation", type: "resolved", visits:31000},
+  {source: "Presentation", target: "Lecture", type: "resolved", visits:31000},
+  {source: "Examples of Feudalism", target: "Feudalism", type: "resolved", visits:19280},
+  {source:  "Feudalism", target: "Examples of Feudalism", type: "resolved", visits:19280},
+  {source:  "Medical Case Management", target: "Health Care", type: "resolved", visits:10777},
+  {source: "Health Care", target: "Medical Case Management", type: "resolved", visits:10777},
+  {source: "Broadcasting House", target: "BBC", type: "resolved", visits:8952},
+  {source: "BBC", target: "Broadcasting House", type: "resolved", visits:8952},
+  {source: "Secondary School", target: "Secondary Education", type: "resolved", visits:7563},
+  {source: "Secondary Education", target: "Secondary School", type: "resolved", visits:7563},
+  {source: "Biological Networ", target: "Biological System", type: "resolved", visits:5574},
+  {source: "Biological System", target: "Biological Networ", type: "resolved", visits:5574},
+  {source: "Photography", target: "Photograph", type: "resolved", visits:4594},
+  {source: "Photograph", target: "Photography", type: "resolved", visits:4594},
+  {source: "Armenia", target: "Hayastan (disambiguation)", type: "resolved", visits:3948},
+  {source: "Hayastan (disambiguation)", target: "Armenia", type: "resolved", visits:3948},
+  {source: "Namibia", target: "Angola", type: "resolved", visits:2800},
+  {source: "Angola", target: "Namibia", type: "resolved", visits:2800},
+  {source: "Hospital", target: "Cancer", type: "resolved", visits:3364},
+  {source: "Cancer", target: "Hospital", type: "resolved", visits:3364}
+];
+
+var nodes = {};
+
+// Compute the distinct nodes from the links.
+links.forEach(function(link) {
+  link.source = nodes[link.source] || (nodes[link.source] = {name: link.source, visits: link.visits});
+  link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, visits: link.visits});
+});
+
+var width = 660,
+    height = 600;
+
+var force = d3.layout.force()
+    .nodes(d3.values(nodes))
+    .links(links)
+    .size([width, height])
+    .linkDistance(40)
+    .charge(-300)
+    .on("tick", tick)
+    .start();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("float", "left");
+
+// Per-type markers, as they don't inherit styles.
+svg.append("defs").selectAll("marker")
+    .data(["suit", "licensing", "resolved"])
+  .enter().append("marker")
+    .attr("id", function(d) { return d; })
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 15)
+    .attr("refY", -1.5)
+    .attr("markerWidth", 4)
+    .attr("markerHeight", 4)
+    .style("fill", "#93a1a1")
+    .attr("orient", "auto")
+  .append("path")
+    .attr("d", "M0,-5L10,0L0,5");
+
+var path = svg.append("g").selectAll("path")
+    .data(force.links())
+  .enter().append("path")
+    .attr("class", function(d) { return "link " + d.type; })
+    .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
+
+var circle = svg.append("g").selectAll("circle")
+    .data(force.nodes())
+  .enter().append("circle")
+    .attr("r", function(d) { return (d.visits / 1000); })
+    .call(force.drag);
+
+var text = svg.append("g").selectAll("text")
+    .data(force.nodes())
+  .enter().append("text")
+    .attr("x", 8)
+    .attr("y", ".31em")
+    .text(function(d) { return d.name; });
+
+//title
+svg.append("text")
+      .attr("x", (width / 2))             
+      .attr("y", 40)
+      .attr("text-anchor", "middle")
+      .style("font-size", "32px")
+      .text("2-cycles");
+
+// Use elliptical arc path segments to doubly-encode directionality.
+function tick() {
+  path.attr("d", linkArc);
+  circle.attr("transform", transform);
+  text.attr("transform", transform);
+}
+
+function linkArc(d) {
+  var dx = d.target.x - d.source.x,
+      dy = d.target.y - d.source.y,
+      dr = Math.sqrt(dx * dx + dy * dy);
+  return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+}
+
+function transform(d) {
+  return "translate(" + d.x + "," + d.y + ")";
+}
+
+</script>
