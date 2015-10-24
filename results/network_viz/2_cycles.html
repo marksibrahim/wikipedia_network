@@ -35,7 +35,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 text {
-  font: 10px sans-serif;
+  font: 12px sans-serif;
   pointer-events: none;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
 }
@@ -145,6 +145,16 @@ var circle = svg.append("g").selectAll("circle")
     .data(force.nodes())
   .enter().append("circle")
     .attr("r", function(d) { return (d.visits / 1000); })
+    .on("mouseover", function(d) {
+        d3.select(this)
+        .style("stroke", "#87CEFA")
+        .style("stroke-width", "3px")
+    })
+    .on("mouseleave", function(d) {
+        d3.select(this)
+        .style("stroke", "#93a1a1")
+        .style("stroke-width", "1.5px")
+    })
     .call(force.drag);
 
 var text = svg.append("g").selectAll("text")

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!-- based on http://bl.ocks.org/mbostock/1153292 -->
 <meta charset="utf-8">
@@ -21,11 +22,11 @@
 
 .link.resolved {
   stroke-dasharray: 0,1 1;
-  stroke: #93a1a1;
+  stroke: rgba(147, 161, 161, 0.33);
 }
 
 circle {
-  fill: hsla(208, 93%, 66%, 0.88);
+  fill: hsla(0, 38%, 69%, 0.92);
   stroke: #93a1a1;
   stroke-width: 1.5px;
 }
@@ -33,8 +34,8 @@ circle {
 body {
     font-family: 'Open Sans', sans-serif;
 }
+
 text {
-  font: 12px sans-serif;
   pointer-events: none;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
 }
@@ -43,74 +44,82 @@ text {
 </head>
 <body>
 <div style="width: 100px; padding-top: 4cm; padding-left: 1cm; float: left;">
-<p style="font-size: 12px"> sized according to the number of traversal visits</p>
-
+<p style="font-size: 12px">highest-ranking basins around an article</p>
 <svg style="padding-top: .1cm">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#93a1a1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc322f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
 <!-- legend circles-->
-<circle r="30"  cx="30" cy="30" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
-<circle r="20"  cx="30" cy="40" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
-<circle r="10"  cx="30" cy="50" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<rect x="10" y="10" width="90" height="10" fill="url(#grad1)"></rect>
 
-<!-- legend labels -->
-<text x="60" y="30" 
+<!-- legend labels-->
+<text x="30" y="5" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">--- 15,000 traversal visits</text>
-<text x="50" y="40" 
+    fill="#93a1a1">traversal visits</text>
+
+<text x="100" y="40" font-family="Open Sans"
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">------ 10,000 traversal visits</text>
-<text x="40" y="50" 
+    fill="#93a1a1">| 1.4 million</text>
+
+<text x="60" y="40" font-family="Open Sans"
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">--------- 5,000 traversal visits</text>
+    fill="#93a1a1">| 40,000</text>
+
+<text x="20" y="40" font-family="Open Sans"
+    font-family="Open Sans"
+    font-size="8px"
+    fill="#93a1a1">| 20,000</text>
+
 </svg>
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="colorbrewer.js"></script>
 <script>
 
 // http://blog.thomsonreuters.com/index.php/mobile-patent-suits-graphic-of-the-day/
 var links = [
-  {source: "United States Constitution", target:  "Supremacy Clause", type: "resolved", visits:13968},
-  {source: "Supremacy Clause", target:  "Article Six of the United States Constitution", type: "resolved", visits:13968},
-  {source:  "Article Six of the United States Constitution", target: "United States Constitution", type: "resolved", visits:13968},
-  {source: "Cinema of India", target: "Indian Cinema", type: "resolved", visits:4228},
-  {source: "Indian Cinema", target: "Telugu Cinema", type: "resolved", visits:4228},
-  {source: "Telugu Cinema", target: "Cinema of India", type: "resolved", visits:4228},
-  {source: "Household", target: "Dwelling", type: "resolved", visits:4150},
-  {source: "Dwelling", target: "Households", type: "resolved", visits:4150},
-  {source: "Households", target: "Household", type: "resolved", visits:4150},
-  {source: "Kingdom of France", target: "France in the Middle Ages", type: "resolved", visits:3262},
-  {source: "France in the Middle Ages", target: "Medieval France", type: "resolved", visits:3262},
-  {source: "Medieval France", target: "Kingdom of France", type: "resolved", visits:3262},
-  {source: "Women's Tennis Association", target: "Billie Jean King", type: "resolved", visits:1674},
-  {source: "Billie Jean King", target:  "World Number 1 Women Tennis Players", type: "resolved", visits:1674},
-  {source: "World Number 1 Women Tennis Players", target: "Women's Tennis Association", type: "resolved", visits:1674},
-  {source: "Meaning (Semiotics)", target: "Semiotics", type: "resolved", visits:1221},
-  {source: "Semiotics", target: "Sign (Semiotics)",  type: "resolved", visits:1221},
-  {source:  "Sign (Semiotics)", target: "Meaning (Semiotics)",  type: "resolved", visits:1221}
+  {source: "Community", target: "Community", type: "resolved", visits:1401610, ncolor:10},
+  {source: "Landmass", target: "Landmass", type: "resolved", visits:404716, ncolor:8},
+  {source: "Federal Government", target: "Federal Government", type: "resolved", visits:42604, ncolor: 5},
+  {source: "Federal Government", target: "Federal Government", type: "resolved", visits:42604, ncolor: 5},
+  {source: "Belief System", target: "Belief System", type: "resolved", visits:39988, ncolor:5},
+  {source: "Terrestrial Ecoregion", target: "Terrestrial Ecoregion", type: "resolved", visits:35079, ncolor:4},
+  {source: "India", target: "India", type: "resolved", visits:27382, ncolor:3},
+  {source: "Census-Designated Place", target: "Census-Designated Place", type: "resolved", visits:24684, ncolor:2},
+  {source: "Built Structure", target: "Built Structure", type: "resolved", visits:22429, ncolor: 2},
+  {source: "Gas", target: "Gas", type: "resolved", visits: 21926, ncolor: 2}
 ];
 
 var nodes = {};
 
 // Compute the distinct nodes from the links.
 links.forEach(function(link) {
-  link.source = nodes[link.source] || (nodes[link.source] = {name: link.source, visits: link.visits});
+  link.source = nodes[link.source] || (nodes[link.source] = {name: link.source, visits: link.visits, ncolor: link.ncolor});
   link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, visits: link.visits});
 });
 
-var width = 660,
+var width = 600,
     height = 600;
 
 var force = d3.layout.force()
     .nodes(d3.values(nodes))
     .links(links)
     .size([width, height])
-    .linkDistance(70)
-    .charge(-400)
+    .linkDistance(40)
+    .charge(-700)
     .on("tick", tick)
     .start();
+
+var colorScale = d3.scale.linear()
+    .range(["#93a1a1", "#dc322f"])
+    .domain([0, 10])
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -141,7 +150,8 @@ var path = svg.append("g").selectAll("path")
 var circle = svg.append("g").selectAll("circle")
     .data(force.nodes())
   .enter().append("circle")
-    .attr("r", function(d) { return (d.visits / 500); })
+    .attr("r", 30)
+    .style("fill", function(d) { return colorScale(d.ncolor) })
     .on("mouseover", function(d) {
         d3.select(this)
         .style("stroke", "#87CEFA")
@@ -159,6 +169,7 @@ var text = svg.append("g").selectAll("text")
   .enter().append("text")
     .attr("x", 8)
     .attr("y", ".31em")
+    .style("font-size", "14px")
     .text(function(d) { return d.name; });
 
 //title
@@ -167,7 +178,7 @@ svg.append("text")
       .attr("y", 40)
       .attr("text-anchor", "middle")
       .style("font-size", "32px")
-      .text("3-cycles");
+      .text("Basins around an Article");
 
 // Use elliptical arc path segments to doubly-encode directionality.
 function tick() {
