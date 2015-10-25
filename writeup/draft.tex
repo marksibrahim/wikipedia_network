@@ -88,7 +88,7 @@
 % Maketitle metadata
 \title{\vspace{-5mm}%
 	\fontsize{24pt}{12pt}\selectfont
-	\textbf{What's So Special About Philosophy?} 
+	\textbf{What's so Special About Philosophy?} 
 	}	
 \author{%
 \fontsize{14pt}{14pt}\selectfont
@@ -127,11 +127,12 @@ cite MIT Tech Review Article: http://www.technologyreview.com/featuredstory/5204
 }
 More than information about a topic though, Wikipedia is a marvelous web of naturally emerging relationships.  
 By following the first link in an article, we connect entries to form a directed network within Wikipedia: Wikipedia's First Link Network. 
-Here we study Wikipedia's First Link Network for insight into how we related topics, ideas, people, objects, and events.  
+Here we study the English edition of Wikipedia's First Link Network for insight into how we relate topics, ideas, people, objects, and events.  
 
 
-We algorithmically parse every article on the English Wikipedia to construct a map of the First Link Network. 
-We then traverse the network, following every possible path to uncover the network's structure.
+We algorithmically parse all 4.7 million articles to construct a map of Wikipedia's First Link Network. 
+In a novel approach to uncover structure, we traverse every possible path through the network, 
+measuring the accumulation of first links, path lengths, basins, cycles, and even particular articles funneling links into the cycles.
 We discover many scale-free distributions, find Philosophy at a salient center, and uncover a flow from specific to general with 
 basins around fundamental notions such as Community, State, and Science. 
 Curiously, we also observe a gravitation towards topical articles including Health Care and Fossil Fuel.
@@ -151,7 +152,7 @@ Through the efforts of millions of individuals, working independently,
 we naturally linked topics, inventions, people, objects, places, and events across space and time.
 The web we weaved, and continue to weave, is a wealth of information not only about those notable inventions, 
 places, figures, and ideas, but also about \textit{relationships} among them.
-Here we study the relationships in this naturally arising web through the hyperlinks connecting one article to another.
+We study the relationships in this naturally arising web through the hyperlinks connecting one article to another.
 
 We build Wikipedia's First Link Network by following the first link, not in parenthesis, inside the main body of each article in the English version of Wikipedia. 
 For the directed network to meaningfully reflect how we associate one article to another, we exclude links in parenthesis, 
@@ -159,7 +160,7 @@ disregarding pronunciation keys or disambiguations.
 We also exclude any links in the side-bar elements, as well as any links to external pages, files, or WikiMedia 
 projects outside of Wikipedia (such as Wiktionary).
 This procedure corresponds to the original claim in 2008 about the percentage of pages with first links to 
-"Philosophy"\footnote{
+"Philosophy."\footnote{
 https://en.wikipedia.org/wiki/Wikipedia:GettingtoPhilosophy
 }
 \footnote{
@@ -182,7 +183,7 @@ The result is a directed network placing every article in a broader web of ideas
 %===========================Data_and_Parsing================================
 \section{Constructing the First Link Network}
 
-To map Wikipedia's First Link Network, we use the freely-available XML dump of the English Wikipedia. 
+To map Wikipedia's First Link Network, we use the freely-available XML dump of the English edition of Wikipedia. 
 Rather than rely on a sample of articles from which to generalize, we opted to process the entirety of Wikipedia, 
 eliminating any statistical error due to sampling.
 We analyze the snapshot provided on November 2014, representing the state of Wikipedia at the time.
@@ -201,21 +202,17 @@ Approaches using existing libraries led to several bugs
 including trouble with nested links, nested parenthesis, unclosed tags, escape characters 
 as well as compatibility with other libraries used to parse the XML.}
 Our parsing algorithm aimed to: 
-1. squash the initial bugs 
-2. eliminate the need for several passes. 
+1) accurately identify the first link among other page elements
+2) efficiently do so, without the need for several passes through the data.
 To process an article with one pass, we developed a hierarchical system of flags:
-\begin{itemize}
-    \item[Flag 1:] inside Wikimedia template?\\
-        * \bt{trigger}: \{\{
-    \begin{itemize}
-        \item[Flag 2:] inside <ref>, <div>?
-        \begin{itemize}
-            \item[Flag 3:] inside ()?
-        \end{itemize}
-    \end{itemize}
-\end{itemize}
 
-\red{[[better graphic to come]]}
+\begin{figure}[H]
+\centering
+\caption{parsing algorithm for XML}
+    \begin{subfigure}[b]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{graphics/flags.pdf}    
+    \end{subfigure}
+\end{figure}
 
 The algorithm loops in three-character chunks to account for potentially nested elements, 
 shifting by one character steps through the article markup.
@@ -450,6 +447,13 @@ The most common path length is 29, with an interquartile range (26, 30).
 The distribution of path lengths is similarly scale-free with few articles at the extreme of 365 path lengths, while the majority 
 is between 26-30: 
 
+\begin{figure}[H]
+\centering
+    \caption{Path Length Distribution}
+    \begin{subfigure}[b]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{graphics/path_lengths_boxplot.png}
+    \end{subfigure}
+\end{figure}
 \begin{figure}[H]
 \centering
     \caption{Longest Path Lengths}
