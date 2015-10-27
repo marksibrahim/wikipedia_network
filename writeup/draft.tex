@@ -105,6 +105,12 @@
 %text, figure spacing
 \raggedbottom
 
+%footnote withou marker
+\newcommand\blfootnote[1]{%
+  \begingroup
+    \renewcommand\thefootnote{}\footnote{#1}%
+      \addtocounter{footnote}{-1}%
+   \endgroup }
 %%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \maketitle
@@ -518,7 +524,9 @@ or natural language processing.
 
 
 
+\blfootnote{
 - thank you to my friend RJ for pointing out the xkcdc comic about links to Philosophy
+}
 
 
 \newpage 
