@@ -501,14 +501,6 @@ is between 26-30:
   \label{fig:Path Length Distribution}
 \end{figure}
 
-\begin{figure*}[tp!]
-  \centering	
-  \includegraphics[width=\columnwidth]{graphics/top_1k_path_length.png}  
-  \caption{
-    \textbf{Path Length Distribution for Top 1k articles}
-  }
-  \label{fig:Top 1k Path Length Distribution}
-\end{figure*}
 
 
 \subsection{Degree Distribution}
@@ -529,15 +521,15 @@ FLN.
   \label{fig:ndegree list}
 
 \end{figure*}
-The highest ranking article by n-degree, or the number of direct first links, is 
+The highest ranking article by n-degree is 
 "United States" with 80,249 direct first links. Other high-ranking articles
 include foundational abstract concepts such as "village," "species,"; 
 sports associations such as "American Football," "Association Football"; 
 and developed nations such as "France," "Japan," "Russia," "Australia," and 
 the "Netherlands." 
 
-"Philosophy" and other Philosophical concepts which hold many traversal visits,
-do not appear near the top when ranked by n-degree. 
+"Philosophy" and other philosophical concepts with many traversal visits
+are not high-ranking by n-degree.
 "Philosophy" has an n-degree of 581, with direct first links from articles about Philosophers and areas of Philosophy: "Existentialism and Humanism," "Predeterminism," "Synoptic Philosophy,"Qualia," "Dorothy Emmet," and "Christopher W. Morris."
 While many articles accumulate at "Philosophy," the accumulation is not the 
 result of many articles directly referencing "Philosophy." 
@@ -598,8 +590,16 @@ Other high ranking articles include key historical events such as the "Cold War"
 media discussion such as "Fossil Fuel".
 This coincidence of recent relevance and traversal feed rank suggests the First Link Network measurably represents
 meaningful relationships not only among ideas, but also to English-speaking society. 
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\textwidth]{graphics/funnels_distribution.png}
+  \caption{
+    \textbf{Distribution of Traversal Funnels}
+  }
+  \label{fig:Funnels Distribution}
+\end{figure*}
 
-\red{TODO: add two regimes for power-law distribution}
+\red{TODO: add discussion of distribution}
 
 \subsection{Article Popularity}
 
@@ -607,8 +607,52 @@ Using a recently released api, we compare the popularity of a page to our
 findings about the FLN. We measure popularity as the total number 
 of page views in the english edition of Wikipedia in the month of 
 October 2015 (the earliest full month for which the data is available). 
-We find \dots
+We find the highest ranking 1000 articles by traversal visits have an average of
+$70$ thousand page views in October with high variation: the standard deviation 
+is $1.1$ million page views. 
+The number of page views has a skewed distrubtion with $75\%$ of articles
+reaching fewer than $73$ thousand page views in October.
+The article for "United States" has the most page 
+views of the highest ranking $1000$ articles by traversal visits with 
+$1.4$ million views in October. The next most popular articles are 
+"India," "World War II," and the "United Kingdom" each with $0.7-1.03$ million page views. 
 
+
+The "Philosophy" article despite outranking every article in traversal visits,
+has only $240$ thousand page views in October compared to the $1.4$ million
+page views "United States" has.
+While "Philosophy" is not itself the most popular article, "Philosophy" serves as 
+an accumulation points for the ideas. Wikipedia users do not login specificially
+to read about "Philosophy," but the authors relate ideas to "Philosophy" 
+by ultimately anchoring the flow of first links to "Philosophy."
+
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/views_visits.png}
+  \caption{
+    \textbf{Article Popularity (by page views) compared to Traversal Visits 
+    for Highest ranking 1000 articles}
+    We use the total number of page views provided by Wikipedia for the month
+    of October 2015 to compare each article's popularity to traversal visits.
+    While the most popular articles do not necessarily correspond to the articles
+    with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases.
+  }
+  \label{fig:Views and Visits}
+
+\end{figure*}
+
+\red{REDO analysis}
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/funnels_visits.png}
+  \caption{
+    \textbf{Article Popularity (by page views) compared to Traversal Funnels
+    for Highest ranking 1000 articles}
+  }
+    We use the total number of page views provided by Wikipedia for the month
+    of October 2015 to compare each article's popularity to traversal funnels.
+  \label{fig:Views and Funnels}
+\end{figure*}
 %========================Conclusion====================================
 
 \section{Reflections}
