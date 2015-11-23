@@ -139,7 +139,7 @@ an ever growing load of information.
 
 \maketitle
 
-\section*{Introduction}
+\section{Introduction}
 
 
 
@@ -151,7 +151,8 @@ with coverage spanning everything from little known ancient battles to the lates
 \cite{stats} \cite{drugs}.
 All this information does not lie dormant. 
 Wikipedia is the sixth most visited
-site in the world, surpassing 18 billion page views in a single month. 
+site in the world, surpassing 18 billion page views in a single month
+\cite{wiki_views}.
 The most widely used general reference, Wikipedia has amassed an awe-inspiring collection of human knowledge.
 
 It's not surprising then to see Wikipedia as the object of many studies. 
@@ -253,7 +254,7 @@ Together with cycles, n-degree, depth, and the content of the articles,
 we build our analysis of the relations among the ideas in Wikipedia.
 
 
-\section*{Traversing the First Link Network}
+\section{Traversing the First Link Network}
 
 To understand the structure of Wikipedia's First Link Network, we
 aimed to characterize the dynamics of the flow from one article to another. 
@@ -362,7 +363,8 @@ Meanwhile, the highest ranking 30 articles have an extremely disproportionate nu
 
 \end{figure*}
 
-To more accurately gauge the distribution, we construct a log-log plot of the entire dataset: log(traversal visits) against log(rank). We observe a fairly linear fit, as is characteristic of scale-free networks, with an r-value of -.93. A handful of the highest ranking articles contain a disproportionate number of traversal visits, while most have none. The skew in the distribution is not terribly surprising when considering the heuristic of how the links flow: from specific to general. 
+To more accurately gauge the distribution, we construct a log-log plot of the entire dataset: log(traversal visits) against log(rank). We observe a fairly linear fit, as is characteristic of scale-free networks, with an r-value of -.93 and 
+a power-law exponent of $-0.636$. A handful of the highest ranking articles contain a disproportionate number of traversal visits, while most have none. The skew in the distribution is not terribly surprising when considering the heuristic of how the links flow: from specific to general. 
 
 The highest ranking articles include Philosophy alongside related articles such as "Existence", "Quality", and "Reality".
 
@@ -444,6 +446,9 @@ Other lengthy cycles span 60-75 articles including collections of articles on na
 or judicial bodies such as the "Legislative Assembly of Ontario".
 
 
+
+
+
 \subsection{Basins}
 
 We can group articles lying on the same path to identify {\it basins}: 
@@ -506,9 +511,65 @@ is between 26-30:
 \end{figure*}
 
 
+\subsection{Degree Distribution}
+
+We identified the set of first links directly referencing each article. 
+Similar to the number of visits, we can examine the overall distribution and 
+first links to understand the direct structure of taking one step through the 
+FLN. 
+
+
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/articles_ndegree.png}
+  \caption{
+    \textbf{Highest Ranking Articles by n-degree}
+  }
+  We rank each article by the number of direct first links to the article (n-degree). 
+  \label{fig:ndegree list}
+
+\end{figure*}
+The highest ranking article by n-degree, or the number of direct first links, is 
+"United States" with 80,249 direct first links. Other high-ranking articles
+include foundational abstract concepts such as "village," "species,"; 
+sports associations such as "American Football," "Association Football"; 
+and developed nations such as "France," "Japan," "Russia," "Australia," and 
+the "Netherlands." 
+
+"Philosophy" and other Philosophical concepts which hold many traversal visits,
+do not appear near the top when ranked by n-degree. 
+"Philosophy" has an n-degree of 581, with direct first links from articles about Philosophers and areas of Philosophy: "Existentialism and Humanism," "Predeterminism," "Synoptic Philosophy,"Qualia," "Dorothy Emmet," and "Christopher W. Morris."
+While many articles accumulate at "Philosophy," the accumulation is not the 
+result of many articles directly referencing "Philosophy." 
+Instead, the accumulation of first links, as we argued in our 
+discussion of traversal visits, flows towards Philosophy as the 
+ultimate anchor when genralizing from specific articles towards broader notions.
+
+
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
+  \caption{
+    \textbf{FLN Degree Distribution}
+  }
+  We construct a log-log plot fit our results to a linear model. The result is a 
+  an excellent fit with r = -0.98, yielding a power law exponent of -0.79. 
+  The distribution appears scale free with most articles having fewer than 9 
+  direct first links, while few hold most.
+  \label{fig:degree distribution}
+
+\end{figure*}
+As a distribution, we examine the degree of the articles in the FLN with at least
+one direct first link. The average n-degree 
+is 3.6 direct links with a standard deviation of 89.5 links.
+Only 4826 articles have more than 100 direct first links, $75\%$ have fewer than 
+9. Overall the n-degree appears scale-free with an r value of -0.98 as a linear log-log fit and a power law exponent of -0.79. 
+
+
+
 \subsection{Traversal Funnels}
 
-Measuring only traversal visits however is limiting as it does not distinguish whether a particular article in a cycle 
+Measuring only traversal visits and n-degree is limiting as it does not distinguish whether a particular article in a cycle 
 is a funnel, directing many more paths inside the cycle than others. 
 To distinguish among articles in a cycle, we also measured traversal funnels, or the number of 
 paths an article directs towards a cycle. Here we count the number of traversal visits up to a cycle, 
@@ -538,6 +599,15 @@ media discussion such as "Fossil Fuel".
 This coincidence of recent relevance and traversal feed rank suggests the First Link Network measurably represents
 meaningful relationships not only among ideas, but also to English-speaking society. 
 
+\red{TODO: add two regimes for power-law distribution}
+
+\subsection{Article Popularity}
+
+Using a recently released api, we compare the popularity of a page to our 
+findings about the FLN. We measure popularity as the total number 
+of page views in the english edition of Wikipedia in the month of 
+October 2015 (the earliest full month for which the data is available). 
+We find \dots
 
 %========================Conclusion====================================
 
@@ -578,9 +648,9 @@ Thank you to my friend RJ for pointing out the xkcd comic describing how the maj
 
 \newpage
 
-\section*{Appendix}
+\section{Appendix}
 
-\subsection*{Constructing The First Link Network}
+\subsection{Constructing The First Link Network}
 
 To map Wikipedia's First Link Network, we use the freely-available XML dump of the English edition of Wikipedia. 
 Rather than rely on a sample of articles from which to generalize, we opted to process the entirety of Wikipedia, 
@@ -636,7 +706,7 @@ We then joined the results to form a hash table containing every Wikipedia artic
 First Link. The resulting network map is the basis of our analysis.
 
 
-\subsection*{Supplementary Tables}
+\subsection{Supplementary Tables}
 
 \begin{figure*}[tp!]
   \centering	
@@ -727,6 +797,8 @@ First Link. The resulting network map is the basis of our analysis.
     \bibitem{vacc} The authors acknowledge the Vermont Advanced Computing Core which is supported by NASA (NNX 06AC88G), at the University of Vermont for providing High Performance Computing resources that have contributed to the research results reported within this paper.
     \url{http://www.uvm.edu/vacc}
 
+    \bibitem{wiki_views} Page Views for Wikipedia, Non-mobile site, Normalized (Page Views for Wikipedia, Non-mobile site, Normalized)
+    \url{https://stats.wikimedia.org/EN/TablesPageViewsMonthly.htm}
 \end{thebibliography}
 
 
