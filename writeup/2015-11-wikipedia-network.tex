@@ -252,7 +252,7 @@ the dominant features of the FLN's structure.
 We measure dynamics of the FLN as a flow, quantifying 
 aspects of the FLN from the accumulation of first links around articles 
 to the influence an article exerts in shaping the FLN.
-Together with cycles, ndegree, depth, and the content of the articles, 
+Together with cycles, indegree, depth, and the content of the articles, 
 we build our analysis of the relations among the ideas in Wikipedia.
 
 
@@ -433,20 +433,78 @@ From accumulated references, cycles, basins to influence, we can measure how the
 
 \section{Discoveries}
 
-%\green{TODO:
-%rewrite \\
-%introduce metric\\
-%find two or three salient points to discuss in each section \\
-%tie into bigger picture
-%\begin{itemize}
-%    \item reorder so paths and flow are described first then funnels and visits
-%    \item Basins expand explanation and break up into 2 paragraphs
-%    \item add more captions to figures
-%\end{itemize}
-%}
-We followed every possible path through the network, taking 232 million steps along the way to measure the accumulated number of traversal visits.
+\green{TODO:
+rewrite \\
+introduce metric\\
+find two or three salient points to discuss in each section \\
+tie into bigger picture
+\begin{itemize}
+    \item reorder so paths and flow are described first then funnels and visits
+    \item Basins expand explanation and break up into 2 paragraphs
+    \item add more captions to figures
+\end{itemize}
+}
+
+\subsection{Degree Distribution}
+
+We identified the set of first links directly referencing each article. 
+Similar to the number of visits, we can examine the overall distribution and 
+first links to understand the direct structure of taking one step through the 
+FLN. 
+
+
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/articles_ndegree.png}
+  \caption{
+    \textbf{Highest Ranking Articles by indegree}
+  }
+  We rank each article by the number of direct first links to the article (indegree). 
+  \label{fig:ndegree list}
+
+\end{figure*}
+The highest ranking article by indegree is 
+"United States" with 80,249 direct first links. Other high-ranking articles
+include foundational abstract concepts such as "village," "species,"; 
+sports associations such as "American Football," "Association Football"; 
+and developed nations such as "France," "Japan," "Russia," "Australia," and 
+the "Netherlands." 
+
+"Philosophy" and other philosophical concepts with many traversal visits
+are not high-ranking by indegree.
+"Philosophy" has an indegree of 581, with direct first links from articles about Philosophers and areas of Philosophy: "Existentialism and Humanism," "Predeterminism," "Synoptic Philosophy,"Qualia," "Dorothy Emmet," and "Christopher W. Morris."
+While many articles accumulate at "Philosophy" (see traversal visits discussion), 
+the accumulation is not the 
+result of many articles directly referencing "Philosophy." 
+Instead, the accumulation of first links, as we argue in our 
+discussion of traversal visits, flows towards Philosophy as the 
+ultimate anchor when genralizing from specific articles towards broader notions.
+
+
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
+  \caption{
+    \textbf{FLN Degree Distribution}
+  }
+  We construct a log-log plot fit our results to a linear model. The result is a 
+  an excellent fit with r = -0.98, yielding a power law exponent of -0.79. 
+  The distribution appears scale free with most articles having fewer than 9 
+  direct first links, while few hold most.
+  \label{fig:degree distribution}
+\end{figure*}
+
+As a distribution, we examine the degree of the articles in the FLN with at least
+one direct first link. The average indegree 
+is 3.6 direct links with a standard deviation of 89.5 links.
+Only 4826 articles have more than 100 direct first links, $75\%$ have fewer than 
+9. Overall the indegree appears scale-free with an r value of -0.98 as a linear log-log fit and a power law exponent of -0.79. 
+
+
 
 \subsection{Traversal Visits}
+
+We followed every possible path through the network, taking 232 million steps along the way to measure the accumulated number of traversal visits.
 
 As a distribution, the number traversal visits per article appears scale-free. The majority of articles have fewer than 30 traversal visits, while few 
 have 5 order of magnitude more traversal visits. 
@@ -508,6 +566,40 @@ Since many articles have no synonyms, we also compared the number of synonyms in
 We still find the highest ranking 100 articles with an average of 9.0 (median of 7.0) synonyms whereas the remaining articles on average 5.8 synonyms (median of 7.0), even with the exclusion of all articles without any synonyms.
 The quantifiable difference in synonyms corroborates the flow of links from concrete, specific articles to broader disciplines or fundamental notions.
 
+
+
+
+\subsection{Depth of the FLN}
+
+In addition to identifying cycles and cycle lengths, we also measure the traversal path length, which includes articles outside
+of cycles. 
+Path length measures the number of links traversed until a repeated or invalid link as a means to guage the network's depth.
+We discovered the longest path length is also 365, matching the longest cycle of Orthodox Liturgics. 
+We also found similarly lengthy paths following the evolution of a place or topic through time: 
+"1953 in Scotland" or "1560s Architecture", with articles sequentially proceeding by year, decade or era.
+
+Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
+The most common path length is 29, with an interquartile range (26, 30).
+The median path length far exceeds the popular 6-degrees of separation (see for 
+example the average number of academic publications separating scholars 
+\cite{six_degrees}), indicating a greater network depth. The network depth suggests a large network of spanning a variety of ideas, which Wikipedia certainly is.
+The distribution of path lengths is similarly scale-free with few articles at the extreme of 365 path lengths, while the majority 
+is between 26-30.  
+
+\begin{figure}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/path_lengths_boxplot.png}
+  \caption{
+    \textbf{Path Length Distribution}
+  }
+  The median network depth measured by the number of first links in a path
+  is 29. The 365 cycle for "Orthodox" liturgics is the outlier to the right, while
+  other historical articles about "Scotland," "UK" and so on are slightly outside
+  the third quartile. More than $75\%$ of articles have path lenghts between 
+  $0$ and $50$ links.
+
+  \label{fig:Path Length Distribution}
+\end{figure}
 
 
 
@@ -598,99 +690,9 @@ anchor specific knowledge in a broader, simpler concept.
 
 \end{figure*}
 
-\subsection{Depth of the FLN}
-
-In addition to identifying cycles and cycle lengths, we also measure the traversal path length, which includes articles outside
-of cycles. 
-Path length measures the number of links traversed until a repeated or invalid link as a means to guage the network's depth.
-We discovered the longest path length is also 365, matching the longest cycle of Orthodox Liturgics. 
-We also found similarly lengthy paths following the evolution of a place or topic through time: 
-"1953 in Scotland" or "1560s Architecture", with articles sequentially proceeding by year, decade or era.
-
-Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
-The most common path length is 29, with an interquartile range (26, 30).
-The median path length far exceeds the popular 6-degrees of separation (see for 
-example the average number of academic publications separating scholars 
-\cite{six_degrees}), indicating a greater network depth. The network depth suggests a large network of spanning a variety of ideas, which Wikipedia certainly is.
-The distribution of path lengths is similarly scale-free with few articles at the extreme of 365 path lengths, while the majority 
-is between 26-30.  
-
-\begin{figure}[tp!]
-  \centering	
-  \includegraphics[width=\columnwidth]{graphics/path_lengths_boxplot.png}
-  \caption{
-    \textbf{Path Length Distribution}
-  }
-  The median network depth measured by the number of first links in a path
-  is 29. The 365 cycle for "Orthodox" liturgics is the outlier to the right, while
-  other historical articles about "Scotland," "UK" and so on are slightly outside
-  the third quartile. More than $75\%$ of articles have path lenghts between 
-  $0$ and $50$ links.
-
-  \label{fig:Path Length Distribution}
-\end{figure}
-
-
-
-\subsection{Degree Distribution}
-
-We identified the set of first links directly referencing each article. 
-Similar to the number of visits, we can examine the overall distribution and 
-first links to understand the direct structure of taking one step through the 
-FLN. 
-
-
-\begin{figure*}[tp!]
-  \centering	
-  \includegraphics[width=\columnwidth]{graphics/articles_ndegree.png}
-  \caption{
-    \textbf{Highest Ranking Articles by ndegree}
-  }
-  We rank each article by the number of direct first links to the article (ndegree). 
-  \label{fig:ndegree list}
-
-\end{figure*}
-The highest ranking article by ndegree is 
-"United States" with 80,249 direct first links. Other high-ranking articles
-include foundational abstract concepts such as "village," "species,"; 
-sports associations such as "American Football," "Association Football"; 
-and developed nations such as "France," "Japan," "Russia," "Australia," and 
-the "Netherlands." 
-
-"Philosophy" and other philosophical concepts with many traversal visits
-are not high-ranking by ndegree.
-"Philosophy" has an ndegree of 581, with direct first links from articles about Philosophers and areas of Philosophy: "Existentialism and Humanism," "Predeterminism," "Synoptic Philosophy,"Qualia," "Dorothy Emmet," and "Christopher W. Morris."
-While many articles accumulate at "Philosophy," the accumulation is not the 
-result of many articles directly referencing "Philosophy." 
-Instead, the accumulation of first links, as we argued in our 
-discussion of traversal visits, flows towards Philosophy as the 
-ultimate anchor when genralizing from specific articles towards broader notions.
-
-
-\begin{figure*}[tp!]
-  \centering	
-  \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
-  \caption{
-    \textbf{FLN Degree Distribution}
-  }
-  We construct a log-log plot fit our results to a linear model. The result is a 
-  an excellent fit with r = -0.98, yielding a power law exponent of -0.79. 
-  The distribution appears scale free with most articles having fewer than 9 
-  direct first links, while few hold most.
-  \label{fig:degree distribution}
-
-\end{figure*}
-As a distribution, we examine the degree of the articles in the FLN with at least
-one direct first link. The average ndegree 
-is 3.6 direct links with a standard deviation of 89.5 links.
-Only 4826 articles have more than 100 direct first links, $75\%$ have fewer than 
-9. Overall the ndegree appears scale-free with an r value of -0.98 as a linear log-log fit and a power law exponent of -0.79. 
-
-
-
 \subsection{Traversal Funnels}
 
-Measuring only traversal visits and ndegree is limiting as it does not distinguish whether a particular article in a cycle 
+Measuring only traversal visits and indegree is limiting as it does not distinguish whether a particular article in a cycle 
 is a funnel, directing many more paths inside the cycle than others. 
 To distinguish among articles in a cycle, we also measured traversal funnels, or the number of 
 paths an article directs towards a cycle. Here we count the number of traversal visits up to a cycle, 
