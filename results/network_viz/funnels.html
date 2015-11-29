@@ -64,15 +64,15 @@ paths an article directs towards a cycle</p>
 <text x="60" y="30" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">--- 31,000 traversal funnels</text>
+    fill="#93a1a1">--- 45,000 traversal funnels</text>
 <text x="50" y="40" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">------ 19,000 traversal funnels</text>
+    fill="#93a1a1">------ 20,000 traversal funnels</text>
 <text x="40" y="50" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">--------- 10,000 traversal funnels</text>
+    fill="#93a1a1">---------- 5,000 traversal funnels</text>
 </svg>
 
 </div>
@@ -149,7 +149,7 @@ var path = svg.append("g").selectAll("path")
 var circle = svg.append("g").selectAll("circle")
     .data(force.nodes())
   .enter().append("circle")
-    .attr("r", function(d) { return (d.visits / 1000); })
+    .attr("r", function(d) { return Math.sqrt(d.visits / 50); })
     .on("mouseover", function(d) {
         d3.select(this)
         .style("stroke", "#87CEFA")

@@ -47,9 +47,9 @@ text {
 
 <svg style="padding-top: .1cm">
 <!-- legend circles-->
-<circle r="30"  cx="30" cy="30" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
-<circle r="20"  cx="30" cy="40" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
-<circle r="10"  cx="30" cy="50" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="25"  cx="30" cy="30" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="17"  cx="30" cy="37" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="10"  cx="30" cy="45" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
 
 <!-- legend labels -->
 <text x="60" y="30" 
@@ -59,11 +59,11 @@ text {
 <text x="50" y="40" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">------ 10,000 traversal visits</text>
+    fill="#93a1a1">-------  7,000 traversal visits</text>
 <text x="40" y="50" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">--------- 5,000 traversal visits</text>
+    fill="#93a1a1">---------- 2,500 traversal visits</text>
 </svg>
 
 </div>
@@ -141,7 +141,7 @@ var path = svg.append("g").selectAll("path")
 var circle = svg.append("g").selectAll("circle")
     .data(force.nodes())
   .enter().append("circle")
-    .attr("r", function(d) { return (d.visits / 500); })
+    .attr("r", function(d) { return Math.sqrt(d.visits / 25); })
     .on("mouseover", function(d) {
         d3.select(this)
         .style("stroke", "#87CEFA")

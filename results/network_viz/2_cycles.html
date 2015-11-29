@@ -48,9 +48,9 @@ text {
 
 <svg style="padding-top: .1cm">
 <!-- legend circles-->
-<circle r="30"  cx="30" cy="30" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
-<circle r="20"  cx="30" cy="40" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
-<circle r="10"  cx="30" cy="50" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="25"  cx="30" cy="30" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="17"  cx="30" cy="37" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="10"  cx="30" cy="45" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
 
 <!-- legend labels -->
 <text x="60" y="30" 
@@ -60,11 +60,11 @@ text {
 <text x="50" y="40" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">------ 19,000 traversal visits</text>
+    fill="#93a1a1">----- 15,000 traversal visits</text>
 <text x="40" y="50" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">--------- 10,000 traversal visits</text>
+    fill="#93a1a1">--------- 5,000 traversal visits</text>
 </svg>
 
 </div>
@@ -83,8 +83,8 @@ var links = [
   {source: "BBC", target: "Broadcasting House", type: "resolved", visits:8952},
   {source: "Secondary School", target: "Secondary Education", type: "resolved", visits:7563},
   {source: "Secondary Education", target: "Secondary School", type: "resolved", visits:7563},
-  {source: "Biological Networ", target: "Biological System", type: "resolved", visits:5574},
-  {source: "Biological System", target: "Biological Networ", type: "resolved", visits:5574},
+  {source: "Biological Network", target: "Biological System", type: "resolved", visits:5574},
+  {source: "Biological System", target: "Biological Network", type: "resolved", visits:5574},
   {source: "Photography", target: "Photograph", type: "resolved", visits:4594},
   {source: "Photograph", target: "Photography", type: "resolved", visits:4594},
   {source: "Armenia", target: "Hayastan (disambiguation)", type: "resolved", visits:3948},
@@ -144,7 +144,7 @@ var path = svg.append("g").selectAll("path")
 var circle = svg.append("g").selectAll("circle")
     .data(force.nodes())
   .enter().append("circle")
-    .attr("r", function(d) { return (d.visits / 1000); })
+    .attr("r", function(d) { return Math.sqrt(d.visits / 50); })
     .on("mouseover", function(d) {
         d3.select(this)
         .style("stroke", "#87CEFA")

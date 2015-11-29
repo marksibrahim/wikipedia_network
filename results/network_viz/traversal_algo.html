@@ -48,13 +48,13 @@ text {
 
 // http://blog.thomsonreuters.com/index.php/mobile-patent-suits-graphic-of-the-day/
 var links = [
-  {source: "A = 0", target: "B = 0", type: "resolved", visits:0},
-  {source: "B = 0", target: "C = 1", type: "resolved", visits:0},
-  {source: "C = 1", target: "A = 0", type: "resolved", visits:1},
-  {source: "E = 1", target: "C = 1", type: "resolved", visits:1},
-  {source: "G = 0", target: "E = 1", type: "resolved", visits:0},
-  {source: "F = 0", target: "E = 1", type: "resolved", visits:0},
-  {source: "D = 0", target: "C = 1", type: "resolved", visits:0},
+  {source: "C", target: "A", type: "resolved", visits:0},
+  {source: "A", target: "B", type: "resolved", visits:0},
+  {source: "B", target: "C", type: "resolved", visits:0},
+  {source: "E", target: "C", type: "resolved", visits:0},
+  {source: "G", target: "E", type: "resolved", visits:0},
+  {source: "F", target: "E", type: "resolved", visits:0},
+  {source: "D", target: "C", type: "resolved", visits:0},
 ];
 
 var nodes = {};
@@ -127,6 +127,10 @@ var circle = svg.append("g").selectAll("circle")
         .style("stroke", "#93a1a1")
         .style("stroke-width", "1.5px")
     })
+    .on("click", function(d) {
+        d3.select(this)
+        .style("fill", "#74c476")
+    })
     .call(force.drag);
 
 var text = svg.append("g").selectAll("text")
@@ -142,7 +146,7 @@ svg.append("text")
       .attr("y", 40)
       .attr("text-anchor", "middle")
       .style("font-size", "16px")
-      .text("traversal funnel path for article G");
+      .text("a handcrafted, non-GMO network");
 
 // Use elliptical arc path segments to doubly-encode directionality.
 function tick() {
