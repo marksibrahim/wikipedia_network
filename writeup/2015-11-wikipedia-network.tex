@@ -447,31 +447,39 @@ tie into bigger picture
 
 \subsection{Degree Distribution}
 
-We identified the set of first links directly referencing each article. 
-Similar to the number of visits, we can examine the overall distribution and 
-first links to understand the direct structure of taking one step through the 
-FLN. 
-
-
+We first identify the set of first links directly referencing a particular article 
+by studying the indegree of the FLN. 
+A higher indegree suggests more authors found the ideas in the article 
+a pertinent direct reference. 
 \begin{figure*}[tp!]
   \centering	
   \includegraphics[width=\columnwidth]{graphics/articles_ndegree.png}
   \caption{
     \textbf{Highest Ranking Articles by indegree}
   }
-  We rank each article by the number of direct first links to the article (indegree). 
+  We rank each article by the number of direct first links to the article (indegree). The highest-ranking articles tend to represent abstraction for concepts
+  comprised of various facets and parts.
   \label{fig:ndegree list}
-
 \end{figure*}
-The highest ranking article by indegree is 
-"United States" with 80,249 direct first links. Other high-ranking articles
+We rank all 11 million articles by indegree to find 
+the "United States" with 80,249 direct first links as the most referenced
+Wikipedia article. 
+Other high-ranking articles
 include foundational abstract concepts such as "village," "species,"; 
 sports associations such as "American Football," "Association Football"; 
 and developed nations such as "France," "Japan," "Russia," "Australia," and 
-the "Netherlands." 
+the "Netherlands." These high ranking articles are useful abstractions: nations
+describe a collection of individuals, a common culture, language, or 
+geographical proximity; sports teams describe an ever changing collection of 
+sports players often associated with a cultural identity and a geographical 
+region. Since abstractions such as nations and teams are inherently comprised
+of many parts, authors reference the larger abstraction when describing 
+a part. For example, in describing the geographical region of north America, 
+the United States, Canada, or Mexico are natural references anchoring the 
+geographical location to a larger national identity. 
 
 "Philosophy" and other philosophical concepts with many traversal visits
-are not high-ranking by indegree.
+are not among the highest-ranking articles by indegree.
 "Philosophy" has an indegree of 581, with direct first links from articles about Philosophers and areas of Philosophy: "Existentialism and Humanism," "Predeterminism," "Synoptic Philosophy,"Qualia," "Dorothy Emmet," and "Christopher W. Morris."
 While many articles accumulate at "Philosophy" (see traversal visits discussion), 
 the accumulation is not the 
@@ -479,8 +487,6 @@ result of many articles directly referencing "Philosophy."
 Instead, the accumulation of first links, as we argue in our 
 discussion of traversal visits, flows towards Philosophy as the 
 ultimate anchor when genralizing from specific articles towards broader notions.
-
-
 \begin{figure*}[tp!]
   \centering	
   \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
@@ -493,18 +499,76 @@ ultimate anchor when genralizing from specific articles towards broader notions.
   direct first links, while few hold most.
   \label{fig:degree distribution}
 \end{figure*}
+The FLN's indegree exihibits a scale-free distribution where a few articles 
+receive a most direct first references, while most articles receive few or none.
+The average indegree for all 11 million articles is 3.6 direct first links with a standard deviation of 89.5 links.
+Only 4826 articles have more than 100 direct first links and $75\%$ of articles
+have fewer than 9. 
+When fit to a linear model on a log-log scale (log(rank) versus log(indegree)), 
+the model's r value is $-0.98$ suggesting a strong log-log linear fit 
+with a power law exponent of $-0.79$. 
 
-As a distribution, we examine the degree of the articles in the FLN with at least
-one direct first link. The average indegree 
-is 3.6 direct links with a standard deviation of 89.5 links.
-Only 4826 articles have more than 100 direct first links, $75\%$ have fewer than 
-9. Overall the indegree appears scale-free with an r value of -0.98 as a linear log-log fit and a power law exponent of -0.79. 
+\centerline{***}
+
+Beyond indegree, our work expands the analysis of relations to understand 
+how many more than two articles are organized and related. 
+We develop the notion of a path to describe the structure of the FLN as a 
+flow relating ideas. We traverse every possible path through the FLN, taking 
+$232$ million steps along the way.
+
+
+\subsection{Depth of the FLN}
+
+We first seek to describe the depth of the FLN: how many links does a 
+connection of ideas span? We gauge the FLN's depth via path length or the number of links traversed until a repeated or invalid link (one outside the FLN). 
+We discover the longest path length is 365
+corresponding to the yearly calendar of Orthodox Liturgics.
+Each day's Liturgics link to the next day's. Curiously, on the last calendar day, the last article simply links back to January 1, forming a 365-cycle 
+(see discussion of cycles).
+We also found similarly lengthy paths following the evolution of a place or topic through time: 
+"1953 in Scotland" or "1560s Architecture", with articles sequentially proceeding by year, decade or era.
+The longest paths connecting ideas are organized temporally.
+
+\begin{figure}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/path_lengths_boxplot.png}
+  \caption{
+    \textbf{Path Length Distribution}
+  }
+  The median network depth measured by the number of first links in a path
+  is 29. The 365 cycle for "Orthodox" liturgics is the outlier to the right, while
+  other historical articles about "Scotland," "UK" and so on are slightly outside
+  the third quartile. More than $75\%$ of articles have path lengths between 
+  $0$ and $50$ links.
+
+  \label{fig:Path Length Distribution}
+\end{figure}
+
+Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
+This roughly corresponds to the official number of articles on Wikipedia 
+$~4.7$ million as of November 2014---approximately half of the 11 million 
+articles in the XML dump are redirects or disambiguations, not full articles.
+The most common path length is 29, with an interquartile range (26, 30).
+The median path length far exceeds the popular 6-degrees of separation (see for 
+example the average number of academic publications separating scholars 
+\cite{six_degrees}), indicating a greater network depth. The network depth suggests a large network of spanning a variety of ideas.
+As a distribution, more than $75\%$ of articles have a path length below 
+$50$ first links 
+while a few temporally organized paths exceed 50 links 
+(see figure~\ref{fig:Path Length Distribution}). 
+How can we characterize the flow of ideas along a path? Next, we develop 
+a metric to gauge the accumulation first link references
+and characterize a global organization 
+of ideas among articles.
+
 
 
 
 \subsection{Traversal Visits}
 
-We followed every possible path through the network, taking 232 million steps along the way to measure the accumulated number of traversal visits.
+We followed every possible path through the network, incrementing
+the number of traversal visits for every first link reference along a path 
+to generate a total of 232 million traversal visits.
 
 As a distribution, the number traversal visits per article appears scale-free. The majority of articles have fewer than 30 traversal visits, while few 
 have 5 order of magnitude more traversal visits. 
@@ -566,40 +630,6 @@ Since many articles have no synonyms, we also compared the number of synonyms in
 We still find the highest ranking 100 articles with an average of 9.0 (median of 7.0) synonyms whereas the remaining articles on average 5.8 synonyms (median of 7.0), even with the exclusion of all articles without any synonyms.
 The quantifiable difference in synonyms corroborates the flow of links from concrete, specific articles to broader disciplines or fundamental notions.
 
-
-
-
-\subsection{Depth of the FLN}
-
-In addition to identifying cycles and cycle lengths, we also measure the traversal path length, which includes articles outside
-of cycles. 
-Path length measures the number of links traversed until a repeated or invalid link as a means to guage the network's depth.
-We discovered the longest path length is also 365, matching the longest cycle of Orthodox Liturgics. 
-We also found similarly lengthy paths following the evolution of a place or topic through time: 
-"1953 in Scotland" or "1560s Architecture", with articles sequentially proceeding by year, decade or era.
-
-Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
-The most common path length is 29, with an interquartile range (26, 30).
-The median path length far exceeds the popular 6-degrees of separation (see for 
-example the average number of academic publications separating scholars 
-\cite{six_degrees}), indicating a greater network depth. The network depth suggests a large network of spanning a variety of ideas, which Wikipedia certainly is.
-The distribution of path lengths is similarly scale-free with few articles at the extreme of 365 path lengths, while the majority 
-is between 26-30.  
-
-\begin{figure}[tp!]
-  \centering	
-  \includegraphics[width=\columnwidth]{graphics/path_lengths_boxplot.png}
-  \caption{
-    \textbf{Path Length Distribution}
-  }
-  The median network depth measured by the number of first links in a path
-  is 29. The 365 cycle for "Orthodox" liturgics is the outlier to the right, while
-  other historical articles about "Scotland," "UK" and so on are slightly outside
-  the third quartile. More than $75\%$ of articles have path lenghts between 
-  $0$ and $50$ links.
-
-  \label{fig:Path Length Distribution}
-\end{figure}
 
 
 
@@ -668,37 +698,148 @@ a group of path-connected articles.
 Since cycles identify only groups of articles with a closed set of links, 
 we additionally measure and rank basins to capture groups of closely related
 articles branching outside of a cycle into the rest of the FLN.
-Akin to river networks, these basins are areas of FLN accumulation with a path 
+We rank basins by the total number of traversal visits in each of the articles
+along the path forming the path.
+Akin to river networks, these basins are areas of accumulation with a path 
 flowing outwards to the rest of the FLN.
+
 The highest ranking basins by the number of traversal visits are groups of articles
-around "Philosophy" given the high number of traversal visits "Philosophy" has. 
-However, restricting our attention to the 
- single articles around which basins formed,
- we find high ranking basins around similarly foundational ideas:
-"Community", "Landmass", "Federal Government", "Presentation", and "Belief System". 
-Around each article is a sets of related ideas. Around "community" are groups of articles expressing similar ideas: "Political Union," "State," and "Federation." 
-These concepts naturally emerge from the First Link Network potentially indicating pillars, which 
-anchor specific knowledge in a broader, simpler concept.
+around "Philosophy." 
+Since the accumulation of first links to "Philosophy" is so high, 
+the paths leading to "Philosophy" carry many references.
+The highest ranking paths include branches of philosophy flowing through 
+"Awareness,"Existence," and "Consciousness" to "Philosophy." Other paths
+include concepts around "Mathematics," scientific "Experiments," 
+"Biology," and "Fact."
+These paths link many specific articles to "Philosophy," each funneled through a particular domain.
 
-\begin{figure*}[tp!]
-  \centering	
-  \includegraphics[width=\columnwidth]{graphics/basins.pdf}
-  \caption{
-    \textbf{basins around a single article}
-  }
-  \label{fig:basins}
+Excluding basins around "Philosophy" we find other basins around 
+foundational ideas such as "Community," "Landmass," "Federal Government," 
+"Presentation," and "Belief System." 
+The basins around each of these foundational notions are 
+various paths containing related articles. For example around 
+"Community" we find basins
+flowing from "United States" to "Federal Republic" to "Political Union" to "State" culminating at "Community"; we also find basins flowing from 
+"Public Policy" to "Executive (government)" to "Government" to State" and then 
+to "Community"; we also find paths flowing through a similar chain beginning
+with "Democracy," another beginning with "Constitution," another at 
+"Dictatorship," and so on. The ideas build from specific means of organizing
+a community (or society) then build up to "Community." 
+Other basins around landmass for example begin at specific geographical regions
+such as "Eastern Europe" building up to "Continent" and finally "Landmass."
+Each basin accumulates first link references through various 
+natural paths linking general themes to the foundational concept.
 
-\end{figure*}
+Which specific articles direct the path towards a particular concepts? 
+Next we study the FLN using traversal funnels to understand the influence
+a particular article exerts in directing the flow of first link references.
+
 
 \subsection{Traversal Funnels}
 
-Measuring only traversal visits and indegree is limiting as it does not distinguish whether a particular article in a cycle 
-is a funnel, directing many more paths inside the cycle than others. 
+
+To distinguish articles exerting great influence 
 To distinguish among articles in a cycle, we also measured traversal funnels, or the number of 
 paths an article directs towards a cycle. Here we count the number of traversal visits up to a cycle, 
 so that accumulation does not flow to all articles in a cycle.
-The importance here is to distinguish an article that happens to be connected to another article with many traversal visits 
-from an article directly funneling many paths.
+
+Measuring traversal funnels reveals a dramatically different structure where "Philosophy" stands unmatched by orders of magnitude:
+
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\textwidth]{graphics/funnels.pdf}
+  \caption{
+    \textbf{Funnels}
+  }
+  \label{fig:Funnels}
+\end{figure*}
+
+Philosophy is not only a stand out the number of traversal visits, but also by the number articles "Philosophy" funnels into
+its cycle. Of any article, the number of traversal funnels Philosophy holds exceeds 
+all others by at least two orders of magnitude.
+Next to the contribution of the largest funnels, "Philosophy" is a singularity. 
+In proportion, "Presentation" holds only $0.4\%$ next to the number of traversal feeds for "Philosophy".
+The second contributor to the Philosophy cycle is "Reality", funneling in a mere $0.2\%$ of traversals visits in the cycle.
+Nevertheless, the other high ranking funnels are remarkably topical, culturally and politically important ideas.  For example, "Health Care", a recently high-contested legislative topic appears high on the list---Google trends indicates an uncharacteristic spike in search frequency between August-2009 and February-2010.
+Other high ranking articles include key historical events such as the "Cold War" or critical scarce resource with recent 
+media discussion such as "Fossil Fuel".
+This coincidence of recent relevance and traversal feed rank suggests the First Link Network measurably represents
+meaningful relationships not only among ideas, but also to English-speaking society. 
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/funnels_distribution.png}
+  \caption{
+    \textbf{Distribution of Traversal Funnels}
+  }
+  \label{fig:Funnels Distribution}
+\end{figure*}
+
+
+
+\subsection{Article Popularity}
+
+Wikipedia released an API to measure article popularity by page views
+starting November 2015. The page views adds another dimension to our
+findings about structure by revealing 
+how users view the information on Wikipedia. 
+We measure popularity as the total number 
+of page views in the English edition of Wikipedia in the month of 
+October 2015---the earliest full month for which the data is available. 
+We find the highest ranking 1000 articles by traversal visits have an average of
+$70$ thousand page views in October with high variation: the standard deviation 
+is $1.1$ million page views. 
+The number of page views has a skewed distribution with $75\%$ of articles
+reaching fewer than $73$ thousand page views in October.
+The article for "United States" has the most page 
+views of the highest ranking $1000$ articles by traversal visits with 
+$1.4$ million views in October. The next most popular articles are 
+"India," "World War II," and the "United Kingdom" each with $0.7-1.03$ million page views. 
+
+
+The "Philosophy" article despite outranking every article in traversal visits,
+has only $240$ thousand page views in October compared to the $1.4$ million
+page views for "United States".
+While "Philosophy" is not itself the most popular article, "Philosophy" serves as 
+an accumulation points for the ideas. Wikipedia users do not login specifically
+to read about "Philosophy," but the authors relate ideas to "Philosophy" 
+by ultimately anchoring the flow of first links to "Philosophy."
+
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/views_visits.png}
+  \caption{
+    \textbf{Article Popularity (by page views) compared to Traversal Visits 
+    for Highest ranking 1000 articles}
+    We use the total number of page views provided by Wikipedia for the month
+    of October 2015 to compare each article's popularity to traversal visits.
+    While the most popular articles do not necessarily correspond to the articles
+    with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases.
+  }
+  \label{fig:Views and Visits}
+
+\end{figure*}
+
+
+
+We also analyze article popularity for the highest ranking 1000 articles by 
+traversal funnels. In October, the average page views per article is 
+$22$ thousand with a standard deviation of $95$ thousand views. The distribution
+is skewed with $75\%$ of articles reaching fewer than $20$ thousand page views. 
+"Halloween" is the most popular article with $2.8$ million views in October,
+likely a result of Halloween falling in the month of October. 
+Other popular articles include "Scientology" ($463$ thousand views), "Clint Eastwood" 
+($341$ thousand views),
+and the "Cold War" ($298$ thousand views) although each has significantly fewer views compared to the views for "Halloween."
+Other standout popular October articles include "24-hour" and "12-hour" clocks likely due
+to Daylight savings in October and "Marriage" likely due to the drop in the number of
+weddings in the months following October
+\cite{weddings}.
+"Philosophy" is ranks is the seventh most popular of the highest ranking articles by traversal funnels, but appears no where in the top 20 among the highest ranking
+articles by traversal visits. "Philosophy" is a relatively popular article 
+among articles influencing the shape of the network, but less popular among 
+To distinguish among articles in a cycle, we also measured traversal funnels, or the number of 
+paths an article directs towards a cycle. Here we count the number of traversal visits up to a cycle, 
+so that accumulation does not flow to all articles in a cycle.
 
 Measuring traversal funnels reveals a dramatically different structure where "Philosophy" stands unmatched by orders of magnitude:
 
