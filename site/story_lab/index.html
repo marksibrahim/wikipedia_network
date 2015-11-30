@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Storylab</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="container">
+
+      <h1>
+        Connecting Every Bit of Knowledge: 
+        Wikipedia's First Link Network Unravelled
+      <a href="paper/2015-11-wikipedia-network.pdf" target="_blank">[link]</a></h1>
+
+      <h4>
+        Mark Ibrahim,
+        Christopher M. Danforth,
+        and 
+        Peter Sheridan Dodds 
+      </h4>
+
+      <div id="topteamrow"></div>
+
+      <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <!-- <a class="navbar-brand" href="#">Appendices:</a> -->
+	    <a class="navbar-brand" href="index.html">Online Appendices</a>
+	  </div>
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="active"><a href="index.html">Main</a></li>
+              <li><a href="explore.html">Explore Results</a></li>
+              <li><a href="https://github.com/marksibrahim/wikipedia_network">Code</a></li>
+              <li><a href="data.html">Data</a></li>
+              <li><a href="team.html">Team</a></li>
+	    </ul>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h4>Explore the paper:</h4>
+	<p>
+	<ul>
+        <li>
+        Explore
+	  <a href="explore.html"> results in IPython notebooks</a>
+	  </li>
+        <li>
+	  Download 
+	  <a href="https://github.com/marksibrahim/wikipedia_network">code</a>
+      and
+	  <a href="data.html">data</a>
+	  </li>
+        <li>
+        Interactive figures and explanation to come
+	  </li>
+        </ul>
+	</p>
+      </div>
+
+<div class="jumbotron">
+          <h4>Abstract</h4>
+<p>
+Apples, oranges, and the most obscure Dylan song too&mdash;is everything a few clicks from Philosophy? 
+Within Wikipedia, the surprising answer is yes: nearly all 
+paths lead to Philosophy.
+Wikipedia is the largest, most meticulously indexed collection of human knowledge ever amassed. 
+More than information about a topic though, Wikipedia is a marvelous web of naturally emerging relationships.  
+By following the First Link in an article, we connect entries to form a directed network within Wikipedia: Wikipedia's First Link Network. 
+Here we study the English edition of Wikipedia's First Link Network for insight into how we relate topics, ideas, people, objects, and events.  
+</p>
+
+<p>
+We algorithmically parse all 4.7 million articles to construct a map of Wikipedia's First Link Network. 
+In a novel approach to uncover structure, we traverse every possible path through the network, 
+measuring the accumulation of First Links, path lengths, basins, cycles, and even particular articles funneling links into the cycles.
+We discover many scale-free distributions, find Philosophy at a salient center, and uncover a flow from specific to general with 
+basins around fundamental notions such as Community, State, and Science. 
+Curiously, we also observe a gravitation towards topical articles including Health Care and Fossil Fuel.
+These findings enrich our view of how we connect and structure
+an ever growing load of information.
+	      </p>
+</div>
+
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/d3.andy.js"></script>
+    <script src="js/topteam.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45564756-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body> <!-- test -->
+</html>
