@@ -57,7 +57,7 @@
 %environment
 \newcommand{\tab}{\phantom{ssss}}
 
-
+\usepackage{hyperref}
 \usepackage{color}
 \newcommand{\todo}[1]{\noindent\textcolor{blue}{{$\Box$ #1}}}
 
@@ -91,6 +91,8 @@ Wikipedia's First Link Network Unravelled
 
 \affiliation{Department of Mathematics \& Statistics, 
     Computational Story Lab,  \\
+    Vermont Complex Systems Center,
+    Vermont Advanced Computing Core,
     The University of Vermont, Burlington, VT 05401.}
 
 \author{
@@ -101,8 +103,9 @@ Wikipedia's First Link Network Unravelled
 
 \affiliation{Department of Mathematics \& Statistics, 
     Computational Story Lab,  \\
+    Vermont Complex Systems Center,
+    Vermont Advanced Computing Core,
     The University of Vermont, Burlington, VT 05401.}
-
 
 \author{
 \firstname{Peter}
@@ -113,16 +116,18 @@ Wikipedia's First Link Network Unravelled
 
 \affiliation{Department of Mathematics \& Statistics, 
     Computational Story Lab,  \\
+    Vermont Complex Systems Center,
+    Vermont Advanced Computing Core,
     The University of Vermont, Burlington, VT 05401.}
 
 \begin{abstract}
   \protect
-Apples, oranges, and the most obscure Dylan song too---is everything a few clicks from Philosophy? 
+Apples, oranges, and the most obscure Dylan song too---is every subject a few clicks from Philosophy? 
 Within Wikipedia, the surprising answer is yes: nearly all 
 paths lead to Philosophy.
 Wikipedia is the largest, most meticulously indexed collection of human knowledge ever amassed. 
 More than information about a topic though, Wikipedia is a web of naturally emerging relationships.  
-By following the First Link in an article, we connect entries to form a directed network within Wikipedia: Wikipedia's First Link Network. 
+By following the First Link in an article, we connect entries to form a directed network: Wikipedia's First Link Network. 
 Here we study the English edition of Wikipedia's First Link Network for insight into how the many topics, ideas, people, objects, and events
 are related and organized.  
 
@@ -131,7 +136,7 @@ We algorithmically parse all 4.7 million articles to construct a map of Wikipedi
 In a novel approach to uncover structure, we traverse every possible path through the network, 
 measuring the accumulation of First Links, path lengths, basins, cycles, and even the influence a particular article exerts in shaping the 
 network.
-We discover many scale-free distributions, find Philosophy at a salient center, and uncover a flow from specific to general with 
+We discover many scale-free distributions, find Philosophy at a salient center, and uncover a flow from specific to general 
 culminating around fundamental notions such as Community, State, and Science. 
 Curiously, we also observe a gravitation towards topical articles including Health Care and Fossil Fuel.
 These findings enrich our view of how we connect and structure
@@ -150,10 +155,12 @@ At no point in history has a larger or more meticulously indexed collection of h
 existed.
 Wikipedia contains 37 million articles in 283 languages, 
 with coverage spanning everything from little known ancient battles to the latest pharmaceutical drugs 
-\cite{stats} \cite{drugs}.
+\cite{drugs} 
+\cite{stats}.
 All this information does not lie dormant. 
 Wikipedia is the sixth most visited
-site in the world, surpassing 18 billion page views in a single month
+site in the world, surpassing 18 billion page views and 26 million edits in a single month
+\cite{wiki_edits}
 \cite{wiki_views}.
 The most widely used general reference, Wikipedia has amassed an awe-inspiring collection of human knowledge.
 
@@ -161,9 +168,9 @@ It's not surprising then to see Wikipedia as the object of many studies.
 Researchers have examined the cultural dynamics among editors
 \cite{editors},
 the accuracy of the content relative to traditional encyclopedias
-\cite{accuracy1},
+\cite{accuracy1}
 \cite{accuracy2},
-the disciplines and topics covered 
+the topics covered 
 \cite{coverage},
 and bias against portions of the population
 \cite{bias_women}.
@@ -182,8 +189,8 @@ Beyond information, Wikipedia is a web
 relating ideas. 
 Within the body text of Wikipedia articles, hyperlinks reference
 other Wikipedia articles.
-A hyperlink from one Wikipedia article to another is a way to relate the ideas
-conveyed in the two articles 
+A hyperlink from one Wikipedia article to another
+indicates a relationship between the two articles
 \cite{relevance}.
 The notion that hyperlinks convey information about the content of a
 page has proved successful in numerous domains from search engine algorithms 
@@ -191,16 +198,20 @@ such as PageRank
 \cite{pagerank} 
 to topic classification
 \cite{classifier}.
-We treat a hyperlink as a mechanism to connect two ideas. 
+We treat a hyperlink as a mechanism connecting two ideas. 
 
 The authors of a Wikipedia article choose where and whether to include a 
-hyperlink reference to another Wikipedia article
-by including hyperlinks in the article's markup.
+reference to another Wikipedia article
+in the HTML markup.
 In describing a particular topic, the authors decide which other articles are most
 relevant references.
-For example, the authors of the "Train" article chose
+For example, the authors of the 
+\href{https://en.wikipedia.org/wiki/Train}{"Train"}
+article chose
 "Rail Transport," "Cargo," and "Passengers" 
-as pertinent articles to reference in describing trains.
+as pertinent articles to reference in describing trains
+\cite{wiki_train}
+.
 The collection of hyperlinks emerges from the independent choice of each article's authors. 
 The first hyperlink to another Wikipedia article marks the earliest moment in the body text where the authors
 choose to connect the information discussed to that of another article.
@@ -212,7 +223,7 @@ Wikipedia, we connect the ideas in one article to those in another, ultimately f
   \centering	
   \includegraphics[width=\textwidth]{graphics/Train.pdf}  
   \caption{
-    \textbf{First Link Path For "Train"}
+    \textbf{First Link Path For "Train".}
     We follow the First Link to another Wikipedia article
     in the main body of the article---the area
     inside the green rectangle, which excludes 
@@ -227,31 +238,28 @@ Wikipedia, we connect the ideas in one article to those in another, ultimately f
 
 What information could the First Links possibly reveal?
 Inspired by the claim that the majority of First Links lead to the 
-"Philosophy" article---popularized by an xkcd comic and subsequently
+"Philosophy" article---popularized by an 
+\href{https://xkcd.com/903/}{xkcd}
+comic and subsequently
 discussed in blog posts 
-\cite{mat_blog}
-\cite{Ilmari_first_links}
-\cite{xkcd} 
+\cite{mat_blog, Ilmari_first_links, xkcd}
 ---we holistically study 
 Wikipedia's FLN as a map relating areas of human knowledge. 
-The map is a hierarchical taxonomy where "Train" links to a parent node, 
-"Rail Transport," while many child nodes, "Steel" and "Horsepower," link up to 
+The map is a hierarchical taxonomy where, for example, "Train" links to a parent node, 
+"Rail Transport," while many child nodes, "Steel" and "Horsepower," link to 
 "Train." Unlike previous taxonomies
 created by individuals
-\cite{locke}
-\cite{descartes}
-\cite{aristotle} 
+\cite{locke, descartes, aristotle}
 or a select group of individuals 
 \cite{hist_thesaurus}, 
 the organization of ideas in the FLN 
 does not emerge from a concerted or a centralized effort. 
-Rather each link in the FLN emerges from the independent choice of an article's authors.
+Rather each link in the FLN emerges from the choice of each author.
 Collectively, the FLN is a wealth of relations among inventions, places,
 figures, objects, and events across space and time.
 
 
-Our goal is to gain insight into how the information on Wikipedia is organized and related
-by studying the structure of the FLN.
+Our goal is to study the structure of the FLN for insight into how the information on Wikipedia is organized and related.
 In a novel approach, we develop metrics to capture 
 the dominant features of the FLN's structure.
 We measure dynamics of the FLN as a flow, quantifying 
@@ -263,14 +271,15 @@ we build our analysis of the relations among the ideas in Wikipedia.
 
 \section{Traversing the First Link Network}
 
-One essential measure of a directed network structure is the degree distribution 
+One essential measure of a directed network's structure is the degree distribution 
 \cite{newman}. 
 Degree distribution has been used to study many phenomena from disease outbreak 
 \cite{disease} 
 to the dynamics of social networks 
 \cite{social_nets}.
-The degree distribution in the FLN describes how many First Links point to a particular article. 
-We measure the indegree in the FLN to guage the number of articles referencing a particular article.
+The degree distribution in the FLN describes how many First Links point to a 
+particular article. 
+We measure the indegree in the FLN to gauge the number of articles referencing a particular article.
 A higher indegree indicates more authors selected the particular article
 as a relevant reference. On the other hand, articles with zero 
 indegree have no references---they are outer leaves in the FLN. 
@@ -280,7 +289,7 @@ Additionally, we can assess the degree distribution to see whether authors tend 
 equally or only a few, as observed in many social networks \cite{social_nets}.
 
 
-The degree distribution captures one step in the FLN, measuring   
+The degree distribution captures one step in the FLN by measuring   
 the destination of a given link. 
 Indegree measures only the particular set of First Links between two articles, 
 rather than the richer dynamics of how many articles fit together---how links 
@@ -290,7 +299,7 @@ an article's First Link.
 Each article is both a destination and a link to another article, similar to an element 
 in a linked list data structure. 
 By following the chain of links we can construct a path through the FLN with each article 
-leading to the next via the First Link. 
+leading to the next through the First Link. 
 For example "Train" has a First Link to "Conveyance of Passengers and Goods," which is itself
 an article with a First Link to "Goods" and so on. The path starting at "Train" 
 is the collection of articles obtained by following the First Links starting at "Train"
@@ -302,25 +311,25 @@ The path contains "Goods," "Economics," "Social Science," and other articles rel
   \centering	
   \includegraphics[width=\textwidth]{graphics/traversal_visit_algo_figure.pdf}  
   \caption{
-    \textbf{Traversal Visit Algorithm on a sample network}
+    \textbf{Traversal Visit Algorithm on a sample network.}
      The traversal visit vectors are an adjacency matrix for the paths through the network: the first column is indicates the path formed starting with article A. The number of traversal visits for article A is then the number of paths containing A or the sum of the first row in our matrix:
      $\sum_{i=1}^7 A_{\text{visit, i}} = 7$.
   }
   \label{fig:Traversal Visits}
 \end{figure*}
 
-Applying a similar concept with a 
-different starting article, we form 
-a path through the FLN moving from one article to the next.
-A path in the FLN connects a group of articles allowing us to measure how two articles relate,
+Applying a similar concept with  
+varying starting articles, we form 
+paths through the FLN moving from one article to the next.
+A path in the FLN connects a group of articles, allowing us to measure how two articles relate,
 even if the articles are not directly linked. 
-The collection of articles is path-connected conveying a flow of concepts from one article to another. 
+Path-connected articles express a flow of concepts.
 The notion of paths allows us to map not only which articles link directly to "Philosophy" 
-for example, but also which ideas are eventually anchored in "Philosophy" even if the articles
-are not directly linked.
+for example, but also which ideas flow to "Philosophy":
+path-connected articles to "Philosophy."
 The method is order agnostic with respect to which articles are selected first. As long as each article is selected eventually, the resulting metrics are equivalent.
-Starting at each article, we construct a path through the FLN for each article, 
-ultimately mapping how the First Links flow through the FLN.
+Starting at each article, we construct a path through the FLN, 
+ultimately mapping a flow of connections among articles.
 
 In a novel approach, we use the notion of a path through the FLN to describe 
 the structure of the FLN as a flow relating ideas. 
@@ -339,29 +348,28 @@ article exerts in shaping the flow of links through the FLN.
 Our goal is to map the flow of First Links by following the paths of First Links 
 starting at each article. 
 Since a path reveals how the ideas in one article may eventually be 
-anchored in another, the first metric we develop quantifies the accumulation of First Links 
-within the FLN. 
-The algorithm begins by selecting an article then traversing the path formed
+anchored in another, the first metric we develop quantifies the accumulation of First Links.
+The algorithm begins by selecting an article, then traversing the path formed
 by following the First Links. Each time a First Link references an article, we increment a count
 associated with the article. 
-We repeat until the First Link is repeated or invalid (outside the FLN). 
+We continue until the First Link is repeated or is invalid---defined here to mean outside of Wikipedia.
 We select a second article and repeat the process until we have 
 constructed a path for each article in the network. We call the resulting count for each article the number of {\it traversal visits}. The number of traversal visits of an article 
 measures the number of references flowing to the ideas in the article. 
 
-\begin{figure*}[tp!]
+\begin{figure}[tp!]
   \centering	
   \includegraphics[width=\columnwidth]{graphics/traversal_funnel_algo_figure.pdf}
   \caption{
-    \textbf{Traversal Funnel Algorithm on a sample network}
+    \textbf{Traversal Funnel Algorithm on a sample network.}
   The algorithm for traversal funnels is identical to the previous algorithm for traversal visits with one alteration: the path ends at the start of a cycle to distinguish articles directing a path into a cycle from articles that simply happen to be in a highly traversed path. We can construct similar vectors by considering each path through the network, measuring traversal funnels for a particular article as the sum of the entries in its corresponding row. For example
   the number of traversal funnels for article $E$ is 
   $\sum_{i=1}^7 E_{\text{funnel, i}} = 2$.}
   \label{fig:Traversal Funnels}
 
-\end{figure*}
+\end{figure}
 
-We can map the paths in the FLN as a matrix with each column corresponding to a path. In our sample network 
+We can characterize the paths in the FLN as a matrix with each column corresponding to a path. In our sample network 
 (see figure~\ref{fig:Traversal Visits}), the path starting at article A is the 
 first column in the traversal vists matrix. 
 An entry of $1$ indicates the path contains a given article and 
@@ -370,10 +378,10 @@ For example, the second column corresponds to the path starting at article B.
 To compute the number traversal visits for article A we sum the corresponding row in our matrix.
 The total is the number of paths containing article A. 
 Analogous to the flow 
-in a river network, traversal visits measure the accumulation of water near point A. 
+in a river network, traversal visits measure the accumulation of water at point A. 
 By constructing a traversal visits matrix, we can similarly compute the number of traversal 
-visits by summing along the corresponding row for our node. The traversal visits matrix for 
-Wikipedia consists 121 million entries to account for each path through the FLN. 
+visits by summing along the corresponding row. The traversal visits matrix for 
+Wikipedia consists of 121 million entries to account for each path through the FLN. 
 We measure the accumulation of First Link references by summing the corresponding row for the 
 article of interest.
 
@@ -382,11 +390,11 @@ In addition to accumulation, the traversal visits algorithm creates paths
 which uncover depth in the FLN. 
 By measuring the number of First Links between
 two articles, we get an additional piece of information we call 
-{\it path length.} We can compute the length a path by summing 
+{\it path length.} We can compute the length of a path by summing 
 along a column in our traversal visits matrix. 
 The path length describes how closely related ideas are, gauging the FLN's depth.
-The greater the number of First Links separating two articles, the greater the number of ideas needed to relate the ideas. Although, 
-"Train" is related to "Economics," there are several more specific articles
+The greater the number of First Links separating two articles, the greater the number of ideas needed to relate their corresponding ideas. Although
+"Train" is related to "Economics" for example, there are several articles
 bridging the connection:
 "Train" is more specifically related to transportation, whose object
 is often goods. Goods are one of the fundamental objects of study in Economics.
@@ -395,7 +403,7 @@ First Links ultimately connecting "Train" to "Economics."
 We can examine path length as a relative measure of how closely connected ideas
 may be, but also as an aggregate measure describing the overall separation or 
 connectedness in the FLN.
-We can characterize whether ideas a closely connected by a handful of links, 
+We can characterize whether ideas are closely connected by a handful of links, 
 many, or whether a more nuanced organization exists. 
 
 
@@ -406,40 +414,41 @@ a cycle exists among nodes A, B, and C.
 Since node C links back to the starting node A, the path starting at node A forms a {\it 3-cycle}. 
 By recording the history of the articles along a path in the FLN, we can identify
 the types of cycle structures within the FLN. Furthermore, since each article 
-in the a cycle has an associated traversal visit count, we can rank cycles by 
+has an associated traversal visit count, we can rank cycles by 
 the number of references directed towards a cycle. 
 We can also form and rank {\it basins} in the network by identifying groups of 
 path-connected articles, not necessarily forming a perfect cycle.
-A basin connects a group of articles which ultimately reference other articles
-in the FLN. By identifying basins and cycles, we pinpoint groups of closely related articles.
+A basin connects a group of articles and identifies the paths 
+to a particular article.
+By identifying basins and cycles, we pinpoint groups of closely related articles.
 
 
 While traversal visits measure accumulation, each article's First Link also 
 influences the shape of the FLN. 
 At a large point of accumulation, a single article's First Link 
 can exert great influence over the shape of the FLN by directing many
-references towards a particular path. To distinguish between an article 
+references on a particular path. To distinguish between an article 
 that simply happened to fall within a cycle from an article funneling 
 many First Links, we develop a second metric called {\it traversal funnels}.
 
 To measure traversal funnels, we traverse the FLN in the same manner as we 
 did for traversal visits, but end a path once we enter a cycle.
 We are then able to distinguish between an article related to many other ideas
-only by virtue of its place in a cycle from an article exerting influence over where the First Links flow. 
+only by virtue of its place in a cycle, from an article exerting influence over where the First Links flow. 
 An article with a large number of traversal funnels directs many references
-towards a particular path. In our sample network 
+towards a particular cycle. In our sample network 
 (see figure~\ref{fig:Traversal Funnels}) article C 
 directs the flow of links towards the 3-cycle, while articles A and B are 
-receipients of the flow---without exerting any influence themselves. 
+recipients of the flow---without exerting any direct influence themselves. 
 While articles A, B, and C all have the same number of traversal visits, 
 article C has 4 traversal funnels (A and B have none). By incrementing the count of 
 First Link references on paths only up to a cycle, we can identifying which articles
 exert the greatest influence over the FLN's structure.
 
 By studying the FLN not only as collection of directly linked pairs of articles, but
-as a flow of paths, 
+as a flow, 
 we build a powerful arsenal of information with which to study the FLN. 
-From accumulated references, cycles, basins to influence, we can measure how the many articles in Wikipedia are organized and related.
+From accumulated references, cycles and basins to influence, we can measure how the many articles in Wikipedia are organized and related.
 
 
 
@@ -453,20 +462,21 @@ From accumulated references, cycles, basins to influence, we can measure how the
   \centering	
   \includegraphics[width=\columnwidth]{graphics/articles_ndegree.png}
   \caption{
-    \textbf{Highest Ranking Articles by indegree}
+    \textbf{Highest Ranking Articles by indegree.}
   }
   We rank each article by the number of direct First Links to the article (indegree). The highest-ranking articles tend to represent abstraction for concepts
-  comprised of various facets and parts.
+  comprised of various facets.
   \label{fig:ndegree list}
 \end{figure}
 
-We first identify the set of First Links directly referencing a particular article 
+We identify the set of First Links directly referencing a particular article 
 by studying the indegree of the FLN. 
 A higher indegree suggests more authors found the ideas in the article 
 pertinent to reference. 
 We rank all 11 million articles by indegree to find 
 the "United States" with 80,249 direct First Links as the most referenced
-Wikipedia article. 
+Wikipedia article 
+(see figure~\ref{fig:ndegree list}). 
 Other high-ranking articles
 include foundational abstract concepts such as "village," "species,"; 
 sports associations such as "American Football," "Association Football"; 
@@ -484,23 +494,22 @@ geographical location to a larger national identity.
 "Philosophy" and other philosophical concepts with many traversal visits
 are not among the highest-ranking articles by indegree.
 "Philosophy" has an indegree of 581, with direct First Links from articles about Philosophers and areas of Philosophy: "Existentialism and Humanism," "Predeterminism," "Synoptic Philosophy,"Qualia," "Dorothy Emmet," and "Christopher W. Morris."
-While many articles accumulate at "Philosophy" (see traversal visits discussion), 
+While many articles accumulate at "Philosophy" (see the coming traversal visits discussion), 
 the accumulation is not the 
 result of many articles directly referencing "Philosophy." 
 Instead, the accumulation of First Links, as we argue in our 
 discussion of traversal visits, flows towards Philosophy as the 
-ultimate anchor when genralizing from specific articles towards broader notions.
+ultimate anchor when generalizing from specific articles towards broader notions.
 
 \begin{figure}[tp!]
   \centering	
   \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
   \caption{
-    \textbf{FLN Degree Distribution}
+    \textbf{FLN Degree Distribution.}
   }
-  We construct a log-log plot fit our results to a linear model. The result is a 
+  We construct a log-log plot and fit our results with a linear model. The result is a 
   an excellent fit with r = -0.98, yielding a power law exponent of -0.79. 
-  The distribution appears to be scale free with most articles having fewer than 9 
-  direct First Links, while few hold most.
+  The distribution appears to be scale free.
   \label{fig:degree distribution}
 \end{figure}
 
@@ -509,15 +518,13 @@ receive a most direct first references, while most articles receive few or none.
 The average indegree for all 11 million articles is 3.6 direct First Links with a standard deviation of 89.5 links.
 Only 4,826 articles have more than 100 direct First Links and $75\%$ of articles
 have fewer than 9. 
-When fit to a linear model on a log-log scale (log(rank) versus log(indegree)), 
+When fit with a linear model on a log-log scale (log(rank) versus log(indegree)), 
 the model's r value is $-0.98$ suggesting a strong log-log linear fit 
 with a power law exponent of $-0.79$. 
 
 \centerline{***}
 
-Beyond indegree, our work expands the analysis of relations to understand 
-how many more than two articles are organized and related. 
-We develop the notion of a path to describe the structure of the FLN as a 
+Beyond indegree, we develop the notion of a path to describe the structure of the FLN as a 
 flow relating ideas. We traverse every possible path through the FLN, taking 
 $232$ million steps along the way.
 
@@ -526,9 +533,9 @@ $232$ million steps along the way.
 
 We first seek to describe the depth of the FLN: how many links does a 
 connection of ideas span? We gauge the FLN's depth via path length or the number of links traversed until a repeated or invalid link (one outside the FLN). 
-We discover the longest path length is 365
+We discover the longest path length is 365,
 corresponding to the yearly calendar of Orthodox Liturgics.
-Each day's Liturgics links to the next day's. Curiously, on the last calendar day, the last article simply links back to January 1, forming a 365-cycle 
+Each day's Liturgics links to the next day's. On the last calendar day, the last article simply links back to January 1, forming a 365-cycle 
 (see discussion of cycles).
 We also found similarly lengthy paths following the evolution of a place or topic through time: 
 "1953 in Scotland" or "1560s Architecture", with articles sequentially proceeding by year, decade or era.
@@ -538,7 +545,7 @@ The longest paths connecting ideas are organized temporally.
   \centering	
   \includegraphics[width=\columnwidth]{graphics/path_lengths_boxplot.png}
   \caption{
-    \textbf{Path Length Distribution}
+    \textbf{Path Length Distribution.}
   }
   The median network depth measured by the number of First Links in a path
   is 29. The 365 cycle for "Orthodox" liturgics is the outlier to the right, while
@@ -557,7 +564,7 @@ The most common path length is 29, with an interquartile range (26, 30).
 The median path length far exceeds the popular 6-degrees of separation (see for 
 example the average number of academic publications separating scholars 
 \cite{six_degrees}), indicating a greater network depth. 
-The network depth's depth suggests ideas are related in small independent clusters. 
+The network's depth suggests ideas are not related in small independent clusters. 
 Instead the many diverse ideas fit together in long-chained connections.
 As a distribution, more than $75\%$ of articles have a path length below 
 $50$ First Links 
@@ -565,7 +572,7 @@ while a few temporally organized paths exceed 50 links
 (see figure~\ref{fig:Path Length Distribution}). 
 
 How can we characterize the flow of ideas along a path? Next, we develop 
-a metric to gauge the accumulation First Link references
+a metric to gauge the accumulation of First Link references
 and characterize a global organization 
 of ideas among articles.
 
@@ -588,7 +595,7 @@ Meanwhile, the highest ranking 30 articles have an extremely disproportionate nu
   \centering	
   \includegraphics[width=\columnwidth]{graphics/traversals_per_article.png} 
   \caption{
-    \textbf{Distribution of Traversal Visits}
+    \textbf{Distribution of Traversal Visits.}
   }
   We fit the distribution to a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal visits. 
   The model explains $86\%$ of the variation in the data, yielding an r-value of $-0.93$ 
@@ -607,7 +614,7 @@ a power-law exponent of $-0.636$. A handful of the highest ranking articles cont
   \centering	
   \includegraphics[width=\columnwidth]{graphics/articles_ranked.png}
   \caption{
-    \textbf{highest ranking articles by number of traversal visits}
+    \textbf{Highest ranking articles by number of traversal visits.}
   }
   We compute the number of traversal visits for each article in the FLN (see 
   Traversal Algorithm section for details). In doing so, we can rank each article
@@ -629,8 +636,8 @@ many are academic disciplines such as "Science," "Math,"
 Since traversal visits measure the accumulation of First Link visits in Wikipedia, 
 the highest ranking articles suggest a flow from specific to general. 
 For example the flow of First Links for the "Banana" article begins at a very concrete
-and specific topic then flows into progressively broader and broader disciplines, eventually 
-culminating at "Philosophy: "Banana" links to the broader category of "Fruit," which then links to 
+and specific topic, then flows into progressively broader disciplines, eventually 
+culminating at "Philosophy": "Banana" links to the broader category of "Fruit," which then links to 
 "Botany," eventually "Biology," then "Science" and ultimately "Philosophy." 
 
 
@@ -638,7 +645,7 @@ culminating at "Philosophy: "Banana" links to the broader category of "Fruit," w
   \centering	
   \includegraphics[width=\columnwidth]{graphics/synonyms.png}
   \caption{
-    \textbf{Number of Synonyms for the highest-ranking articles}
+    \textbf{Number of Synonyms for the highest-ranking articles.}
     We use WordNet (the largest lexical database for the English language)
     to identify the number of synonyms for an article's title. We compare 
     the distribution of synonyms of the highest-ranking 100 articles
@@ -654,13 +661,11 @@ Banana has fewer synonyms than botanical for example.
 To quantify the observed flow, we measured the number of synonyms each title contained in WordNet---the largest lexical database of the English language 
 \cite{wordnet}. 
 We find the highest ranking 100 articles have on average 5 more synonyms than the typical article; a difference of 2.5 synonyms if we compare the median number of synonyms in each group
-(see figure~\ref{fig:synonyms})
-. 
+(see figure~\ref{fig:synonyms}). 
 As suggested by the median, many articles have no synonyms as we might expect, because titles with more than one word are not likely to appear in a thesaurus. 
 Since many articles have no synonyms, we also compared the number of synonyms in the highest-ranking versus typical article, this time excluding all articles without at least 1 synonym. 
-We still find the highest ranking 100 articles with an average of 9.0 (median of 7.0) synonyms whereas the remaining articles on average 5.8 synonyms (median of 7.0), even with the exclusion of all articles without any synonyms.
+We still find the highest ranking 100 articles with an average of 9.0 (median of 7.0) synonyms whereas the remaining articles have on average 5.8 synonyms (median of 7.0), even with the exclusion of all articles without any synonyms.
 The quantifiable difference in synonyms corroborates the flow of links from concrete, specific articles to broader disciplines or fundamental notions.
-
 
 
 
@@ -692,11 +697,11 @@ The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly 
   \centering	
   \includegraphics[width=\textwidth]{graphics/2_cycles.pdf}
   \caption{
-    \textbf{highest ranking 2-cycles}
+    \textbf{Highest ranking 2-cycles.}
     We identify pairs of articles whose First Links point to one another, forming
     a 2-cycle. We then rank each pair of articles by the total number of 
     traversal visits to gauge the most referenced groups of two articles linked
-    to each other. We find are synonyms representing the same or nearly the 
+    to each other. The area of the circles in the figure indicates the number of traversal visits. We find 2-cycles often capture synonyms or articles representing nearly the 
     same concepts as opposed to distinct ideas.
   }
   \label{fig:2-cycles}
@@ -715,11 +720,12 @@ Once we extend our cycle size beyond a length of 6 however,
   \centering	
   \includegraphics[width=\textwidth]{graphics/3_cycles.pdf}
   \caption{
-    \textbf{highest ranking 3-cycles}
+    \textbf{Highest ranking 3-cycles.}
     We identify groups of three articles whose links form a 3-cycle with the 
     last article in the group linking back to the first article.
     We rank each 3-cycle by the total number of traversal visits to gauge
-    the most referenced group of three linked articles.
+    the most referenced group of three linked articles. 
+    The area of the circles in the figure indicates the number of traversal visits. 
   }
   \label{fig:3-cycles}
 \end{figure*}
@@ -727,8 +733,7 @@ Once we extend our cycle size beyond a length of 6 however,
 Extending beyond 3-cycles we find the highest ranking cycles of length 
 up to 10 links are dominated by "Philosophy," high ranking 3-cycles
 around the "Balkans" and "Tree of life" as well as popular 2-cycles.
-The longest cycle in the network spans 365 articles of Eastern Orthodox Liturgics for each calendar day. 
-Curiously, on the last calendar day, the last article simply links back to January 1, forming a 365-cycle.
+The longest cycle in the network spans 365 articles of Eastern Orthodox Liturgics for each calendar day.
 Other lengthy cycles span 60-75 articles including collections of articles on national histories such as "Japanese Eras" 
 or judicial bodies such as the "Legislative Assembly of Ontario".
 
@@ -757,7 +762,7 @@ include concepts around "Mathematics," scientific "Experiments,"
 "Biology," and "Fact."
 These paths link many specific articles to "Philosophy," each funneled through a particular domain.
 
-Excluding basins around "Philosophy" we find other basins around 
+Excluding basins around "Philosophy," we find other basins around 
 foundational ideas such as "Community," "Landmass," "Federal Government," 
 "Presentation," and "Belief System." 
 The basins around each of these foundational notions are 
@@ -768,7 +773,7 @@ flowing from "United States" to "Federal Republic" to "Political Union" to "Stat
 to "Community"; we also find paths flowing through a similar chain beginning
 with "Democracy," another beginning with "Constitution," another at 
 "Dictatorship," and so on. The ideas build from specific means of organizing
-a community (or society) then build up to "Community." 
+a community (or society) and then build up to "Community." 
 Other basins around landmass for example begin at specific geographical regions
 such as "Eastern Europe" building up to "Continent" and finally "Landmass."
 Each basin groups First Link references through various 
@@ -797,17 +802,17 @@ $7.37$ million paths
   \centering	
   \includegraphics[width=\textwidth]{graphics/funnels.pdf}
   \caption{
-    \textbf{Funnels}
+    \textbf{Funnels.}
     We represent the highest-ranking articles by the number of traversal 
     funnels to gauge the influence each article exerts in shaping the 
     structure of the FLN. We find "Philosophy" exerts an overwhelming proportion
-    of the influence with other abstract notions and topical concepts ranking
+    of the influence, with other abstract notions and topical concepts ranking
     next.
   }
   \label{fig:Funnels}
 \end{figure*}
 Of any article, the number of traversal funnels Philosophy holds exceeds 
-all others by at least two orders of magnitude.
+all others by more than two orders of magnitude.
 The "Philosophy" cycle which contains "Existence," "Awareness," "Reality," 
 and similar articles accumulates the overwhelming proportion of its 
 references through "Philosophy": $7.37$ million of the $7.4$ million references
@@ -827,9 +832,9 @@ meaningful relationships not only among ideas, but also to English-speaking soci
   \centering	
   \includegraphics[width=\columnwidth]{graphics/funnels_distribution.png}
   \caption{
-    \textbf{Distribution of Traversal Funnels}
+    \textbf{Distribution of Traversal Funnels.}
   We fit the distribution to a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal funnels. 
-  We find two regimes with the top regime (log(rank) < 9) 
+  We find two regimes with the top regime (log(rank) < 4) 
   well-explained by a linear fit, yielding an r-value of $-0.99$ and a 
   power-law exponent of $-1.08$. The top regime 
   explains the distribution of traversal funnels for the $17, 821$ 
@@ -845,7 +850,7 @@ FLN. Only $17, 821$ articles have one or more traversal funnels, leaving
 an more than $99\%$ with none---most articles are recipients of 
 the references flowing through the articles with at least one traversal funnel.
 When fit to a log-log linear model we find the $99\%$ of articles with zero
-traversal funnels form one regime (with log(rank) less than 9).
+traversal funnels form one regime (with log(rank) less than 4).
 The top regime, corresponding to the $17, 821$ articles with at least one 
 traversal funnel strongly fits a linear model with an r-value of $-0.99$. 
 The resulting power-law exponent is $-1.08$. Even within the few articles
@@ -861,7 +866,7 @@ with a small proportion guided by "Presentation," "Tree of life (biology)," "Sou
 \subsection{Article Popularity}
 
 Wikipedia released an API to measure article popularity by page views
-starting November 2015. The page views adds another dimension to our
+starting November 2015. Page views add another dimension to our
 findings by revealing 
 how users view the information on Wikipedia. 
 We measure popularity as the total number 
@@ -882,7 +887,7 @@ The "Philosophy" article despite outranking every article in traversal visits,
 has only $240$ thousand page views in October compared to the $1.4$ million
 page views for "United States".
 While "Philosophy" is not itself the most popular article, "Philosophy" serves as 
-an accumulation points for the ideas. Wikipedia users do not login specifically
+an accumulation point for ideas. Wikipedia users do not login specifically
 to read about "Philosophy," but the authors relate ideas to "Philosophy" 
 by ultimately anchoring the flow of First Links to "Philosophy."
 
@@ -891,7 +896,7 @@ by ultimately anchoring the flow of First Links to "Philosophy."
   \includegraphics[width=\columnwidth]{graphics/views_visits.png}
   \caption{
     \textbf{Article Popularity (by page views) compared to Traversal Visits 
-    for Highest ranking 1000 articles}
+    for Highest ranking 1000 articles.}
     We use the total number of page views provided by Wikipedia for the month
     of October 2015 to compare each article's popularity to traversal visits.
     While the most popular articles do not necessarily correspond to the articles
@@ -927,7 +932,7 @@ articles with a large accumulation among the flow of First Links.
   \includegraphics[width=\columnwidth]{graphics/funnels_visits.png}
   \caption{
     \textbf{Article Popularity (by page views) compared to Traversal Funnels
-    for Highest ranking 1000 articles}
+    for Highest ranking 1000 articles.}
   }
     We use the total number of page views provided by Wikipedia for the month
     of October 2015 to compare each article's popularity to traversal funnels.
@@ -1013,7 +1018,7 @@ To process an article in a single pass, we developed a hierarchical system of fl
   \centering	
   \includegraphics[width=\columnwidth]{graphics/flags.pdf}  
   \caption{
-    \textbf{Parsing Algorithm of Wikipedia's XML dump}
+    \textbf{Parsing Algorithm of Wikipedia's XML dump.}
      The highest flag in the hierarchy indicates a Wikimedia template used to mark an element in the side bar, display an image, link to an external file, or another Wikimedia project outside of Wikipeida. Next, to catch any remaining elements outside the main body we have a second flag for <ref>, <div> elements. Finally, we identify parenthesis to ensure we do not capture a link to a pronunciation key.
   }
   \label{fig:parsing algorithm}
@@ -1071,6 +1076,9 @@ First Link. The resulting network map is the basis of our analysis.
       \bibitem{classifier} Chakrabarti, Soumen, Mukul Joshi, and Vivek Tawde. "Enhanced topic distillation using text, markup tags, and hyperlinks." Proceedings of the 24th annual international ACM SIGIR conference on Research and development in information retrieval. ACM, 2001.
 
       \bibitem{relevance} Kamps, Jaap, and Marijn Koolen. "Is Wikipedia link structure different?." Proceedings of the second ACM international conference on Web search and data mining. ACM, 2009.
+          
+      \bibitem{wiki_train} Wikipedia contributors. "Train." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 
+          \url{https://en.wikipedia.org/wiki/Train}
 
     \bibitem{locke} Bolton, Martha Brandt. "The Taxonomy of Ideas in Locke’s {\it Essay} ", The Cambridge Companion to Locke's 'Essay Concerning Human Understanding'. Ed.Lex Newman.. 1st ed. Cambridge: Cambridge University Press, 2007. 67-100. Cambridge Companions Online. Web. 13 November 2015. http://dx.doi.org/10.1017/CCOL0521834333.004.
 
