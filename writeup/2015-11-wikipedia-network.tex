@@ -122,7 +122,7 @@ Wikipedia's First Link Network Unravelled
 
 \begin{abstract}
   \protect
-Apples, oranges, and the most obscure Dylan song too---is every subject a few clicks from Philosophy? 
+Apples, oranges, and the most obscure Dylan song too---is every topic a few clicks from Philosophy? 
 Within Wikipedia, the surprising answer is yes: nearly all 
 paths lead to Philosophy.
 Wikipedia is the largest, most meticulously indexed collection of human knowledge ever amassed. 
@@ -470,7 +470,7 @@ From accumulated references, cycles and basins to influence, we can measure how 
 \end{figure}
 
 We identify the set of First Links directly referencing a particular article 
-by studying the indegree of the FLN. 
+by studying indegree in the FLN.
 A higher indegree suggests more authors found the ideas in the article 
 pertinent to reference. 
 We rank all 11 million articles by indegree to find 
@@ -482,16 +482,17 @@ include foundational abstract concepts such as "village," "species,";
 sports associations such as "American Football," "Association Football"; 
 and developed nations such as "France," "Japan," "Russia," "Australia," and 
 the "Netherlands." These high ranking articles are useful abstractions: nations
-describe a collection of individuals, a common culture, language, or 
+describe a collection of individuals with a common culture, language, or 
 geographical proximity; sports teams describe an ever changing collection of 
-sports players often associated with a cultural identity and a geographical 
-region. Since abstractions such as nations and teams are inherently comprised
-of many parts, authors reference the larger abstraction when describing 
-a part. For example, in describing the geographical region of north America, 
-the United States, Canada, or Mexico are natural references anchoring the 
-geographical location to a larger national identity. 
+sports players often associated with a cultural identity or a geographical 
+region. 
+Since abstractions such as nations and teams are inherently comprised
+of many parts, authors reference the abstraction when describing a part.
+In describing the New England Patriots or the New York Giants
+for example, "American Football" is the natural abstraction, which 
+anchors many specific teams.
 
-"Philosophy" and other philosophical concepts with many traversal visits
+"Philosophy" and other philosophical concepts
 are not among the highest-ranking articles by indegree.
 "Philosophy" has an indegree of 581, with direct First Links from articles about Philosophers and areas of Philosophy: "Existentialism and Humanism," "Predeterminism," "Synoptic Philosophy,"Qualia," "Dorothy Emmet," and "Christopher W. Morris."
 While many articles accumulate at "Philosophy" (see the coming traversal visits discussion), 
@@ -499,7 +500,7 @@ the accumulation is not the
 result of many articles directly referencing "Philosophy." 
 Instead, the accumulation of First Links, as we argue in our 
 discussion of traversal visits, flows towards Philosophy as the 
-ultimate anchor when generalizing from specific articles towards broader notions.
+ultimate anchor when generalizing from specific articles to broader notions.
 
 \begin{figure}[tp!]
   \centering	
@@ -514,13 +515,13 @@ ultimate anchor when generalizing from specific articles towards broader notions
 \end{figure}
 
 The FLN's indegree exhibits a scale-free distribution where a few articles 
-receive a most direct first references, while most articles receive few or none.
+receive most direct first references; most articles receive few or none.
 The average indegree for all 11 million articles is 3.6 direct First Links with a standard deviation of 89.5 links.
 Only 4,826 articles have more than 100 direct First Links and $75\%$ of articles
 have fewer than 9. 
 When fit with a linear model on a log-log scale (log(rank) versus log(indegree)), 
 the model's r value is $-0.98$ suggesting a strong log-log linear fit 
-with a power law exponent of $-0.79$. 
+with a power law exponent of $-0.79$.\\
 
 \centerline{***}
 
@@ -532,14 +533,15 @@ $232$ million steps along the way.
 \subsection{Depth of the FLN}
 
 We first seek to describe the depth of the FLN: how many links does a 
-connection of ideas span? We gauge the FLN's depth via path length or the number of links traversed until a repeated or invalid link (one outside the FLN). 
+connection of ideas span? We gauge the FLN's depth by 
+measuring path length or the number of links traversed until a repeated or invalid link (one outside the FLN). 
 We discover the longest path length is 365,
 corresponding to the yearly calendar of Orthodox Liturgics.
 Each day's Liturgics links to the next day's. On the last calendar day, the last article simply links back to January 1, forming a 365-cycle 
 (see discussion of cycles).
-We also found similarly lengthy paths following the evolution of a place or topic through time: 
+We also find similarly lengthy paths following the evolution of a place or topic through time: 
 "1953 in Scotland" or "1560s Architecture", with articles sequentially proceeding by year, decade or era.
-The longest paths connecting ideas are organized temporally.
+The longest paths connect temporally organized ideas.
 
 \begin{figure}[tp!]
   \centering	
@@ -560,10 +562,11 @@ Of the 11 million articles, 5.5 million had an invalid link or linked back to th
 This roughly corresponds to the official number of articles on Wikipedia: 
 $~4.7$ million as of November 2014---approximately half of the 11 million 
 articles in the XML dump are redirects or disambiguations, not full articles.
-The most common path length is 29, with an interquartile range (26, 30).
+The most common path length is 29, with an interquartile range of 4---path length
+is typically between 26 and 29 articles.
 The median path length far exceeds the popular 6-degrees of separation (see for 
 example the average number of academic publications separating scholars 
-\cite{six_degrees}), indicating a greater network depth. 
+\cite{six_degrees}), indicating a greater network depth.
 The network's depth suggests ideas are not related in small independent clusters. 
 Instead the many diverse ideas fit together in long-chained connections.
 As a distribution, more than $75\%$ of articles have a path length below 
@@ -573,19 +576,18 @@ while a few temporally organized paths exceed 50 links
 
 How can we characterize the flow of ideas along a path? Next, we develop 
 a metric to gauge the accumulation of First Link references
-and characterize a global organization 
-of ideas among articles.
+and describe a pattern for how ideas flow through the FLN.
 
 
 
 
 \subsection{Traversal Visits}
 
-We followed every possible path through the network, incrementing
-the number of traversal visits for every First Link reference along a path 
-to generate a total of 232 million traversal visits.
+We follow every possible path through the network, incrementing
+the number of traversal visits for every First Link reference.
+We generate a total of 232 million traversal visits.
 
-As a distribution, the number traversal visits per article appears to be scale-free. 
+As a distribution, the number traversal visits by article appears to be scale-free. 
 The majority of articles have fewer than 30 traversal visits. 
 First Link references accumulate at a few articles.
 Specifically, $99.76\%$ of articles have fewer than $100$ traversal visits; nearly $80\%$ have none. 
@@ -599,7 +601,7 @@ Meanwhile, the highest ranking 30 articles have an extremely disproportionate nu
   }
   We fit the distribution to a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal visits. 
   The model explains $86\%$ of the variation in the data, yielding an r-value of $-0.93$ 
-  and a power law exponent of $-0.636$. The horizontal flattening around the highest
+  and a power law exponent of $-0.64$. The horizontal flattening around the highest
   ranking articles is a result of the cyclic structure (see discussion on cycles).
   \label{fig:Distribution of Visits}
 
@@ -619,7 +621,7 @@ a power-law exponent of $-0.636$. A handful of the highest ranking articles cont
   We compute the number of traversal visits for each article in the FLN (see 
   Traversal Algorithm section for details). In doing so, we can rank each article
   by the accumulation of First Links. Articles with a greater number of traversal visits
-  mark greater points of First Link accumulation. The highest ranking articles by traversal visits reveals where the greatest accumulation occurs.
+  mark greater points of First Link accumulation. The highest ranking articles by traversal visits reveal where the greatest accumulation occurs.
   \label{fig:highest visits}
 \end{figure}
 
@@ -634,9 +636,9 @@ many are academic disciplines such as "Science," "Math,"
 "Community", "State", "Earth", "Information", 
 "Existence," "Communication", and "Power."
 Since traversal visits measure the accumulation of First Link visits in Wikipedia, 
-the highest ranking articles suggest a flow from specific to general. 
+the highest ranking articles suggest First Links flow from specific to general articles. 
 For example the flow of First Links for the "Banana" article begins at a very concrete
-and specific topic, then flows into progressively broader disciplines, eventually 
+and specific topic, then flows towards progressively broader disciplines, eventually 
 culminating at "Philosophy": "Banana" links to the broader category of "Fruit," which then links to 
 "Botany," eventually "Biology," then "Science" and ultimately "Philosophy." 
 
@@ -649,7 +651,7 @@ culminating at "Philosophy": "Banana" links to the broader category of "Fruit," 
     We use WordNet (the largest lexical database for the English language)
     to identify the number of synonyms for an article's title. We compare 
     the distribution of synonyms of the highest-ranking 100 articles
-    against all other Wikipedia articles. As the distribution demonstrates
+    against all other Wikipedia articles (with the top 100 articles removed). As the distribution demonstrates
     the highest ranking concepts have more synonyms than other articles.
   }
   \label{fig:synonyms}
@@ -660,11 +662,16 @@ A  broader topic likely has many more synonyms relative to a specific, concrete 
 Banana has fewer synonyms than botanical for example. 
 To quantify the observed flow, we measured the number of synonyms each title contained in WordNet---the largest lexical database of the English language 
 \cite{wordnet}. 
+We compare the highest ranking 100 articles against the all other Wikipedia articles, with the top 100 articles removed.
 We find the highest ranking 100 articles have on average 5 more synonyms than the typical article; a difference of 2.5 synonyms if we compare the median number of synonyms in each group
 (see figure~\ref{fig:synonyms}). 
 As suggested by the median, many articles have no synonyms as we might expect, because titles with more than one word are not likely to appear in a thesaurus. 
-Since many articles have no synonyms, we also compared the number of synonyms in the highest-ranking versus typical article, this time excluding all articles without at least 1 synonym. 
-We still find the highest ranking 100 articles with an average of 9.0 (median of 7.0) synonyms whereas the remaining articles have on average 5.8 synonyms (median of 7.0), even with the exclusion of all articles without any synonyms.
+
+Since many articles have no synonyms, we also compare the number of synonyms for the highest-ranking versus typical article, this time excluding all articles without at least 1 synonym. 
+We still find the highest ranking 100 articles have on average 9.0 
+(median of 7.0) synonyms whereas the remaining articles have 
+on average 5.8 synonyms (median of 3.0)---even when all articles without
+synonyms are excluded.
 The quantifiable difference in synonyms corroborates the flow of links from concrete, specific articles to broader disciplines or fundamental notions.
 
 
@@ -674,7 +681,7 @@ The quantifiable difference in synonyms corroborates the flow of links from conc
 The recurrence of an exact number of traversal visits suggests some articles are part of a cycle. 
 The "Philosophy" article for example sits in what seems like a cycle of seven other articles; "Hypothesis" appears to sit in a 
 cycle of 6 other articles including "Experiment", "Fact", and "Knowledge".
-To confirm the suggested cyclic structure, we record the history of articles traversed along a path. For example starting on "Train" we construct an path of articles: 
+To confirm the suggested cyclic structure, we record the history of articles traversed along a path. For example starting on "Train" we construct a path of articles: 
 "Rain Transport,"
 "Conveyance of Passengers and Goods," 
 "Goods," 
@@ -685,7 +692,7 @@ To confirm the suggested cyclic structure, we record the history of articles tra
 "Awareness,"
 "Consciousness,"
 "Quality,"
-"Philosophy."
+"Philosophy," and so on until an article is repeated.
 
 We first identified 2-cycles, meaning a pair of articles with First Link pointing to one another.
 Of the 11 million articles, 84,000 are 2-cycles. 
@@ -710,11 +717,14 @@ The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly 
 Outside of the highest ranking 2-cycles, the typical 2-cycle signals a connection between distinct, yet very closely related ideas. 
 We also observe link patterns such as inventor to product ("Voere" to "VEC-91"), event to organizer ("Poetry Bus Tour" to "Weave Books"), and book to author ("Anatomy of Britain" to "Anthony Sampson").
 
-Similarly, 3-cycles captured a synonymous or close relation among 3 articles: "Tree of life (Biology)", "Tree of life (disambiguation)", 
+Similarly, 3-cycles capture a synonymous or close relation among 3 articles: "Tree of life (Biology)", "Tree of life (disambiguation)", 
 and "Tree of life"; "Cinema of India", "Indian Cinema", and "Telugu Cinema"
 (see figure~\ref{fig:3-cycles}).
 Once we extend our cycle size beyond a length of 6 however, 
 "Philosophy" along with the remaining list of high ranking articles by traversal visits dominate.
+The longest cycle in the network spans 365 articles of Eastern Orthodox Liturgics for each calendar day.
+Other lengthy cycles span 60-75 articles including collections of articles on national histories such as "Japanese Eras" 
+or judicial bodies such as the "Legislative Assembly of Ontario".
 
 \begin{figure*}[tp!]
   \centering	
@@ -730,12 +740,6 @@ Once we extend our cycle size beyond a length of 6 however,
   \label{fig:3-cycles}
 \end{figure*}
 
-Extending beyond 3-cycles we find the highest ranking cycles of length 
-up to 10 links are dominated by "Philosophy," high ranking 3-cycles
-around the "Balkans" and "Tree of life" as well as popular 2-cycles.
-The longest cycle in the network spans 365 articles of Eastern Orthodox Liturgics for each calendar day.
-Other lengthy cycles span 60-75 articles including collections of articles on national histories such as "Japanese Eras" 
-or judicial bodies such as the "Legislative Assembly of Ontario".
 
 
 
@@ -820,20 +824,20 @@ are funneled through "Philosophy."
 Second on the list of highest-ranking articles by traversal funnels is 
 "Presentation" with only $30$ thousand paths. Similarly abstract 
 ideas also rank highly such as "Tree of life" (30 thousand), 
-"Reality" (13 thousand), "Jurisdiction" (3 thousand) also appear of the list.
+"Reality" (13 thousand), and "Jurisdiction" (3 thousand).
 
-Curiously, many high-ranking articles are remarkably topical, culturally and politically important ideas.  For example, "Health Care", a recently high-contested legislative topic appears high on the list---Google trends indicates an uncharacteristic spike in search frequency between August-2009 and February-2010.
+Many high-ranking articles are remarkably topical, culturally and politically important ideas.  For example, "Health Care", a recently high-contested legislative topic appears high on the list---Google trends indicates an uncharacteristic spike in search frequency between August-2009 and February-2010.
 Other high ranking articles include key historical events such as the "Cold War" or critical scarce resource with recent 
 media discussion such as "Fossil Fuel". 
 The highest-ranking list even includes "Hip Hop," "Cancer," and "Web Page."
-This coincidence of recent relevance and traversal feed rank suggests the First Link Network measurably represents
+This coincidence of recent relevance and traversal funnel rank suggests the First Link Network measurably represents
 meaningful relationships not only among ideas, but also to English-speaking society. 
 \begin{figure}[tp!]
   \centering	
   \includegraphics[width=\columnwidth]{graphics/funnels_distribution.png}
   \caption{
     \textbf{Distribution of Traversal Funnels.}
-  We fit the distribution to a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal funnels. 
+  We fit the distribution with a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal funnels. 
   We find two regimes with the top regime (log(rank) < 4) 
   well-explained by a linear fit, yielding an r-value of $-0.99$ and a 
   power-law exponent of $-1.08$. The top regime 
@@ -872,7 +876,7 @@ how users view the information on Wikipedia.
 We measure popularity as the total number 
 of page views in the English edition of Wikipedia in the month of 
 October 2015---the earliest full month for which the data is available. 
-We find the highest ranking 1000 articles by traversal visits have an average of
+We find the highest ranking 1000 articles (by traversal visits) have an average of
 $70$ thousand page views in October with high variation: the standard deviation 
 is $1.1$ million page views. 
 The number of page views has a skewed distribution with $75\%$ of articles
@@ -883,7 +887,7 @@ $1.4$ million views in October. The next most popular articles are
 "India," "World War II," and the "United Kingdom" each with $0.7-1.03$ million page views. 
 
 
-The "Philosophy" article despite outranking every article in traversal visits,
+The "Philosophy" article despite outranking every article by traversal visits,
 has only $240$ thousand page views in October compared to the $1.4$ million
 page views for "United States".
 While "Philosophy" is not itself the most popular article, "Philosophy" serves as 
@@ -924,7 +928,7 @@ weddings in the months following October
 "Philosophy" which ranks seventh among the most popular of the highest ranking articles by traversal funnels, appears no where in the top 20
 by traversal visits. "Philosophy" is a relatively popular article 
 among articles influencing the shape of the network, but less popular among 
-articles with a large accumulation among the flow of First Links.
+highly-ranked articles by accumulation.
 
 
 \begin{figure}[tp!]
