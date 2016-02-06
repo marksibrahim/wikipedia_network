@@ -33,7 +33,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 text {
-  font: 12px sans-serif;
+  font: 16px sans-serif;
   pointer-events: none;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
 }
@@ -48,13 +48,13 @@ text {
 
 // http://blog.thomsonreuters.com/index.php/mobile-patent-suits-graphic-of-the-day/
 var links = [
-  {source: "C", target: "A", type: "resolved", visits:0},
-  {source: "A", target: "B", type: "resolved", visits:0},
-  {source: "B", target: "C", type: "resolved", visits:0},
-  {source: "E", target: "C", type: "resolved", visits:0},
-  {source: "G", target: "E", type: "resolved", visits:0},
-  {source: "F", target: "E", type: "resolved", visits:0},
-  {source: "D", target: "C", type: "resolved", visits:0},
+  {source: "C = 1", target: "A = 0", type: "resolved", visits:0},
+  {source: "A = 0", target: "B = 0", type: "resolved", visits:0},
+  {source: "B = 0", target: "C = 1", type: "resolved", visits:0},
+  {source: "E = 1", target: "C = 1", type: "resolved", visits:0},
+  {source: "G = 0", target: "E = 1", type: "resolved", visits:0},
+  {source: "F = 0", target: "E = 1", type: "resolved", visits:0},
+  {source: "D = 0", target: "C = 1", type: "resolved", visits:0},
 ];
 
 var nodes = {};
@@ -145,8 +145,8 @@ svg.append("text")
       .attr("x", (width / 2))             
       .attr("y", 40)
       .attr("text-anchor", "middle")
-      .style("font-size", "16px")
-      .text("a handcrafted, non-GMO network");
+      .style("font-size", "24px")
+      .text("traversal funnel path for article G");
 
 // Use elliptical arc path segments to doubly-encode directionality.
 function tick() {
