@@ -149,6 +149,7 @@ Wikipedia's ever growing store of knowledge.
 
 TODO: 
 \begin{itemize}
+    \item add the what to scale-free distribution in the abstract
     \item fix end of second paragraph in Results Section\\
     * power-law biz and total peter is asking for
 \item fix exponent reporting (with alpha) \\
@@ -187,11 +188,12 @@ compute semantic relatedness
 and disambiguate meaning \cite{disambiguating}.
 
 While these many studies have dissected and fruitfully applied Wikipedia's content,
-few have examined the connections among the many articles.
+few have examined the connections among the many articles
+\cite{links_that_speak}.
 A hyperlink from one Wikipedia article to another
-indicates a relationship between the two articles
+naturally indicates a relationship between the two articles
 \cite{relevance}.
-Naturally, the notion that hyperlinks convey information about the content of a
+The notion that hyperlinks convey information about the content of a
 page has proved enormously successful in multiple domains from search engine algorithms 
 such as PageRank 
 \cite{pagerank} 
@@ -291,7 +293,7 @@ For example ``Train'' has a first link to ``Conveyance of Passengers and Goods,'
 an article with a first link to ``Goods'' and so on. 
 As shown in Fig.~\ref{fig:Train First Links}, the path starting at ``Train'' 
 contains ``Goods,'' ``Economics,'' ``Social Science,''
-ultimately leading to ``Philosophy''.
+leading ultimately to ``Philosophy''.
 
 \begin{figure*}[tp!]
   \centering	
@@ -305,7 +307,7 @@ ultimately leading to ``Philosophy''.
 \end{figure*}
 
 Starting at each article, we construct a path through the FLN, 
-ultimately mapping a flow of connections among articles.
+to map the flow of connections among articles.
 The method is order agnostic with respect to which articles are selected first. As long as each article is selected eventually, the resulting metrics are equivalent.
 
 We use the notion of a path through the FLN to describe 
@@ -314,7 +316,7 @@ Grounded in the dynamics of river networks
 \cite{geo_basins},
 we characterize features of the FLN as a flow through first links.
 Previous studies have used flow to characterize the structure of river networks
-\cite{dodds} and describe the organization of food systems as transportation networks
+\cite{dodds} and describe the organization of food systems through transportation networks
 \cite{food_webs}.
 With paths to mark flow through the FLN, we develop metrics to 
 gauge the accumulation of references, 
@@ -396,7 +398,7 @@ We are then able to distinguish between an article related to many other ideas
 only by virtue of its place in a cycle, from an article exerting influence over where the first links flow. 
 An article with a large number of traversal funnels directs many references
 into a particular cycle. In our sample network 
-(see figure~\ref{fig:Traversal Funnels}) article C 
+(see Fig.~\ref{fig:Traversal Funnels}) article C 
 directs the flow of links towards the 3-cycle, while articles A and B are 
 recipients of the flow---without exerting any direct influence themselves. 
 
@@ -431,7 +433,7 @@ Wikipedia article
 Other high-ranking articles
 include foundational abstract concepts such as ``village,'' ``species,''; 
 sports associations such as ``American Football,'' ``Association Football''; 
-and developed nations such as ``France,'' ``Japan'', ``Russia,'' ``Australia,'' and 
+and developed nations such as ``France,'' ``Japan,'' ``Russia,'' ``Australia,'' and 
 the ``Netherlands.'' These high ranking articles are useful abstractions: nations
 describe a collection of individuals with a common culture, language, or 
 geographical proximity; sports teams describe an ever changing collection of 
@@ -449,8 +451,8 @@ are not among the highest-ranking articles by in-degree.
 While many articles accumulate at ``Philosophy'' (see traversal visits discussion below), 
 the accumulation is not the 
 result of many articles directly referencing ``Philosophy.'' 
-Instead, flows towards Philosophy as the 
-ultimate anchor when generalizing from specific articles to broader notions.
+Instead, first links flow towards ``Philosophy'' as the 
+ultimate anchor, by generalizing from specific articles to broader notions.
 
 \begin{figure}[tp!]
   \centering	
@@ -464,10 +466,10 @@ ultimate anchor when generalizing from specific articles to broader notions.
   \label{fig:degree distribution}
 \end{figure}
 
-The FLN's in-degree exhibits a decaying power-law distribution where a few articles 
+The FLN's in-degree exhibits a decaying power law distribution where a few articles 
 receive most direct first references, while most articles receive few or none.
 The average in-degree for all 11 million articles is 3.6 direct first links with a standard deviation of 89.5 links.
-Only 4,826 articles have more than 100 direct first links and $75\%$ of articles
+Less than $1\%$ of articles have more than 100 direct first links and $75\%$ of articles
 have fewer than 9. 
 When fit with a linear model on a log-log scale (log(rank) versus log(in-degree)), 
 the model's r value is $-0.98$ suggesting a strong log-log linear fit 
@@ -478,7 +480,7 @@ with a power law exponent of $-0.79$.\\
 \subsection{Depth of the FLN}
 
 We first seek to describe the depth of the FLN: how many links does a 
-connection of among articles span? 
+connection among articles span? 
 We find the longest path length is 365,
 corresponding to the yearly calendar of Orthodox Liturgics.
 Each day's Liturgics links to the next day's. On the last calendar day, the last article simply links back to January 1, forming a 365-cycle 
@@ -511,7 +513,7 @@ is typically between 26 and 29 articles.
 As a distribution, more than $75\%$ of articles have a path length below 
 $50$ first links 
 while a few temporally organized paths exceed 50 links 
-(see figure~\ref{fig:Path Length Distribution}). 
+(see Fig.~\ref{fig:Path Length Distribution}). 
 
 
 
@@ -537,7 +539,7 @@ Meanwhile, the highest ranking 30 articles have an extremely disproportionate nu
 
 \end{figure}
 
-In Fig., we show a log-log plot for the entire dataset:traversal visits against rank. 
+In Fig.~\ref{fig:Distribution of Visits}, we show a log-log plot for the entire dataset:traversal visits against rank. 
 We observe a strong linear fit, with a Pearson's Correlation Coefficient of -.93 and 
 a power-law exponent of $-0.636$. A handful of the highest ranking articles contain a disproportionate number of traversal visits, while most have none. The skew in the distribution is not terribly surprising when considering the heuristic of how the links flow: from specific to general. 
 
@@ -561,7 +563,7 @@ a power-law exponent of $-0.636$. A handful of the highest ranking articles cont
 
 We first identified 2-cycles, meaning a pair of articles with first link pointing to one another.
 Of the 11 million articles, 84,000 are 2-cycles. 
-The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly so) rather than distinct, yet connected ideas:
+The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly so) rather than distinct, yet connected topics:
 ``Health Care'' and ``Medical Case Management,'' ``Broadcasting House,'' and ``BBC,'' ``Secondary Education'' and ``Secondary School'' 
 (see Fig.~\ref{fig:2-cycles}).
 
@@ -574,21 +576,21 @@ The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly 
     a 2-cycle. We then rank each pair of articles by the total number of 
     traversal visits to gauge the most referenced groups of two articles linked
     to each other. The area of the circles in the figure indicates the number of traversal visits. We find 2-cycles often capture synonyms or articles representing nearly the 
-    same concepts as opposed to distinct ideas.
+    same concepts as opposed to distinct concepts.
   }
   \label{fig:2-cycles}
 \end{figure*}
 
-Outside of the highest ranking 2-cycles, the typical 2-cycle signals a connection between distinct, yet very closely related ideas. 
+Outside of the highest ranking 2-cycles, the typical 2-cycle signals a connection between distinct, yet very closely related concepts. 
 We also observe link patterns such as inventor to product (``Voere'' to ``VEC-91''), event to organizer (``Poetry Bus Tour'' to ``Weave Books''), and book to author (``Anatomy of Britain'' to ``Anthony Sampson'').
 
 Similarly, 3-cycles capture a synonymous or close relation among 3 articles: ``Tree of life (Biology),'' ``Tree of life (disambiguation),'' 
 and ``Tree of life''; ``Cinema of India,'' ``Indian Cinema,'' and ``Telugu Cinema''
-(see figure~\ref{fig:3-cycles}).
+(see Fig.~\ref{fig:3-cycles}).
 Once we extend our cycle size beyond a length of 6 however, 
 ``Philosophy'' along with the remaining list of high ranking articles by traversal visits dominate.
 The longest cycle in the network spans 365 articles of Eastern Orthodox Liturgics for each calendar day.
-Other lengthy cycles span 60--75 articles including collections of articles on national histories such as ``Japanese Eras'' 
+Other lengthy cycles span $60-75$ articles including collections of articles on national histories such as ``Japanese Eras'' 
 or judicial bodies such as the ``Legislative Assembly of Ontario.''
 
 \begin{figure*}[tp!]
@@ -639,7 +641,7 @@ flowing from ``United States'' to ``Federal Republic'' to ``Political Union'' to
 ``Public Policy'' to ``Executive (government)'' to ``Government'' to ``State'' and then 
 to ``Community''; we also find paths flowing through a similar chain beginning
 with ``Democracy,'' another beginning with ``Constitution,'' another at 
-``Dictatorship,'' and so on. The ideas build from specific means of organizing
+``Dictatorship,'' and so on. The articles build from specific means of organizing
 a community (or society) and then build up to ``Community.'' 
 Other basins around landmass for example begin at specific geographical regions
 such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''.
@@ -657,7 +659,7 @@ many first links.
 Ranking articles by the number of traversal funnels we find 
 ``Philosophy'' to be by far the highest-ranking article with 
 $7.37$ million paths
-(see figure~\ref{fig:Funnels}).
+(see Fig.~\ref{fig:Funnels}).
 \begin{figure*}[tp!]
   \centering	
   \includegraphics[width=\textwidth]{graphics/funnels.pdf}
@@ -682,10 +684,10 @@ references through ``Philosophy'': $7.37$ million of the $7.4$ million reference
 are funneled through ``Philosophy''.
 Second on the list of highest-ranking articles by traversal funnels is 
 ``Presentation'' with only $30$ thousand paths. Similarly abstract 
-ideas also rank highly such as ``Tree of life'' (30 thousand), 
+concepts also rank highly such as ``Tree of life'' (30 thousand), 
 ``Reality'' (13 thousand), and ``Jurisdiction'' (3 thousand).
 
-Many high-ranking articles are remarkably topical, culturally and politically important ideas.  For example, ``Health Care'', a recently high-contested legislative topic appears high on the list---Google trends indicates an uncharacteristic spike in search frequency between August, 2009 and February, 2010.
+Many high-ranking articles are remarkably topical, culturally and politically important concepts.  For example, ``Health Care'', a recently high-contested legislative topic appears high on the list---Google trends indicates an uncharacteristic spike in search frequency between August, 2009 and February, 2010.
 Other high ranking articles include key historical events such as the ``Cold War'' or critical scarce resource with recent 
 media discussion such as ``Fossil Fuel''. 
 The highest-ranking list also includes ``Hip Hop,'' ``Cancer,'' and ``Web Page''.
@@ -812,7 +814,7 @@ Among our observations is the multiple appearance of scale-free distributions wi
 Few articles have most traversal visits, few paths have an exceptionally long path length, and even fewer
 articles are responsible for funneling most paths. When measured against the traversal funnels, 
 ``Philosophy'' emerges as an exceptional article by orders of magnitude. 
-Nevertheless, many other foundational ideas emerged naturally within the First Link Network. 
+Nevertheless, many other foundational concepts emerged naturally within the First Link Network. 
 Basins around ``Community'', ``State'', and ``Science'' reveal a foundational structure within the network. 
 More curious is the emergence of recently prominent political and economics topics such as ``Fossil Fuel'' and ``Health Care'' 
 within the highest ranking funnels. 
@@ -987,6 +989,9 @@ First Link. The resulting network map is the basis of our analysis.
 
     \bibitem{media_wiki_templates} MediaWiki: ``Help: Templates''
     \url{https://www.mediawiki.org/wiki/Help:Templates}
+
+    \bibitem{links_that_speak} Ronen, Shahar, Bruno Gonçalves, Kevin Z. Hu, Alessandro Vespignani, Steven Pinker, and César A. Hidalgo. ``'Links That Speak: The Global Language Network and Its Association with Global Fame.'' Proceedings of the National Academy of Sciences Proc Natl Acad Sci USA 111.52 (2014).
+
 \end{thebibliography}
 
 
