@@ -153,6 +153,118 @@ TODO:
 * fix exponent reporting (with alpha) 
     * figure out what gamma size freq means
 
+\section{Introduction}
+
+Wikipedia is a towering achievement of the modern era. 
+At no point in history has a larger or more meticulously indexed collection of human knowledge 
+existed.
+Wikipedia contains 37 million articles in 283 languages, 
+with coverage spanning everything from little known ancient battles to the latest pharmaceutical drugs 
+\cite{drugs, stats}.
+All this information does not lie dormant. 
+Wikipedia is the sixth most visited
+site in the world, surpassing 18 billion page views and 26 million edits in a single month
+\cite{wiki_edits, wiki_views}.
+
+Wikipedia has naturally become the object of many studies. 
+Researchers have examined the cultural dynamics among editors
+\cite{editors},
+the accuracy of the content relative to traditional encyclopedias
+\cite{accuracy1, accuracy2},
+the topics covered 
+\cite{coverage},
+and bias against portions of the population
+\cite{bias_women}.
+Wikipedia's content has also proven a powerful tool. 
+Researchers have used Wikipedia to identify missing dictionary entries
+\cite{missing_entries},
+cluster short text
+\cite{clustering},
+compute semantic relatedness
+\cite{semantic_relatedness},
+and disambiguate meaning \cite{disambiguating}.
+
+While these many studies have dissected and fruitfully applied Wikipedia's content,
+few have examined the connections among the many articles.
+A hyperlink from one Wikipedia article to another
+indicates a relationship between the two articles
+\cite{relevance}.
+Naturally, the notion that hyperlinks convey information about the content of a
+page has proved enormously successful in multiple domains from search engine algorithms 
+such as PageRank 
+\cite{pagerank} 
+to topic classification
+\cite{classifier}.
+We treat a hyperlink as a mechanism connecting two topics.
+
+The authors of a Wikipedia article choose where and whether to include a 
+reference to another Wikipedia article
+in the HTML markup.
+For example, the authors of the 
+\href{https://en.wikipedia.org/wiki/Train}{"Train"}
+article chose
+"Rail Transport," "Cargo," and "Passengers" 
+as pertinent articles to reference in describing trains
+\cite{wiki_train}
+.
+Here we focus on the first hyperlink to another Wikipedia article, which 
+marks the earliest moment in the body text where the authors
+chose to connect the information discussed to that of another article.
+By following the first hyperlink to another article in the English edition of
+Wikipedia as of November, 2014, we connect the ideas in one article to those in another, ultimately forming a directed network: 
+{\it Wikipedia's First Link Network} (FLN).
+
+\begin{figure*}[tp!]
+  \centering	
+  \includegraphics[width=\textwidth]{graphics/Train.pdf}  
+  \caption{
+    \textbf{First Link Path For "Train".}
+    We follow the First Link to another Wikipedia article
+    in the main body of the article---the area
+    inside the green rectangle, which excludes 
+    side bar elements, the navigation bar and title. 
+    In this example, the First Link to another Wikipedia article is "Rail Transport." 
+    We can again select the First Link on the "Rail Transport"
+    article, repeating the process to 
+    form a path of First Links.
+  }
+  \label{fig:Train First Links}
+\end{figure*}
+
+What information could the First Links possibly reveal?
+Inspired by the claim that the majority of First Links lead to the 
+"Philosophy" article---popularized by an 
+\href{https://xkcd.com/903/}{xkcd}
+comic and subsequently
+discussed in blog posts 
+\cite{mat_blog, Ilmari_first_links, xkcd}
+---we holistically study 
+Wikipedia's FLN as a map relating areas of human knowledge. 
+The map is a hierarchical taxonomy where, for example, "Train" links to a parent node, 
+"Rail Transport," while many child nodes, "Steel" and "Horsepower," link to 
+"Train." Unlike previous taxonomies
+created by individuals
+\cite{locke, descartes, aristotle}
+or a select group of individuals 
+\cite{hist_thesaurus}, 
+the organization of ideas in the FLN 
+does not emerge from a centralized effort. 
+Rather each link in the FLN emerges from the choice of each author and ensuing edits.
+Collectively, the FLN is a wealth of relations among inventions, places,
+figures, objects, and events across space and time.
+
+
+Our goal is to study the structure of the FLN for insight into how the information on Wikipedia is organized and related.
+We develop metrics to capture 
+the dominant features of the FLN's structure.
+We measure dynamics of the FLN as a flow, quantifying 
+aspects of the FLN from the accumulation of First Links around articles 
+to the influence an article exerts in shaping the FLN.
+Together with cycles, in-degree, depth, and the content of the articles, 
+we build our analysis of the relations among the ideas in Wikipedia.
+
+
+
 \section{Traversing the First Link Network}
 
 An essential feature of a directed network's structure is the degree distribution 
