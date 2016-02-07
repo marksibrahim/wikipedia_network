@@ -148,10 +148,12 @@ Wikipedia's ever growing store of knowledge.
 \maketitle
 
 TODO: 
-* fix end of second paragraph in Results Section
+\begin{itemize}
+    \item fix end of second paragraph in Results Section\\
     * power-law biz and total peter is asking for
-* fix exponent reporting (with alpha) 
+\item fix exponent reporting (with alpha) \\
     * figure out what gamma size freq means
+\end{itemize}
 
 \section{Introduction}
 
@@ -201,9 +203,9 @@ The authors of a Wikipedia article choose where and whether to include a
 reference to another Wikipedia article
 in the HTML markup.
 For example, the authors of the 
-\href{https://en.wikipedia.org/wiki/Train}{"Train"}
+\href{https://en.wikipedia.org/wiki/Train}{``Train''}
 article chose
-"Rail Transport," "Cargo," and "Passengers" 
+``Rail Transport,'' ``Cargo,'' and ``Passengers'' 
 as pertinent articles to reference in describing trains
 \cite{wiki_train}
 .
@@ -218,13 +220,13 @@ Wikipedia as of November, 2014, we connect the ideas in one article to those in 
   \centering	
   \includegraphics[width=\textwidth]{graphics/Train.pdf}  
   \caption{
-    \textbf{First Link Path For "Train".}
+    \textbf{First Link Path For ``Train.''}
     We follow the First Link to another Wikipedia article
     in the main body of the article---the area
     inside the green rectangle, which excludes 
     side bar elements, the navigation bar and title. 
-    In this example, the First Link to another Wikipedia article is "Rail Transport." 
-    We can again select the First Link on the "Rail Transport"
+    In this example, the First Link to another Wikipedia article is ``Rail Transport.'' 
+    We can again select the First Link on the ``Rail Transport''
     article, repeating the process to 
     form a path of First Links.
   }
@@ -233,14 +235,14 @@ Wikipedia as of November, 2014, we connect the ideas in one article to those in 
 
 What information could the First Links possibly reveal?
 Inspired by the claim that the majority of First Links lead to the 
-"Philosophy" article---popularized by an 
+``Philosophy'' article---popularized by an 
 \href{https://xkcd.com/903/}{xkcd}
 comic and subsequently
 discussed in blog posts 
 \cite{mat_blog, Ilmari_first_links, xkcd}
 ---we holistically study 
 Wikipedia's FLN as a map relating areas of human knowledge. 
-The map is a hierarchical taxonomy where, for example, "Train" links to a parent node, 
+The map is a hierarchical taxonomy where, for example, ``Train'' links to a parent node, 
 "Rail Transport," while many child nodes, "Steel" and "Horsepower," link to 
 "Train." Unlike previous taxonomies
 created by individuals
@@ -736,13 +738,9 @@ $1.4$ million views in October. The next most popular articles are
 "India," "World War II," and the "United Kingdom" each with $0.7-1.03$ million page views. 
 
 
-The "Philosophy" article despite outranking every article by traversal visits,
+The "Philosophy" article, despite outranking every article by traversal visits,
 has only $240$ thousand page views in October compared to the $1.4$ million
 page views for "United States".
-While "Philosophy" is not itself the most popular article, "Philosophy" serves as 
-an accumulation point for ideas. Wikipedia users do not login specifically
-to read about "Philosophy," but the authors relate ideas to "Philosophy" 
-by ultimately anchoring the flow of First Links to "Philosophy."
 
 \begin{figure}[tp!]
   \centering	
@@ -798,21 +796,20 @@ highly-ranked articles by accumulation.
 
 %========================Conclusion====================================
 
-\section{Reflections}
+\section{Concluding Remarks}
 
 The findings here should only be considered within the limitations of their context.
-We examined only the English version of Wikipedia at a particular moment in time.
-Furthermore, we only studied the First Link in the main body  of each article
-as a means to related one article to another. Finally, Wikipedia, while the largest 
+We examined only the English editiion of Wikipedia at a particular moment in time, 
+considering only the first link in in each article as a means to related one article to another.
+Finally, Wikipedia, while the largest 
 collection of human knowledge, is rife with the biases of the many contributing editors
 \cite{bias}
 . Nevertheless, the findings do reveal
-generalizable relationships, point to foundational notions, and uncover many curiosities.
+generalizable relationships and point to foundational notions.
 
 
-Among the curiosities is the multiple appearance of scale-free distributions within the network. 
-The three metrics we developed: path length, traversal visits, and traversal funnels are all marked 
-by scale-free distributions. Few articles have most traversal visits, few paths have an exceptionally long path length, and even fewer
+Among our observations is the multiple appearance of scale-free distributions within the network. 
+Few articles have most traversal visits, few paths have an exceptionally long path length, and even fewer
 articles are responsible for funneling most paths. When measured against the traversal funnels, 
 "Philosophy" emerges as an exceptional article by orders of magnitude. 
 Nevertheless, many other foundational ideas emerged naturally within the First Link Network. 
@@ -825,13 +822,13 @@ Future work could examine other language versions of Wikipedia for potentially t
 These findings also form the basis for the creation of a taxonomy where 
 every idea, event, or object sits within a hierarchy of connected notions.
 The taxonomy would extend a traditional word thesaurus beyond mere synonyms to a related hierarchy of concepts.
-Applications could range from an enhanced thesaurus of ideas to psychological insights into how humans form associations.
-Specifically, an ever-evolving reference of related hierarchical concepts can be applied to search engine algorithms 
+Applications could range from an enhanced network of ideas to psychological insights into how humans form associations.
+Specifically, an ever-evolving reference of related hierarchical concepts could be applied to search engine algorithms 
 or natural language processing.
 
 
 \acknowledgments
-Thank you to my friend RJ for pointing out the Reddit post 
+MI is grateful to RJ for pointing out the Reddit post 
 \cite{reddit}
 describing how the majority of links lead to "Philosophy," inspiring this research.
 
