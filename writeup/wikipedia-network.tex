@@ -604,4 +604,281 @@ The resulting power-law exponent is $-1.08$. Even within the few articles
 influencing the structure of the FLN, only a handful of these exert most of the 
 control. 
 
+\subsection{Article Popularity}
+
+Wikipedia released an API to measure article popularity by page views
+starting November 2015. Page views add another dimension to our
+findings by revealing 
+how users view the information on Wikipedia. 
+We measure popularity as the total number 
+of page views in the English edition of Wikipedia in the month of 
+October 2015---the earliest full month for which the data is available. 
+We find the highest ranking 1000 articles (by traversal visits) have an average of
+$70$ thousand page views in October with high variation: the standard deviation 
+is $1.1$ million page views. 
+The number of page views has a skewed distribution with $75\%$ of articles
+reaching fewer than $73$ thousand page views in October.
+The article for "United States" has the most page 
+views of the highest ranking $1000$ articles by traversal visits with 
+$1.4$ million views in October. The next most popular articles are 
+"India," "World War II," and the "United Kingdom" each with $0.7-1.03$ million page views. 
+
+
+The "Philosophy" article despite outranking every article by traversal visits,
+has only $240$ thousand page views in October compared to the $1.4$ million
+page views for "United States".
+While "Philosophy" is not itself the most popular article, "Philosophy" serves as 
+an accumulation point for ideas. Wikipedia users do not login specifically
+to read about "Philosophy," but the authors relate ideas to "Philosophy" 
+by ultimately anchoring the flow of First Links to "Philosophy."
+
+\begin{figure}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/views_visits.png}
+  \caption{
+    \textbf{Article Popularity (by page views) compared to Traversal Visits 
+    for Highest ranking 1000 articles.}
+    We use the total number of page views provided by Wikipedia for the month
+    of October 2015 to compare each article's popularity to traversal visits.
+    While the most popular articles do not necessarily correspond to the articles
+    with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases.
+  }
+  \label{fig:Views and Visits}
+
+\end{figure}
+
+
+
+We also analyze article popularity for the highest ranking 1000 articles by 
+traversal funnels. In October, the average page views per article is 
+$22$ thousand with a standard deviation of $95$ thousand views. The distribution
+is skewed with $75\%$ of articles reaching fewer than $20$ thousand page views. 
+"Halloween" is the most popular article with $2.8$ million views in October,
+likely a result of Halloween falling in the month of October. 
+Other popular articles include "Scientology" ($463$ thousand views), "Clint Eastwood" 
+($341$ thousand views),
+and the "Cold War" ($298$ thousand views) although each has significantly fewer views compared to the views for "Halloween."
+Other standout popular October articles include "24-hour" and "12-hour" clocks likely due
+to Daylight savings in October and "Marriage" likely due to the drop in the number of
+weddings in the months following October
+\cite{weddings}.
+"Philosophy" which ranks seventh among the most popular of the highest ranking articles by traversal funnels, appears no where in the top 20
+by traversal visits. "Philosophy" is a relatively popular article 
+among articles influencing the shape of the network, but less popular among 
+highly-ranked articles by accumulation.
+
+
+\begin{figure}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/funnels_visits.png}
+  \caption{
+    \textbf{Article Popularity (by page views) compared to Traversal Funnels
+    for Highest ranking 1000 articles.}
+  }
+    We use the total number of page views provided by Wikipedia for the month
+    of October 2015 to compare each article's popularity to traversal funnels.
+    In the top left is "Halloween" with a significantly greater 
+    number of page views in the month of October.
+  \label{fig:Views and Funnels}
+\end{figure}
+
+
+
+%========================Conclusion====================================
+
+\section{Reflections}
+
+The findings here should only be considered within the limitations of their context.
+We examined only the English version of Wikipedia at a particular moment in time.
+Furthermore, we only studied the First Link in the main body  of each article
+as a means to related one article to another. Finally, Wikipedia, while the largest 
+collection of human knowledge, is rife with the biases of the many contributing editors
+\cite{bias}
+. Nevertheless, the findings do reveal
+generalizable relationships, point to foundational notions, and uncover many curiosities.
+
+
+Among the curiosities is the multiple appearance of scale-free distributions within the network. 
+The three metrics we developed: path length, traversal visits, and traversal funnels are all marked 
+by scale-free distributions. Few articles have most traversal visits, few paths have an exceptionally long path length, and even fewer
+articles are responsible for funneling most paths. When measured against the traversal funnels, 
+"Philosophy" emerges as an exceptional article by orders of magnitude. 
+Nevertheless, many other foundational ideas emerged naturally within the First Link Network. 
+Basins around "Community", "State", and "Science" reveal a foundational structure within the network. 
+More curious is the emergence of recently prominent political and economics topics such as "Fossil Fuel" and "Health Care" 
+within the highest ranking funnels. 
+Wikipedia seems to reflect not only timeless foundations, but also the topical (at least within English speaking society).
+
+Future work could examine other language versions of Wikipedia for potentially telling cultural or regional differences as well as expand the network to more than the First Link.
+These findings also form the basis for the creation of a taxonomy where 
+every idea, event, or object sits within a hierarchy of connected notions.
+The taxonomy would extend a traditional word thesaurus beyond mere synonyms to a related hierarchy of concepts.
+Applications could range from an enhanced thesaurus of ideas to psychological insights into how humans form associations.
+Specifically, an ever-evolving reference of related hierarchical concepts can be applied to search engine algorithms 
+or natural language processing.
+
+
+\acknowledgments
+Thank you to my friend RJ for pointing out the Reddit post 
+\cite{reddit}
+describing how the majority of links lead to "Philosophy," inspiring this research.
+
+
+\newpage
+
+\section{Appendix}
+
+\subsection{Constructing The First Link Network}
+
+To map Wikipedia's First Link Network, we use the freely-available XML dump of the English edition of Wikipedia. 
+Rather than rely on a sample of articles from which to generalize, we opted to process the entirety of Wikipedia, 
+eliminating any statistical error due to sampling.
+We analyze the snapshot provided on November 2014, representing the state of Wikipedia at the time.
+The November raw dump consists of 11 million articles: 4.7 million unique articles along with redirects
+and disambiguations.
+Knowing Wikipedia is an ever-evolving project with 10 edits every second and 750 new articles per day on average
+\cite{wiki_edits},
+our aim is to characterize the dynamics of the First Link Network, not record a particular link between one
+article and another.
+
+Wikipedia renders and stores articles in MediaWiki markup, a markup language with syntax and keywords to format and mark elements in a page. Along with special syntax for links, MediaWiki markup includes templates for audio files, images, and side-bar
+information.
+While a human could accurately identify the First Link, to map the entire First Link Network of 11 million articles, we needed to programmatically untangled the body text from side-bar, header box, and invalid link elements.
+
+While some libraries exist for MediaWiki Markup,
+Approaches using existing libraries led to several bugs 
+including trouble with nested links, nested parenthesis, unclosed tags, escape characters 
+as well as compatibility with other libraries used to parse the XML.
+Consequently,  we developed an algorithm for parsing the First Link in the XML version of each article.
+Our parsing algorithm aimed to: 
+1) accurately identify the First Link among other page elements, and 
+2) efficiently do so---that is without needing for several passes through the data.
+To process an article in a single pass, we developed a hierarchical system of flags:
+
+\begin{figure}[tp!]
+  \centering	
+  \includegraphics[width=\columnwidth]{graphics/flags.pdf}  
+  \caption{
+    \textbf{Parsing Algorithm of Wikipedia's XML dump.}
+     The highest flag in the hierarchy indicates a Wikimedia template used to mark an element in the side bar, display an image, link to an external file, or another Wikimedia project outside of Wikipeida. Next, to catch any remaining elements outside the main body we have a second flag for <ref>, <div> elements. Finally, we identify parenthesis to ensure we do not capture a link to a pronunciation key.
+  }
+  \label{fig:parsing algorithm}
+\end{figure}
+
+The algorithm loops in three-character chunks to account for potentially nested elements, 
+shifting by one character steps through the article markup.
+If any markup triggers for a flag are detected, a flag is raised. 
+Once a flag is raised, we stop processing and proceed to the next character
+until the flag's closing markup.
+A First Link is identified only if Flags 1, 2, and 3 are all off.
+In this case, the entire link is retrieved. 
+We then confirm the link is valid by filtering for MediaWiki keywords indicating external page or other projects
+as well as common file extensions for 
+images, audio files, and the like 
+\cite{media_wiki_templates}.
+The First Link of an article is then the earliest valid link with unraised flags.
+
+To process the entirety of Wikipedia, we distributed the parsing and processing of the XML dump
+across 112 cores of the UVM supercomputer cluster
+\cite{vacc}
+We then joined the results to form a hash table containing every Wikipedia article and its corresponding
+First Link. The resulting network map is the basis of our analysis.
+
+
+
+
+
+\begin{thebibliography}{1}
+
+      \bibitem{editors} Iba, Takashi, et al. "Analyzing the creative editing behavior of Wikipedia editors: Through dynamic social network analysis." Procedia-Social and Behavioral Sciences 2.4 (2010): 6441-6456.
+
+      \bibitem{accuracy1} Holman Rector, Lucy. "Comparison of Wikipedia and other encyclopedias for accuracy, breadth, and depth in historical articles." Reference services review 36.1 (2008): 7-22.
+
+      \bibitem{accuracy2} Giles, Jim. "Internet encyclopaedias go head to head." Nature 438.7070 (2005): 900-901.
+
+       \bibitem{coverage} Halavais, Alexander, and Derek Lackaff. "An analysis of topical coverage of Wikipedia." Journal of Computer‐Mediated Communication 13.2 (2008): 429-440.
+
+        \bibitem{bias_women} Hill, Benjamin Mako, and Aaron Shaw. "The Wikipedia gender gap revisited: characterizing survey response bias with propensity score estimation." PloS one 8.6 (2013): e65782.
+
+      \bibitem{missing_entries} Williams, Jake Ryland, Clark, Eric M., Bagrow, James P., Danforth, Christopher M. \& Dodds, Peter Sheridan (2015). Identifying missing dictionary entries with frequency-conserving context models. Phys. Rev. E, 92, 042808.
+
+      \bibitem{clustering} Banerjee, Somnath, Krishnan Ramanathan, and Ajay Gupta. "Clustering short texts using wikipedia." Proceedings of the 30th annual international ACM SIGIR conference on Research and development in information retrieval. ACM, 2007.
+
+      \bibitem{semantic_relatedness} Gabrilovich, Evgeniy, and Shaul Markovitch. "Computing Semantic Relatedness Using Wikipedia-based Explicit Semantic Analysis." IJCAI. Vol. 7. 2007.
+
+      \bibitem{disambiguating} Cucerzan, Silviu. "Large-Scale Named Entity Disambiguation Based on Wikipedia Data." EMNLP-CoNLL. Vol. 7. 2007.
+
+      \bibitem{drugs} Clauson, Kevin A., et al. "Scope, completeness, and accuracy of drug information in Wikipedia." Annals of Pharmacotherapy 42.12 (2008): 1814-1821.
+
+      \bibitem{stats} Wikipedia contributors. "Wikipedia:Statistics." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 9 Nov. 2015. Web. 13 Nov. 2015.
+
+      \bibitem{pagerank} Page, Lawrence, et al. "The PageRank citation ranking: bringing order to the Web." (1999).
+
+      \bibitem{classifier} Chakrabarti, Soumen, Mukul Joshi, and Vivek Tawde. "Enhanced topic distillation using text, markup tags, and hyperlinks." Proceedings of the 24th annual international ACM SIGIR conference on Research and development in information retrieval. ACM, 2001.
+
+      \bibitem{relevance} Kamps, Jaap, and Marijn Koolen. "Is Wikipedia link structure different?." Proceedings of the second ACM international conference on Web search and data mining. ACM, 2009.
+          
+      \bibitem{wiki_train} Wikipedia contributors. "Train." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 
+          \url{https://en.wikipedia.org/wiki/Train}
+
+    \bibitem{locke} Bolton, Martha Brandt. "The Taxonomy of Ideas in Locke’s {\it Essay} ", The Cambridge Companion to Locke's 'Essay Concerning Human Understanding'. Ed.Lex Newman.. 1st ed. Cambridge: Cambridge University Press, 2007. 67-100. Cambridge Companions Online. Web. 13 November 2015. http://dx.doi.org/10.1017/CCOL0521834333.004.
+
+    \bibitem{aristotle} Studtmann, Paul, "Aristotle's Categories", The Stanford Encyclopedia of Philosophy (Summer 2014 Edition), Edward N. Zalta (ed.), \url{http://plato.stanford.edu/archives/sum2014/entries/aristotle-categories/}
+
+    \bibitem{descartes} Smith, Kurt, "Descartes' Theory of Ideas", The Stanford Encyclopedia of Philosophy (Spring 2014 Edition), Edward N. Zalta (ed.), \url{http://plato.stanford.edu/archives/spr2014/entries/descartes-ideas/}
+
+
+    \bibitem{hist_thesaurus} What is the Historical Thesaurus of the OED - Oxford English Dictionary (Oxford English Dictionary)
+    http://public.oed.com/historical-thesaurus-of-the-oed/what-is-the-historical-thesaurus-of-the-oed/
+
+    \bibitem{vacc} The authors acknowledge the Vermont Advanced Computing Core which is supported by NASA (NNX 06AC88G), at the University of Vermont for providing High Performance Computing resources that have contributed to the research results reported within this paper.
+    \url{http://www.uvm.edu/vacc}
+
+    \bibitem{wiki_views} Page Views for Wikipedia, Non-mobile site, Normalized (Page Views for Wikipedia, Non-mobile site, Normalized)
+    \url{https://stats.wikimedia.org/EN/TablesPageViewsMonthly.htm}
+
+    \bibitem{weddings} Wedding statistics in the United States (Wedding statistics in the United States)
+    \url{http://www.soundvision.com/article/wedding-statistics-in-the-united-states}
+
+    \bibitem{six_degrees} Elmacioglu, Ergin, and Dongwon Lee. "On six degrees of separation in DBLP-DB and more." ACM SIGMOD Record 34.2 (2005): 33-40.
+
+    \bibitem{wordnet} Princeton University "About WordNet." WordNet. Princeton University. 2010. 
+    \url{http://wordnet.princeton.edu}
+
+    \bibitem{newman} Newman, Mark EJ. "The structure and function of complex networks." SIAM review 45.2 (2003): 167-256.
+
+    \bibitem{disease} Eubank, Stephen, et al. "Modelling disease outbreaks in realistic urban social networks." Nature 429.6988 (2004): 180-184.
+
+    \bibitem{social_nets} Newman, Mark EJ, Duncan J. Watts, and Steven H. Strogatz. "Random graph models of social networks." Proceedings of the National Academy of Sciences 99.suppl 1 (2002): 2566-2572.
+
+    \bibitem{geo_basins} Horton, Robert E. "Erosional development of streams and their drainage basins; hydrophysical approach to quantitative morphology." Geological society of America bulletin 56.3 (1945): 275-370.
+    APA
+
+    \bibitem{dodds} Dodds, Peter Sheridan, and Daniel H. Rothman. "Unified view of scaling laws for river networks." Physical Review E 59.5 (1999): 4865.
+
+    \bibitem{food_webs} Garlaschelli, Diego, Guido Caldarelli, and Luciano Pietronero. "Universal scaling relations in food webs." Nature 423.6936 (2003): 165-168.
+    
+    \bibitem{mat_blog} brain of mat kelcey (brain of mat kelcey). 
+    "Do all first links lead to Philosophy?"
+    \url{http://matpalm.com/blog/2011/08/13/wikipedia-philosophy/}
+
+    \bibitem{Ilmari_first_links} User:Ilmari Karonen/First link (Wikipedia)
+    \url{https://en.wikipedia.org/wiki/User:Ilmari_Karonen/First_link}
+
+    \bibitem{xkcd} xkcd: Extended Mind (xkcd: Extended Mind)
+    \url{http://xkcd.com/903/}
+
+    \bibitem{reddit} Almost every Wikipedia page links to Philosophy if you keep clicking the first link in every article. 
+    \url{https://www.reddit.com/r/InternetIsBeautiful/comments/35asgt/almost_every_wikipedia_page_links_to_philosophy/}
+
+    \bibitem{bias} Wagner, Claudia, et al. "It's a Man's Wikipedia? Assessing Gender Inequality in an Online Encyclopedia." arXiv preprint arXiv:1501.06307 (2015).
+
+    \bibitem{wiki_edits} Wikipedia:Statistics 
+    \url{https://en.wikipedia.org/wiki/Wikipedia:Statistics}
+
+    \bibitem{media_wiki_templates} MediaWiki: "Help: Templates"
+    \url{https://www.mediawiki.org/wiki/Help:Templates}
+\end{thebibliography}
+
+
 \end{document}
