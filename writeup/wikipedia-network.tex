@@ -17,6 +17,7 @@
 
 \usepackage{longtable}
 
+
 \usepackage{mathtools}
 
 \newboolean{twocolswitch}
@@ -151,7 +152,9 @@ TODO:
 \begin{itemize}
     \item add the what to scale-free distribution in the abstract
     \item fix end of second paragraph in Results Section\\
-    * power-law biz and total peter is asking for
+    * power-law biz: rank exponent (slope of log-log), denoted $\alpha$ \\
+    * size exponent corresponds to the CDF (how many people have an income greater than x)
+    = $\gamma = \frac{1}{\alpha} + 1$.
 \item fix exponent reporting (with alpha) \\
     * figure out what gamma size freq means
 \end{itemize}
@@ -219,7 +222,6 @@ Wikipedia as of November, 2014, we connect the ideas in one article to those in 
 {\it Wikipedia's First Link Network} (FLN).
 
 \begin{figure*}[tp!]
-  \centering	
   \includegraphics[width=\textwidth]{graphics/Train.pdf}  
   \caption{
     \textbf{First Link Path For ``Train.''}
@@ -296,7 +298,6 @@ contains ``Goods,'' ``Economics,'' ``Social Science,''
 leading ultimately to ``Philosophy''.
 
 \begin{figure*}[tp!]
-  \centering	
   \includegraphics[width=\textwidth]{graphics/traversal_visit_algo_figure.pdf}  
   \caption{
     \textbf{Traversal Visit Algorithm on a sample network.}
@@ -335,7 +336,6 @@ measures the number of references flowing to the ideas in the article---equivale
 to basin area in geomorphology. 
 
 \begin{figure}[tp!]
-  \centering	
   \includegraphics[width=\columnwidth]{graphics/traversal_funnel_algo_figure.pdf}
   \caption{
     \textbf{Traversal Funnel Algorithm on a sample network.}
@@ -416,13 +416,10 @@ From accumulated references, cycles, and basins, we can measure how the many art
 \subsection{Degree Distribution}
 
 \begin{figure}[tp!]
-  \centering	
   \includegraphics[width=\columnwidth]{graphics/articles_ndegree.png}
   \caption{
     \textbf{Highest Ranking Articles by in-degree.}
-  }
-  We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent abstraction for concepts
-  comprised of various facets.
+We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent abstraction for concepts comprised of various facets.}
   \label{fig:ndegree list}
 \end{figure}
 
@@ -455,14 +452,12 @@ Instead, first links flow towards ``Philosophy'' as the
 ultimate anchor, by generalizing from specific articles to broader notions.
 
 \begin{figure}[tp!]
-  \centering	
   \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
   \caption{
     \textbf{FLN Degree Distribution.}
-  }
-  We construct a log-log plot and fit our results with a linear model. The result is a 
-  an excellent fit with r = -0.98, yielding a power law exponent of -0.79. 
-  The distribution appears to be scale free.
+We construct a log-log plot and fit our results with a linear model. The result is a 
+an excellent fit with r = -0.98, yielding a power law exponent of -0.79. 
+The distribution appears to be scale free.}
   \label{fig:degree distribution}
 \end{figure}
 
@@ -490,17 +485,14 @@ We also find similarly lengthy paths following the evolution of a place or topic
 In general, the longest paths connect temporally organized ideas.
 
 \begin{figure}[tp!]
-  \centering	
   \includegraphics[width=\columnwidth]{graphics/path_lengths_boxplot.png}
   \caption{
     \textbf{Path Length Distribution.}
-  }
-  The median network depth measured by the number of first links in a path
-  is 29. The 365 cycle for ``Orthodox'' liturgics is the outlier to the right, while
-  other historical articles about ``Scotland,'' ``UK'' and so on are slightly outside
-  the third quartile. More than $75\%$ of articles have path lengths between 
-  $0$ and $50$ links.
-
+The median network depth measured by the number of first links in a path
+is 29. The 365 cycle for ``Orthodox'' liturgics is the outlier to the right, while
+other historical articles about ``Scotland,'' ``UK'' and so on are slightly outside
+the third quartile. More than $75\%$ of articles have path lengths between 
+$0$ and $50$ links.}
   \label{fig:Path Length Distribution}
 \end{figure}
 
@@ -526,15 +518,13 @@ Specifically, $99.76\%$ of articles have fewer than $100$ traversal visits; near
 Meanwhile, the highest ranking 30 articles have an extremely disproportionate number of traversal visits.
 
 \begin{figure}[tp!]
-  \centering	
   \includegraphics[width=\columnwidth]{graphics/traversals_per_article.png} 
   \caption{
     \textbf{Distribution of Traversal Visits.}
-  }
-  We fit the distribution to a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal visits. 
-  The model explains $86\%$ of the variation in the data, yielding an r-value of $-0.93$ 
-  and a power law exponent of $-0.64$. The horizontal flattening around the highest
-  ranking articles is a result of the cyclic structure (see discussion on cycles).
+We fit the distribution to a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal visits. 
+The model explains $86\%$ of the variation in the data, yielding an r-value of $-0.93$ 
+and a power law exponent of $-0.64$. The horizontal flattening around the highest
+ranking articles is a result of the cyclic structure (see discussion on cycles).}
   \label{fig:Distribution of Visits}
 
 \end{figure}
@@ -545,15 +535,13 @@ a power-law exponent of $-0.636$. A handful of the highest ranking articles cont
 
 
 \begin{figure}[tp!]
-  \centering	
   \includegraphics[width=\columnwidth]{graphics/articles_ranked.png}
   \caption{
     \textbf{Highest ranking articles by number of traversal visits.}
-  }
-  We compute the number of traversal visits for each article in the FLN (see 
-  Traversal Algorithm section for details). In doing so, we can rank each article
-  by the accumulation of first links. Articles with a greater number of traversal visits
-  mark greater points of first link accumulation. The highest ranking articles by traversal visits reveal where the greatest accumulation occurs.
+We compute the number of traversal visits for each article in the FLN (see 
+Traversal Algorithm section for details). In doing so, we can rank each article
+by the accumulation of first links. Articles with a greater number of traversal visits
+mark greater points of first link accumulation. The highest ranking articles by traversal visits reveal where the greatest accumulation occurs.}
   \label{fig:highest visits}
 \end{figure}
 
@@ -568,16 +556,14 @@ The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly 
 (see Fig.~\ref{fig:2-cycles}).
 
 \begin{figure*}[tp!]
-  \centering	
   \includegraphics[width=\textwidth]{graphics/2_cycles.pdf}
   \caption{
     \textbf{Highest ranking 2-cycles.}
-    We identify pairs of articles whose first links point to one another, forming
-    a 2-cycle. We then rank each pair of articles by the total number of 
-    traversal visits to gauge the most referenced groups of two articles linked
-    to each other. The area of the circles in the figure indicates the number of traversal visits. We find 2-cycles often capture synonyms or articles representing nearly the 
-    same concepts as opposed to distinct concepts.
-  }
+We identify pairs of articles whose first links point to one another, forming
+a 2-cycle. We then rank each pair of articles by the total number of 
+traversal visits to gauge the most referenced groups of two articles linked
+to each other. The area of the circles in the figure indicates the number of traversal visits. We find 2-cycles often capture synonyms or articles representing nearly the 
+same concepts as opposed to distinct concepts.}
   \label{fig:2-cycles}
 \end{figure*}
 
@@ -594,16 +580,14 @@ Other lengthy cycles span $60-75$ articles including collections of articles on 
 or judicial bodies such as the ``Legislative Assembly of Ontario.''
 
 \begin{figure*}[tp!]
-  \centering	
   \includegraphics[width=\textwidth]{graphics/3_cycles.pdf}
   \caption{
-    \textbf{Highest ranking 3-cycles.}
-    We identify groups of three articles whose links form a 3-cycle with the 
-    last article in the group linking back to the first article.
-    We rank each 3-cycle by the total number of traversal visits to gauge
-    the most referenced group of three linked articles. 
-    The area of the circles in the figure indicates the number of traversal visits. 
-  }
+\textbf{Highest ranking 3-cycles.}
+We identify groups of three articles whose links form a 3-cycle with the 
+last article in the group linking back to the first article.
+We rank each 3-cycle by the total number of traversal visits to gauge
+the most referenced group of three linked articles. 
+The area of the circles in the figure indicates the number of traversal visits.}
   \label{fig:3-cycles}
 \end{figure*}
 
@@ -661,19 +645,17 @@ Ranking articles by the number of traversal funnels we find
 $7.37$ million paths
 (see Fig.~\ref{fig:Funnels}).
 \begin{figure*}[tp!]
-  \centering	
   \includegraphics[width=\textwidth]{graphics/funnels.pdf}
   \caption{
     \textbf{Funnels.}
-    We represent the highest-ranking articles by the number of traversal 
-    funnels to gauge the influence each article exerts in shaping the 
-    structure of the FLN. 
-    The area of each circle is sized in proportion to the number of 
-    traversal funnels each article has. 
-    We find ``Philosophy'' exerts an overwhelming proportion
-    of the influence, with other abstract notions and topical concepts ranking
-    next.
-  }
+We represent the highest-ranking articles by the number of traversal 
+funnels to gauge the influence each article exerts in shaping the 
+structure of the FLN. 
+The area of each circle is sized in proportion to the number of 
+traversal funnels each article has. 
+We find ``Philosophy'' exerts an overwhelming proportion
+of the influence, with other abstract notions and topical concepts ranking
+next.}
   \label{fig:Funnels}
 \end{figure*}
 Of any article, the number of traversal funnels Philosophy holds exceeds 
@@ -692,19 +674,17 @@ Other high ranking articles include key historical events such as the ``Cold War
 media discussion such as ``Fossil Fuel''. 
 The highest-ranking list also includes ``Hip Hop,'' ``Cancer,'' and ``Web Page''.
 \begin{figure}[tp!]
-  \centering	
   \includegraphics[width=\columnwidth]{graphics/funnels_distribution.png}
   \caption{
     \textbf{Distribution of Traversal Funnels.}
-  We fit the distribution with a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal funnels. 
-  We find two regimes with the top regime (log(rank) < 4) 
-  well-explained by a linear fit, yielding an r-value of $-0.99$ and a 
-  power-law exponent of $-1.08$. The top regime 
-  explains the distribution of traversal funnels for the $17, 821$ 
-  articles with at least one traversal funnel. The bottom 
-  horizontal regime corresponds to the more than $99\%$ of articles
-  which hold zero traversal funnels.
-  }
+We fit the distribution with a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal funnels. 
+We find two regimes with the top regime (log(rank) < 4) 
+well-explained by a linear fit, yielding an r-value of $-0.99$ and a 
+power-law exponent of $-1.08$. The top regime 
+explains the distribution of traversal funnels for the $17, 821$ 
+articles with at least one traversal funnel. The bottom 
+horizontal regime corresponds to the more than $99\%$ of articles
+which hold zero traversal funnels.}
   \label{fig:Funnels Distribution}
 \end{figure}
 
@@ -745,16 +725,14 @@ has only $240$ thousand page views in October compared to the $1.4$ million
 page views for ``United States''.
 
 \begin{figure}[tp!]
-  \centering	
   \includegraphics[width=\columnwidth]{graphics/views_visits.png}
   \caption{
-    \textbf{Article Popularity (by page views) compared to Traversal Visits 
-    for Highest ranking 1000 articles.}
-    We use the total number of page views provided by Wikipedia for the month
-    of October 2015 to compare each article's popularity to traversal visits.
-    While the most popular articles do not necessarily correspond to the articles
-    with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases.
-  }
+\textbf{Article Popularity (by page views) compared to Traversal Visits 
+for Highest ranking 1000 articles.}
+We use the total number of page views provided by Wikipedia for the month
+of October 2015 to compare each article's popularity to traversal visits.
+While the most popular articles do not necessarily correspond to the articles
+with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases.}
   \label{fig:Views and Visits}
 
 \end{figure}
@@ -781,16 +759,14 @@ highly-ranked articles by accumulation.
 
 
 \begin{figure}[tp!]
-  \centering	
   \includegraphics[width=\columnwidth]{graphics/funnels_visits.png}
   \caption{
     \textbf{Article Popularity (by page views) compared to Traversal Funnels
     for Highest ranking 1000 articles.}
-  }
-    We use the total number of page views provided by Wikipedia for the month
-    of October 2015 to compare each article's popularity to traversal funnels.
-    In the top left is ``Halloween'' with a significantly greater 
-    number of page views in the month of October.
+We use the total number of page views provided by Wikipedia for the month
+of October 2015 to compare each article's popularity to traversal funnels.
+In the top left is ``Halloween'' with a significantly greater 
+number of page views in the month of October.}
   \label{fig:Views and Funnels}
 \end{figure}
 
@@ -867,12 +843,10 @@ Our parsing algorithm aimed to:
 To process an article in a single pass, we developed a hierarchical system of flags:
 
 \begin{figure}[tp!]
-  \centering	
   \includegraphics[width=\columnwidth]{graphics/flags.pdf}  
   \caption{
     \textbf{Parsing Algorithm of Wikipedia's XML dump.}
-     The highest flag in the hierarchy indicates a Wikimedia template used to mark an element in the side bar, display an image, link to an external file, or another Wikimedia project outside of Wikipeida. Next, to catch any remaining elements outside the main body we have a second flag for <ref>, <div> elements. Finally, we identify parenthesis to ensure we do not capture a link to a pronunciation key.
-  }
+The highest flag in the hierarchy indicates a Wikimedia template used to mark an element in the side bar, display an image, link to an external file, or another Wikimedia project outside of Wikipeida. Next, to catch any remaining elements outside the main body we have a second flag for <ref>, <div> elements. Finally, we identify parenthesis to ensure we do not capture a link to a pronunciation key.}
   \label{fig:parsing algorithm}
 \end{figure}
 
