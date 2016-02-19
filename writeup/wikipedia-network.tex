@@ -419,14 +419,14 @@ From accumulated references, cycles, and basins, we can measure how the many art
   \includegraphics[width=\columnwidth]{graphics/articles_ndegree.png}
   \caption{
     \textbf{Highest Ranking Articles by in-degree.}
-We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent abstraction for concepts comprised of various facets.}
-  \label{fig:ndegree list}
+We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent geographical and biological abstractions.}
+  \label{fig:indegree list}
 \end{figure}
 
 We rank all 11 million articles by in-degree to find 
 the ``United States'' with 80,249 direct first links as the most referenced
 Wikipedia article 
-(Fig.~\ref{fig:ndegree list}). 
+(Fig.~\ref{fig:indegree list}). 
 Other high-ranking articles
 include foundational abstract concepts such as ``village,'' ``species,''; 
 sports associations such as ``American Football,'' ``Association Football''; 
@@ -455,9 +455,10 @@ ultimate anchor, by generalizing from specific articles to broader notions.
   \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
   \caption{
     \textbf{FLN Degree Distribution.}
-We construct a log-log plot and fit our results with a linear model. The result is a 
-an excellent fit with r = -0.98, yielding a power law exponent of -0.79. 
-The distribution appears to be scale free.}
+We fit the in-degree distribution to a linear $\log_{10}-\log_{10}$ model. The result is a 
+an excellent fit with a Pearson's Correlation Coefficient of $-0.98$, yielding a 
+power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$. 
+}
   \label{fig:degree distribution}
 \end{figure}
 
@@ -485,13 +486,13 @@ We also find similarly lengthy paths following the evolution of a place or topic
 In general, the longest paths connect temporally organized ideas.
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{graphics/path_lengths_boxplot.png}
+  \includegraphics[width=\columnwidth]{graphics/path_lengths_dist.png}
   \caption{
     \textbf{Path Length Distribution.}
-The median network depth measured by the number of first links in a path
-is 29. The 365 cycle for ``Orthodox'' liturgics is the outlier to the right, while
-other historical articles about ``Scotland,'' ``UK'' and so on are slightly outside
-the third quartile. More than $75\%$ of articles have path lengths between 
+The network depth appears to have a bimodal distribution with a median of 29 first links in a path.
+The 365 cycle for ``Orthodox'' liturgics is the outlier to the right, with historical articles 
+describing nations such as ``Scotland'' and ``UK'' also lying outside the third quartile.
+More than $75\%$ of articles have path lengths between 
 $0$ and $50$ links.}
   \label{fig:Path Length Distribution}
 \end{figure}
@@ -549,12 +550,6 @@ mark greater points of first link accumulation. The highest ranking articles by 
 
 \subsection{Network Cycles}
 
-We first identified 2-cycles, meaning a pair of articles with first link pointing to one another.
-Of the 11 million articles, 84,000 are 2-cycles. 
-The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly so) rather than distinct, yet connected topics:
-``Health Care'' and ``Medical Case Management,'' ``Broadcasting House,'' and ``BBC,'' ``Secondary Education'' and ``Secondary School'' 
-(see Fig.~\ref{fig:2-cycles}).
-
 \begin{figure*}[tp!]
   \includegraphics[width=\textwidth]{graphics/2_cycles.pdf}
   \caption{
@@ -565,6 +560,23 @@ traversal visits to gauge the most referenced groups of two articles linked
 to each other. The area of the circles in the figure indicates the number of traversal visits. We find 2-cycles often capture synonyms or articles representing nearly the 
 same concepts as opposed to distinct concepts.}
   \label{fig:2-cycles}
+\end{figure*}
+We first identified 2-cycles, meaning a pair of articles with first link pointing to one another.
+Of the 11 million articles, 84,000 are 2-cycles. 
+The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly so) rather than distinct, yet connected topics:
+``Health Care'' and ``Medical Case Management,'' ``Broadcasting House,'' and ``BBC,'' ``Secondary Education'' and ``Secondary School'' 
+(see Fig.~\ref{fig:2-cycles}).
+
+\begin{figure*}[tp!]
+  \includegraphics[width=\textwidth]{graphics/3_cycles.pdf}
+  \caption{
+\textbf{Highest ranking 3-cycles.}
+We identify groups of three articles whose links form a 3-cycle with the 
+last article in the group linking back to the first article.
+We rank each 3-cycle by the total number of traversal visits to gauge
+the most referenced group of three linked articles. 
+The area of the circles in the figure indicates the number of traversal visits.}
+  \label{fig:3-cycles}
 \end{figure*}
 
 Outside of the highest ranking 2-cycles, the typical 2-cycle signals a connection between distinct, yet very closely related concepts. 
@@ -579,17 +591,6 @@ The longest cycle in the network spans 365 articles of Eastern Orthodox Liturgic
 Other lengthy cycles span $60-75$ articles including collections of articles on national histories such as ``Japanese Eras'' 
 or judicial bodies such as the ``Legislative Assembly of Ontario.''
 
-\begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{graphics/3_cycles.pdf}
-  \caption{
-\textbf{Highest ranking 3-cycles.}
-We identify groups of three articles whose links form a 3-cycle with the 
-last article in the group linking back to the first article.
-We rank each 3-cycle by the total number of traversal visits to gauge
-the most referenced group of three linked articles. 
-The area of the circles in the figure indicates the number of traversal visits.}
-  \label{fig:3-cycles}
-\end{figure*}
 
 
 
@@ -633,19 +634,8 @@ such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''
 
 \subsection{Traversal Funnels}
 
-To analyze the influence an article exerts in shaping the 
-structure of the FLN, we compute the number of traversal funnels for each.
-Articles directing more paths exert a greater influence over the structure
-of the FLN by increasing the accumulation of first links
-on a particular path. By measuring traversal funnels, we distinguish between an article that simply happened to fall within a cycle from an article funneling 
-many first links.
-
-Ranking articles by the number of traversal funnels we find 
-``Philosophy'' to be by far the highest-ranking article with 
-$7.37$ million paths
-(see Fig.~\ref{fig:Funnels}).
-\begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{graphics/funnels.pdf}
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{graphics/top_funnels.png}
   \caption{
     \textbf{Funnels.}
 We represent the highest-ranking articles by the number of traversal 
@@ -657,22 +647,14 @@ We find ``Philosophy'' exerts an overwhelming proportion
 of the influence, with other abstract notions and topical concepts ranking
 next.}
   \label{fig:Funnels}
-\end{figure*}
-Of any article, the number of traversal funnels Philosophy holds exceeds 
-all others by more than two orders of magnitude.
-The ``Philosophy'' cycle which contains ``Existence,'' ``Awareness,'' ``Reality,'' 
-and similar articles accumulates the overwhelming proportion of its 
-references through ``Philosophy'': $7.37$ million of the $7.4$ million references
-are funneled through ``Philosophy''.
-Second on the list of highest-ranking articles by traversal funnels is 
-``Presentation'' with only $30$ thousand paths. Similarly abstract 
-concepts also rank highly such as ``Tree of life'' (30 thousand), 
-``Reality'' (13 thousand), and ``Jurisdiction'' (3 thousand).
+\end{figure}
+To analyze the influence an article exerts in shaping the 
+structure of the FLN, we compute the number of traversal funnels for each.
+Articles directing more paths exert a greater influence over the structure
+of the FLN by increasing the accumulation of first links
+on a particular path. By measuring traversal funnels, we distinguish between an article that simply happened to fall within a cycle from an article funneling 
+many first links.
 
-Many high-ranking articles are remarkably topical, culturally and politically important concepts.  For example, ``Health Care'', a recently high-contested legislative topic appears high on the list---Google trends indicates an uncharacteristic spike in search frequency between August, 2009 and February, 2010.
-Other high ranking articles include key historical events such as the ``Cold War'' or critical scarce resource with recent 
-media discussion such as ``Fossil Fuel''. 
-The highest-ranking list also includes ``Hip Hop,'' ``Cancer,'' and ``Web Page''.
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{graphics/funnels_distribution.png}
   \caption{
@@ -687,6 +669,25 @@ horizontal regime corresponds to the more than $99\%$ of articles
 which hold zero traversal funnels.}
   \label{fig:Funnels Distribution}
 \end{figure}
+Ranking articles by the number of traversal funnels we find 
+``Philosophy'' to be by far the highest-ranking article with 
+$7.37$ million paths
+(see Fig.~\ref{fig:Funnels}).
+Of any article, the number of traversal funnels Philosophy holds exceeds 
+all others by more than two orders of magnitude.
+The ``Philosophy'' cycle which contains ``Existence,'' ``Awareness,'' ``Reality,'' 
+and similar articles accumulates the overwhelming proportion of its 
+references through ``Philosophy'': $7.37$ million of the $7.4$ million references
+are funneled through ``Philosophy''.
+Second on the list of highest-ranking articles by traversal funnels is 
+``Presentation'' with only $30$ thousand paths. Similarly abstract 
+concepts also rank highly such as ``Tree of life'' (30 thousand), 
+``Reality'' (13 thousand), and ``Jurisdiction'' (3 thousand).
+
+Many high-ranking articles are remarkably topical, culturally and politically important concepts.  For example, ``Health Care,'' a recently high-contested legislative topic appears high on the list---Google trends indicates an uncharacteristic spike in search frequency between August, 2009 and February, 2010.
+Other high ranking articles include key historical events such as the ``Cold War'' or critical scarce resource with recent 
+media discussion such as ``Fossil Fuel.'' 
+The highest-ranking list also includes ``Hip Hop,'' ``Cancer,'' and ``Web Page.''
 
 As a distribution, we find few articles influence the structure of the 
 FLN. Only $17, 821$ articles have one or more traversal funnels, leaving
@@ -702,6 +703,18 @@ control.
 
 \subsection{Article Popularity}
 
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{graphics/views_visits.png}
+  \caption{
+\textbf{Article Popularity (by page views) compared to Traversal Visits 
+for Highest ranking 1000 articles.}
+We use the total number of page views provided by Wikipedia for the month
+of October 2015 to compare each article's popularity to traversal visits.
+While the most popular articles do not necessarily correspond to the articles
+with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases. The greatest number of articles fall within $10^{3.8}-10^5$ traversal visits and page views.}
+  \label{fig:Views and Visits}
+
+\end{figure}
 Wikipedia released an API to measure article popularity by page views
 starting November 2015. Page views add another dimension to our
 findings by revealing 
@@ -720,22 +733,23 @@ $1.4$ million views in October. The next most popular articles are
 ``India,'' ``World War II,'' and the ``United Kingdom'' each with $0.7-1.03$ million page views. 
 
 
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{graphics/funnels_visits.png}
+  \caption{
+    \textbf{Article Popularity (by page views) compared to Traversal Funnels
+    for Highest ranking 1000 articles.}
+We use the total number of page views provided by Wikipedia for the month
+of October 2015 to compare each article's popularity to traversal funnels.
+In the top left is ``Halloween'' with a significantly greater 
+number of page views in the month of October. 
+The greatest number of articles falls within $10^3-10^5$ page views, 
+but only $10^{1.2}-10^2$ traversal funnels.}
+  \label{fig:Views and Funnels}
+\end{figure}
 The ``Philosophy'' article, despite outranking every article by traversal visits,
 has only $240$ thousand page views in October compared to the $1.4$ million
 page views for ``United States''.
 
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{graphics/views_visits.png}
-  \caption{
-\textbf{Article Popularity (by page views) compared to Traversal Visits 
-for Highest ranking 1000 articles.}
-We use the total number of page views provided by Wikipedia for the month
-of October 2015 to compare each article's popularity to traversal visits.
-While the most popular articles do not necessarily correspond to the articles
-with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases.}
-  \label{fig:Views and Visits}
-
-\end{figure}
 
 
 
@@ -758,17 +772,6 @@ among articles influencing the shape of the network, but less popular among
 highly-ranked articles by accumulation.
 
 
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{graphics/funnels_visits.png}
-  \caption{
-    \textbf{Article Popularity (by page views) compared to Traversal Funnels
-    for Highest ranking 1000 articles.}
-We use the total number of page views provided by Wikipedia for the month
-of October 2015 to compare each article's popularity to traversal funnels.
-In the top left is ``Halloween'' with a significantly greater 
-number of page views in the month of October.}
-  \label{fig:Views and Funnels}
-\end{figure}
 
 
 
@@ -841,7 +844,6 @@ Our parsing algorithm aimed to:
 1) accurately identify the First Link among other page elements, and 
 2) efficiently do so---that is without needing for several passes through the data.
 To process an article in a single pass, we developed a hierarchical system of flags:
-
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{graphics/flags.pdf}  
   \caption{
@@ -849,6 +851,7 @@ To process an article in a single pass, we developed a hierarchical system of fl
 The highest flag in the hierarchy indicates a Wikimedia template used to mark an element in the side bar, display an image, link to an external file, or another Wikimedia project outside of Wikipeida. Next, to catch any remaining elements outside the main body we have a second flag for <ref>, <div> elements. Finally, we identify parenthesis to ensure we do not capture a link to a pronunciation key.}
   \label{fig:parsing algorithm}
 \end{figure}
+
 
 The algorithm loops in three-character chunks to account for potentially nested elements, 
 shifting by one character steps through the article markup.
