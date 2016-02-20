@@ -138,26 +138,16 @@ We algorithmically parse all 4.7 million articles to construct a map of Wikipedi
 We traverse every possible path through the network, 
 measuring the accumulation of first links, path lengths, basins, cycles, and the influence a particular article exerts in shaping the 
 network.
-We discover many scale-free distributions, find Philosophy at a salient center, and uncover a flow from specific to general 
+We discover many scale-free distributions describing path length, 
+accumulation, and influence; find Philosophy at a salient center; and uncover a flow from specific to general 
 culminating around fundamental notions such as Community, State, and Science. 
 Curiously, we also observe a gravitation towards topical articles including Health Care and Fossil Fuel.
-These findings enrich our view of how we connect and structure
+These findings enrich our view of the connections and structure of
 Wikipedia's ever growing store of knowledge.
  
 \end{abstract}
 
 \maketitle
-
-TODO: 
-\begin{itemize}
-    \item add the what to scale-free distribution in the abstract
-    \item fix end of second paragraph in Results Section\\
-    * power-law biz: rank exponent (slope of log-log), denoted $\alpha$ \\
-    * size exponent corresponds to the CDF (how many people have an income greater than x)
-    = $\gamma = \frac{1}{\alpha} + 1$.
-\item fix exponent reporting (with alpha) \\
-    * figure out what gamma size freq means
-\end{itemize}
 
 \section{Introduction}
 
@@ -455,7 +445,8 @@ ultimate anchor, by generalizing from specific articles to broader notions.
   \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
   \caption{
     \textbf{FLN Degree Distribution.}
-We fit the in-degree distribution to a linear $\log_{10}-\log_{10}$ model. The result is a 
+We fit the in-degree distribution with a linear $\log_{10}-\log_{10}$ model. 
+The result is a 
 an excellent fit with a Pearson's Correlation Coefficient of $-0.98$, yielding a 
 power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$. 
 }
@@ -467,10 +458,9 @@ receive most direct first references, while most articles receive few or none.
 The average in-degree for all 11 million articles is 3.6 direct first links with a standard deviation of 89.5 links.
 Less than $1\%$ of articles have more than 100 direct first links and $75\%$ of articles
 have fewer than 9. 
-When fit with a linear model on a log-log scale (log(rank) versus log(in-degree)), 
-the model's r value is $-0.98$ suggesting a strong log-log linear fit 
-with a power law exponent of $-0.79$.\\
-
+We fit the in-degree distribution against each article's rank with a log-log (base 10) linear regression model.
+We obtain a Pearson's Correlation Coefficient of $-0.98$
+with a corresponding  power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$. 
 
 
 \subsection{Depth of the FLN}
@@ -522,17 +512,25 @@ Meanwhile, the highest ranking 30 articles have an extremely disproportionate nu
   \includegraphics[width=\columnwidth]{graphics/traversals_per_article.png} 
   \caption{
     \textbf{Distribution of Traversal Visits.}
-We fit the distribution to a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal visits. 
-The model explains $86\%$ of the variation in the data, yielding an r-value of $-0.93$ 
-and a power law exponent of $-0.64$. The horizontal flattening around the highest
+We fit the distribution of traversal visits against article rank with a log-log (base 10) linear regression model log-log model and uncover two regimes: 
+with a cutoff rank of $10^{5}$.
+The top regime ($\log_{10}$(rank) $< 5$) has a Pearson's Correlation 
+Coefficient of $-0.99$ with a corresponding power law rank exponent 
+$\alpha = -1.23$ and a size exponent $\gamma = 0.187$.
+The horizontal flattening around the highest
 ranking articles is a result of the cyclic structure (see discussion on cycles).}
   \label{fig:Distribution of Visits}
 
 \end{figure}
 
-In Fig.~\ref{fig:Distribution of Visits}, we show a log-log plot for the entire dataset:traversal visits against rank. 
-We observe a strong linear fit, with a Pearson's Correlation Coefficient of -.93 and 
-a power-law exponent of $-0.636$. A handful of the highest ranking articles contain a disproportionate number of traversal visits, while most have none. The skew in the distribution is not terribly surprising when considering the heuristic of how the links flow: from specific to general. 
+In Fig.~\ref{fig:Distribution of Visits}, we show a log-log (base 10) plot for the entire dataset: traversal visits against rank. 
+We fit the data to a two regime log-log linear regression with a cutoff rank 
+of $10^{5}$.
+The top regime ($\log_{10}$(rank) $< 5$) has a Pearson's Correlation 
+Coefficient of $-0.99$ with a corresponding power law rank exponent 
+$\alpha = -1.23$ and a size exponent $\gamma = 0.187$.
+On the aggregate, the distribution suggests
+a handful of the highest ranking articles contain a disproportionate number of traversal visits, while most have none. The skew in the distribution is not terribly surprising when considering the heuristic of how the links flow: from specific to general. 
 
 
 \begin{figure}[tp!]
@@ -661,8 +659,10 @@ many first links.
     \textbf{Distribution of Traversal Funnels.}
 We fit the distribution with a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal funnels. 
 We find two regimes with the top regime (log(rank) < 4) 
-well-explained by a linear fit, yielding an r-value of $-0.99$ and a 
-power-law exponent of $-1.08$. The top regime 
+well-explained by a linear fit, yielding Pearson's 
+Correlation Coefficient of $-0.99$ and a 
+corresponding power law rank exponent $\alpha = -1.08$
+and a size exponent $\gamma = 0.074$. The top regime 
 explains the distribution of traversal funnels for the $17, 821$ 
 articles with at least one traversal funnel. The bottom 
 horizontal regime corresponds to the more than $99\%$ of articles
@@ -696,8 +696,10 @@ the references flowing through the articles with at least one traversal funnel.
 When fit to a log-log linear model we find the $99\%$ of articles with zero
 traversal funnels form one regime (with log(rank) less than 4).
 The top regime, corresponding to the $17, 821$ articles with at least one 
-traversal funnel strongly fits a linear model with an r-value of $-0.99$. 
-The resulting power-law exponent is $-1.08$. Even within the few articles
+traversal funnel strongly fits a linear model with
+a Pearson's Correlation Coefficient of $-0.99$ and a 
+corresponding power law rank exponent $\alpha = -1.08$
+and a size exponent $\gamma = 0.074$. Even within the few articles
 influencing the structure of the FLN, only a handful of these exert most of the 
 control. 
 
