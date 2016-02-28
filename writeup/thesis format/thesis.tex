@@ -1,157 +1,87 @@
-\documentclass[pre,twocolumn,twoside,superscriptaddress,floatfix, aps, 10pt]{revtex4-1}
+\documentclass[11pt]{report}
 
-\usepackage{currfile}
-\lefthyphenmin=3
-\righthyphenmin=2
-
-\usepackage{graphicx,epsfig,verbatim,enumerate}
-\usepackage{amssymb,amsmath}
-\usepackage{ifthen}
-
-% Fonts and typesetting settings
-\usepackage[sc]{mathpazo}
-\usepackage[T1]{fontenc}
-\linespread{1.05} % Palatino needs more space between lines
-\usepackage{microtype}
-\usepackage{textcomp}
-
-\usepackage{longtable}
-
-
-\usepackage{mathtools}
-
-\newboolean{twocolswitch}
-
-\newcommand{\www}[1]{\url{#1}}
-\newcommand{\req}[1]{(\ref{#1})}
-\newcommand{\Req}[1]{Eq.~(\ref{#1})}
-
-% Lettrines
-\usepackage{lettrine}
-
-%useful shortcuts
-\def\R{\ensuremath{\mathbb{R}}} %\ensuremath adds math mode, if forgotten
-\def\Q{\ensuremath{\mathbb{Q}}}
-\def\N{\ensuremath{\mathbb{N}}}
-\def\Z{\ensuremath{\mathbb{Z}}}
-\def\C{\ensuremath{\mathbb{C}}}
-
-%shorcuts with arguments
-\newcommand{\abs}[1]{\left\vert#1\right\vert} %nice absolute values
-\newcommand{\bt}[1]{\textbf{#1}} %bold
-\newcommand{\eq}[1]{\begin{align*}#1\end{align*}} %aligned equations
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert} %vector norm
-\renewcommand{\eq}[1]{\begin{align*}#1\end{align*}} %aligned equations
-
-%piecewise function
-
-%\begin{displaymath}
-%   f(x) = \left\{
-%     \begin{array}{lr}
-%       1 & : x \in \mathbb{Q}\\
-%       0 & : x \notin \mathbb{Q}
-%     \end{array}
-%   \right.
-%\end{displaymath} 
-
-
-%environment
-\newcommand{\tab}{\phantom{ssss}}
-
-\usepackage{hyperref}
+\usepackage[latin2]{inputenc}
+\usepackage{amsmath}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage[left=1.5in]{geometry}
+\usepackage{geometry}
+\pagestyle{fancyplain}
+\usepackage{wrapfig}
+\usepackage{setspace}
+\usepackage{epsfig}
 \usepackage{color}
-\newcommand{\todo}[1]{\noindent\textcolor{blue}{{$\Box$ #1}}}
-
-%colors
-\definecolor{javagreen}{rgb}{0.25,0.5,0.35} %dark green color
-\definecolor{lightblue}{rgb}{0.149,0.545,0.824} %solarized blue
-\definecolor{sred}{rgb}{0.863, 0.196, 0.184} %solarized red
-
-\newcommand{\blue}[1]{{\leavevmode\color{lightblue}{#1}}} %solarized blue 
-\newcommand{\green}[1]{{\leavevmode\color{javagreen}{#1}}} %command for green
-\newcommand{\red}[1]{{\leavevmode\color{sred}{#1}}} %solarized red
-\newcommand{\gray}[1]{{\leavevmode\color[gray]{0.5}{#1}}} %gray text
-\newcommand{\Prob}[1]{{\rm Pr}\left(#1\right)}
+\usepackage{tikz}
+\usepackage{thesis_MTG_3}
+\usepackage{cancel}
+\usepackage{cite}
 
 
-\setboolean{twocolswitch}{true}
+% ==================================
+% Set up title page
+% ==================================
+\title{
+Connecting every bit of knowledge: \\
+The Structure of Wikipedia's first link network
+}
+\author{Mark Ibrahim}
+\defensedate{March, 2016}
+\thesis
+\masterscience
+\matsci
+\maygrad
+\advisor{Christopher M. Danforth, Ph.D.} %advisor
+\readerone{Christopher M. Danforth, Ph.D.}
+\readertwo{Peter Sheridan Dodds, Ph.D.}
+\chair{Randall Harp, Ph.D.}
 
 
 \begin{document}
 
-\title{\protect
-Connecting every bit of knowledge: \\
-The Structure of Wikipedia's first link network
-}
-
-\date{\today}
-
-\author{
-\firstname{Mark}
-\surname{Ibrahim}
-}
-\email{mark.s.ibrahim@uvm.edu}
-
-\affiliation{Department of Mathematics \& Statistics, 
-    Computational Story Lab,  \\
-    Vermont Complex Systems Center,
-    Vermont Advanced Computing Core,
-    The University of Vermont, Burlington, VT 05401.}
-
-\author{
-\firstname{Christopher}
-\surname{M. Danforth}
-}
-\email{chris.danforth@uvm.edu}
-
-\affiliation{Department of Mathematics \& Statistics, 
-    Computational Story Lab,  \\
-    Vermont Complex Systems Center,
-    Vermont Advanced Computing Core,
-    The University of Vermont, Burlington, VT 05401.}
-
-\author{
-\firstname{Peter}
-\surname{Sheridan Dodds}
-}
-
-\email{peter.dodds@uvm.edu}
-
-\affiliation{Department of Mathematics \& Statistics, 
-    Computational Story Lab,  \\
-    Vermont Complex Systems Center,
-    Vermont Advanced Computing Core,
-    The University of Vermont, Burlington, VT 05401.}
-
+\maketitle
+\makeacceptance
+\pagenumbering{roman}
 
 \begin{abstract}
-  \protect
 Apples, porcupines, and the most obscure Dylan song---is every topic a few clicks from Philosophy? 
 Within Wikipedia, the surprising answer is yes: nearly all 
 paths lead to Philosophy.
 Wikipedia is the largest, most meticulously indexed collection of human knowledge ever amassed. 
 More than information about a topic, Wikipedia is a web of naturally emerging relationships.  
 By following the first link in an article, we connect entries to form a directed network: Wikipedia's First Link Network. 
-Here, we study the English edition of Wikipedia's First Link Network for insight into how the many 
-inventions, places, people, objects, and events
+Here, we study the English edition of Wikipedia's First Link Network for insight into how the many topics, ideas, people, objects, and events
 are related and organized.  
 We algorithmically parse all 4.7 million articles to construct a map of Wikipedia's First Link Network. 
 We traverse every possible path through the network, 
 measuring the accumulation of first links, path lengths, basins, cycles, and the influence a particular article exerts in shaping the 
 network.
-We discover scale-free distributions describe path length, 
-accumulation, and influence. Far from dispersed, first links disproportionately accumulate 
-at a few articles---flowing from specific to general and culminating around fundamental notions such as
-Community, State, and Science. Even fewer articles most influence the shape of the network with Philosophy 
-shaping more paths than any other article by two orders of magnitude. 
-We also observe a gravitation towards topical articles such as 
-Health Care and Fossil Fuel. 
+We discover many scale-free distributions describing path length, 
+accumulation, and influence; find Philosophy at a salient center; and uncover a flow from specific to general 
+culminating around fundamental notions such as Community, State, and Science. 
+Curiously, we also observe a gravitation towards topical articles including Health Care and Fossil Fuel.
 These findings enrich our view of the connections and structure of
 Wikipedia's ever growing store of knowledge.
-
+ 
 \end{abstract}
 
-\maketitle
+
+\begin{acknowledgements}
+    Thank you to my advisors \dots
+\end{acknowledgements}
+
+
+
+\tableofcontents
+\newpage
+
+
+\listoffigures
+\newpage
+
+\doublespacing
+
 
 \section{Introduction}
 
@@ -208,20 +138,17 @@ chose
 among others as relevant articles to reference in describing ``Train''
 \cite{wiki_train}
 .
-
 By focusing our attention on the main body of an article---excluding
-elements in the side bars and headings---we 
-systematically capture the core description of a topic.
-Within the body text, the first link marks the earliest moment in a topic's introduction where the 
+elements in the side bars and headings---we capture the introduction to the topic.
+The first link marks the earliest moment in a topic's introduction where the 
 authors choose to directly reference another article. 
-While many links reference relevant details, 
-the first link is an association within a topic's initial 
+While the many links in an article reference relevant details, 
+the first link is an association within a topic's introductory 
 description. While 
 ``Amtrak's Acela Express,'' ``steam,'' and ``head-end power'' 
 are links detailing particulars, the first link, ``rail transport,''
 is the topic the authors associate with ``Train'' in the introduction. 
-``Banana'' has a first link to ``fruit,'' ``Bob Dylan'' has a first link to 
-``Blowing in the Wind,'' and ``Physics'' has a first link to ``natural science.''
+[TODO:add a few more examples]
 Collectively, the first links provide a pragmatic and interpretable 
 means to connect each article to another.
 
@@ -233,14 +160,14 @@ Wikipedia as of November, 2014, we connect the topic of one article to that of a
   \includegraphics[width=\textwidth]{graphics/Train.pdf}  
   \caption{
     \textbf{First Link Path For ``Train.''}
-    We follow the first link to another Wikipedia article
+    We follow the First Link to another Wikipedia article
     in the main body of the article---the area
     inside the green rectangle, which excludes 
     side bar elements, the navigation bar and title. 
-    In this example, the first link to another Wikipedia article is ``Rail Transport.'' 
-    We can again select the first link on the ``Rail Transport''
+    In this example, the First Link to another Wikipedia article is ``Rail Transport.'' 
+    We can again select the First Link on the ``Rail Transport''
     article, repeating the process to 
-    form a path of first links.
+    form a path of First Links.
   }
   \label{fig:Train First Links}
 \end{figure*}
@@ -258,7 +185,7 @@ Our goal is to study the structure of the FLN for insight into how the informati
 We develop metrics to capture 
 the dominant features of the FLN's structure.
 We measure dynamics of the FLN as a flow, quantifying 
-aspects of the FLN from the accumulation of first links around articles 
+aspects of the FLN from the accumulation of First Links around articles 
 to the influence an article exerts in shaping the FLN.
 Together with cycles, in-degree, depth, and the content of the articles, 
 we build our analysis of the relations among the ideas in Wikipedia.
@@ -282,7 +209,7 @@ provides a way to rank the articles in Wikipedia, allowing us to see
 whether authors tend to reference all articles equally or only a few.
 
 Our greater interest is lies in the richer dynamics of how many articles fit together.
-Inspired by the claim that the majority of first links lead to
+Inspired by the claim that the majority of First Links lead to
 ``Philosophy''---popularized by an 
 \href{https://xkcd.com/903/}{xkcd}
 comic and subsequently
@@ -292,12 +219,8 @@ discussed in blog posts
 we holistically study how the FLN  yields a flow of connections.
 We construct a path through the FLN with each article 
 leading to the next through the first link. 
-For example ``Train'' has a first link to 
-``Rail Transport,''
- which is itself
-an article with a first link to 
-``Conveyance of Passengers and Goods,''
-and so on.
+For example ``Train'' has a first link to ``Conveyance of Passengers and Goods,'' which is itself
+an article with a first link to ``Goods'' and so on. 
 As shown in Fig.~\ref{fig:Train First Links}, the path starting at ``Train'' 
 contains ``Goods,'' ``Economics,'' ``Social Science,''
 leading ultimately to ``Philosophy''.
@@ -527,21 +450,20 @@ Meanwhile, the highest ranking 30 articles have an extremely disproportionate nu
 We fit the distribution of traversal visits against article rank with a log-log (base 10) linear regression model log-log model and uncover two regimes: 
 with a cutoff rank of $10^{5}$.
 The top regime ($\log_{10}$(rank) $< 5$) has a Pearson's Correlation 
-Coefficient of $-0.99$ 
-with a corresponding power law rank exponent 
+Coefficient of $-0.99$ with a corresponding power law rank exponent 
 $\alpha = -1.23$ and a size exponent $\gamma = 0.187$.
 The horizontal flattening around the highest
-ranking articles is a result of the cyclic structure (see discussion on cycles).
-The bottom regime has a Pearson's Correlation Coefficient of $-0.93$
-with a corresponding power law rank exponent 
-$\alpha = -0.579$ and a size exponent $\gamma = -0.727$.}
+ranking articles is a result of the cyclic structure (see discussion on cycles).}
   \label{fig:Distribution of Visits}
 
 \end{figure}
 
 In Fig.~\ref{fig:Distribution of Visits}, we show a log-log (base 10) plot for the entire dataset: traversal visits against rank. 
-We obtain an excellent fit with regimes corresponding to power law rank exponents of 
-$\alpha = -1.23 (\gamma = 0.187$) and $\alpha = -0.579 (\gamma = -0.727)$.
+We fit the data to a two regime log-log linear regression with a cutoff rank 
+of $10^{5}$.
+The top regime ($\log_{10}$(rank) $< 5$) has a Pearson's Correlation 
+Coefficient of $-0.99$ with a corresponding power law rank exponent 
+$\alpha = -1.23$ and a size exponent $\gamma = 0.187$.
 On the aggregate, the distribution suggests
 a handful of the highest ranking articles contain a disproportionate number of traversal visits, while most have none. The skew in the distribution is not terribly surprising when considering the heuristic of how the links flow: from specific to general. 
 
@@ -557,15 +479,7 @@ mark greater points of first link accumulation. The highest ranking articles by 
   \label{fig:highest visits}
 \end{figure}
 
-The highest ranking articles by traversal visits are broad topics spanning academic disciplines 
-or notions fundamental to society~(Fig. \ref{fig:highest visits}): ``Science,'' ``Mathematics,'' `` Geography,'' and ``Philosophy''
-as well as ``Community,'' ``State,'' ``Earth,'' ``Information,'' ``Power,'' and ``Communication.''
-The first links flow towards broader topics, accumulating at of these foundational notions.
-While ``Banana'' is a concrete fruit for example, 
-the first links flow from ``Fruit'' to ``Botany'' to ``Biology,'' and ultimately 
-culminate with ``Science'' and ``Philosophy.'' 
-The first links anchor the wealth of specific knowledge on Wikipedia to 
-a few notions foundational to society. 
+
 
 \subsection{Network Cycles}
 
@@ -580,7 +494,7 @@ to each other. The area of the circles in the figure indicates the number of tra
 same concepts as opposed to distinct concepts.}
   \label{fig:2-cycles}
 \end{figure*}
-We identify 2-cycles, meaning a pair of articles with first link pointing to one another.
+We first identified 2-cycles, meaning a pair of articles with first link pointing to one another.
 Of the 11 million articles, 84,000 are 2-cycles. 
 The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly so) rather than distinct, yet connected topics:
 ``Health Care'' and ``Medical Case Management,'' ``Broadcasting House,'' and ``BBC,'' ``Secondary Education'' and ``Secondary School'' 
@@ -660,6 +574,8 @@ such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''
 We represent the highest-ranking articles by the number of traversal 
 funnels to gauge the influence each article exerts in shaping the 
 structure of the FLN. 
+The area of each circle is sized in proportion to the number of 
+traversal funnels each article has. 
 We find ``Philosophy'' exerts an overwhelming proportion
 of the influence, with other abstract notions and topical concepts ranking
 next.}
@@ -676,13 +592,15 @@ many first links.
   \includegraphics[width=\columnwidth]{graphics/funnels_distribution.png}
   \caption{
     \textbf{Distribution of Traversal Funnels.}
-We fit the distribution with a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed number of traversal funnels. 
+We fit the distribution with a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed the number of traversal funnels. 
 We find two regimes with the top regime (log(rank) < 4) 
 well-explained by a linear fit, yielding Pearson's 
 Correlation Coefficient of $-0.99$ and a 
 corresponding power law rank exponent $\alpha = -1.08$
-and a size exponent $\gamma = 0.074$. 
-The bottom horizontal regime corresponds to the more than $99\%$ of articles
+and a size exponent $\gamma = 0.074$. The top regime 
+explains the distribution of traversal funnels for the $17, 821$ 
+articles with at least one traversal funnel. The bottom 
+horizontal regime corresponds to the more than $99\%$ of articles
 which hold zero traversal funnels.}
   \label{fig:Funnels Distribution}
 \end{figure}
@@ -735,11 +653,9 @@ with the highest number of traversal visits, the variation in popularity appears
 
 \end{figure}
 Wikipedia released an API to measure article popularity by page views
-starting November 2015. 
-Page views add another dimension to our
-findings by constrasting
-the number of users who access a particular article against
-the number of traversal visits and funnels.
+starting November 2015. Page views add another dimension to our
+findings by revealing 
+how users view the information on Wikipedia. 
 We measure popularity as the total number 
 of page views in the English edition of Wikipedia in the month of 
 October 2015---the earliest full month for which the data is available. 
@@ -814,13 +730,13 @@ Among our observations is the multiple appearance of scale-free distributions wi
 Few articles have most traversal visits, few paths have an exceptionally long path length, and even fewer
 articles are responsible for funneling most paths. When measured against the traversal funnels, 
 ``Philosophy'' emerges as an exceptional article by orders of magnitude. 
-Nevertheless, many other foundational concepts emerged naturally within FLN. 
+Nevertheless, many other foundational concepts emerged naturally within the First Link Network. 
 Basins around ``Community'', ``State'', and ``Science'' reveal a foundational structure within the network. 
 More curious is the emergence of recently prominent political and economics topics such as ``Fossil Fuel'' and ``Health Care'' 
 within the highest ranking funnels. 
 Wikipedia seems to reflect not only timeless foundations, but also the topical (at least within English speaking society).
 
-Future work could examine other language versions of Wikipedia for potentially telling cultural or regional differences as well as expand the network to more than the first link.
+Future work could examine other language versions of Wikipedia for potentially telling cultural or regional differences as well as expand the network to more than the First Link.
 These findings also form the basis for the creation of a taxonomy where 
 every idea, event, or object sits within a hierarchy of connected notions.
 The taxonomy would extend a traditional word thesaurus beyond mere synonyms to a related hierarchy of concepts.
@@ -854,15 +770,15 @@ article and another.
 
 Wikipedia renders and stores articles in MediaWiki markup, a markup language with syntax and keywords to format and mark elements in a page. Along with special syntax for links, MediaWiki markup includes templates for audio files, images, and side-bar
 information.
-While a human could accurately identify the first link, to map the entire First Link network of 11 million articles, we needed to programmatically untangled the body text from side-bar, header box, and invalid link elements.
+While a human could accurately identify the First Link, to map the entire First Link Network of 11 million articles, we needed to programmatically untangled the body text from side-bar, header box, and invalid link elements.
 
 While some libraries exist for MediaWiki Markup,
 Approaches using existing libraries led to several bugs 
 including trouble with nested links, nested parenthesis, unclosed tags, escape characters 
 as well as compatibility with other libraries used to parse the XML.
-Consequently,  we developed an algorithm for parsing the first link in the XML version of each article.
+Consequently,  we developed an algorithm for parsing the First Link in the XML version of each article.
 Our parsing algorithm aimed to: 
-1) accurately identify the first link among other page elements, and 
+1) accurately identify the First Link among other page elements, and 
 2) efficiently do so---that is without needing for several passes through the data.
 To process an article in a single pass, we developed a hierarchical system of flags:
 \begin{figure}[tp!]
@@ -879,19 +795,19 @@ shifting by one character steps through the article markup.
 If any markup triggers for a flag are detected, a flag is raised. 
 Once a flag is raised, we stop processing and proceed to the next character
 until the flag's closing markup.
-A first link is identified only if Flags 1, 2, and 3 are all off.
+A First Link is identified only if Flags 1, 2, and 3 are all off.
 In this case, the entire link is retrieved. 
 We then confirm the link is valid by filtering for MediaWiki keywords indicating external page or other projects
 as well as common file extensions for 
 images, audio files, and the like 
 \cite{media_wiki_templates}.
-The first link of an article is then the earliest valid link with unraised flags.
+The First Link of an article is then the earliest valid link with unraised flags.
 
 To process the entirety of Wikipedia, we distributed the parsing and processing of the XML dump
 across 112 cores of the UVM supercomputer cluster
 \cite{vacc}
 We then joined the results to form a hash table containing every Wikipedia article and its corresponding
-first link. The resulting network map is the basis of our analysis.
+First Link. The resulting network map is the basis of our analysis.
 
 
 

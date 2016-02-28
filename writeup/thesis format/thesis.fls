@@ -1,0 +1,14 @@
+PWD /Users/mark/Dropbox/Math/Complex_Systems/research/wikipedia-network/paper/writeup/thesis format
+INPUT /usr/local/texlive/2015/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-var/web2c/xetex/xelatex.fmt
+INPUT thesis.tex
+OUTPUT thesis.log
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/size11.clo
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/size11.clo
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/inputenc.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/base/inputenc.sty

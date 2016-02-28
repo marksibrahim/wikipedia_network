@@ -1,0 +1,16 @@
+\contentsline {section}{Acknowledgements}{ii}{Doc-Start}
+\contentsline {section}{List of Figures}{vi}{Doc-Start}
+\contentsline {section}{\numberline {0.1}Introduction}{vii}{section.0.1}
+\contentsline {section}{\numberline {0.2}Traversing the First Link Network}{ix}{section.0.2}
+\contentsline {section}{\numberline {0.3}Results}{xiii}{section.0.3}
+\contentsline {subsection}{\numberline {0.3.1}Degree Distribution}{xiii}{subsection.0.3.1}
+\contentsline {subsection}{\numberline {0.3.2}Depth of the FLN}{xv}{subsection.0.3.2}
+\contentsline {subsection}{\numberline {0.3.3}Traversal Visits}{xviii}{subsection.0.3.3}
+\contentsline {subsection}{\numberline {0.3.4}Network Cycles}{xviii}{subsection.0.3.4}
+\contentsline {subsection}{\numberline {0.3.5}Basins}{xxiii}{subsection.0.3.5}
+\contentsline {subsection}{\numberline {0.3.6}Traversal Funnels}{xxiv}{subsection.0.3.6}
+\contentsline {subsection}{\numberline {0.3.7}Article Popularity}{xxvii}{subsection.0.3.7}
+\contentsline {section}{\numberline {0.4}Concluding Remarks}{xxix}{section.0.4}
+\contentsline {section}{\numberline {0.5}Appendix}{xxxii}{section.0.5}
+\contentsline {subsection}{\numberline {0.5.1}Constructing The First Link Network}{xxxii}{subsection.0.5.1}
+\contentsfinish 
