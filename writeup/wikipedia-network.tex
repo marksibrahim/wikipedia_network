@@ -421,7 +421,7 @@ From accumulated references, cycles, and basins, we can measure how the many art
   \includegraphics[width=\columnwidth]{graphics/articles_ndegree.png}
   \caption{
     \textbf{Highest Ranking Articles by in-degree.}
-We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent geographical and biological abstractions.}
+    We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent geographical and biological abstractions. A full online appendix of the results and data is available \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.}
   \label{fig:indegree list}
 \end{figure}
 
@@ -567,8 +567,6 @@ culminate with ``Science'' and ``Philosophy.''
 The first links anchor the wealth of specific knowledge on Wikipedia to 
 a few notions foundational to society. 
 
-\subsection{Network Cycles}
-
 \begin{figure*}[tp!]
   \includegraphics[width=\textwidth]{graphics/2_cycles.pdf}
   \caption{
@@ -580,11 +578,7 @@ to each other. The area of the circles in the figure indicates the number of tra
 same concepts as opposed to distinct concepts.}
   \label{fig:2-cycles}
 \end{figure*}
-We identify 2-cycles, meaning a pair of articles with first link pointing to one another.
-Of the 11 million articles, 84,000 are 2-cycles. 
-The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly so) rather than distinct, yet connected topics:
-``Health Care'' and ``Medical Case Management,'' ``Broadcasting House,'' and ``BBC,'' ``Secondary Education'' and ``Secondary School'' 
-(see Fig.~\ref{fig:2-cycles}).
+\subsection{Network Cycles}
 
 \begin{figure*}[tp!]
   \includegraphics[width=\textwidth]{graphics/3_cycles.pdf}
@@ -597,6 +591,11 @@ the most referenced group of three linked articles.
 The area of the circles in the figure indicates the number of traversal visits.}
   \label{fig:3-cycles}
 \end{figure*}
+We identify 2-cycles, meaning a pair of articles with first link pointing to one another.
+Of the 11 million articles, 84,000 are 2-cycles. 
+The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly so) rather than distinct, yet connected topics:
+``Health Care'' and ``Medical Case Management,'' ``Broadcasting House,'' and ``BBC,'' ``Secondary Education'' and ``Secondary School'' 
+(see Fig.~\ref{fig:2-cycles}).
 
 Outside of the highest ranking 2-cycles, the typical 2-cycle signals a connection between distinct, yet very closely related concepts. 
 We also observe link patterns such as inventor to product (``Voere'' to ``VEC-91''), event to organizer (``Poetry Bus Tour'' to ``Weave Books''), and book to author (``Anatomy of Britain'' to ``Anthony Sampson'').
@@ -892,6 +891,8 @@ across 112 cores of the UVM supercomputer cluster
 \cite{vacc}
 We then joined the results to form a hash table containing every Wikipedia article and its corresponding
 first link. The resulting network map is the basis of our analysis.
+
+An online appendix containing all of the code and data used can be accessed \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.
 
 
 
