@@ -81,7 +81,7 @@
 
 \title{\protect
 Connecting every bit of knowledge: \\
-The Structure of Wikipedia's first link network
+The structure of Wikipedia's first link network
 }
 
 \date{\today}
@@ -126,24 +126,22 @@ The Structure of Wikipedia's first link network
 
 \begin{abstract}
   \protect
-Apples, porcupines, and the most obscure Dylan song---is every topic a few clicks from Philosophy? 
+Apples, porcupines, and the most obscure Bob Dylan song---is every topic a few clicks from Philosophy? 
 Within Wikipedia, the surprising answer is yes: nearly all 
 paths lead to Philosophy.
 Wikipedia is the largest, most meticulously indexed collection of human knowledge ever amassed. 
 More than information about a topic, Wikipedia is a web of naturally emerging relationships.  
-By following the first link in an article, we connect entries to form a directed network: Wikipedia's First Link Network. 
+By following the first link in each article, we algorithmically construct a directed network of 
+all 4.7 million articles: Wikipedia's First Link Network.
 Here, we study the English edition of Wikipedia's First Link Network for insight into how the many 
-inventions, places, people, objects, and events
-are related and organized.  
-We algorithmically parse all 4.7 million articles to construct a map of Wikipedia's First Link Network. 
-We traverse every possible path through the network, 
-measuring the accumulation of first links, path lengths, basins, cycles, and the influence a particular article exerts in shaping the 
-network.
+inventions, places, people, objects, and events are related and organized.  
+We traverse every path, measuring the accumulation of first links, path lengths, basins, cycles, 
+and the influence each article exerts in shaping the network.
 We discover scale-free distributions describe path length, 
 accumulation, and influence. Far from dispersed, first links disproportionately accumulate 
 at a few articles---flowing from specific to general and culminating around fundamental notions such as
-Community, State, and Science. Even fewer articles most influence the network's structure with Philosophy 
-shaping more paths than any other article by two orders of magnitude. 
+Community, State, and Science. 
+Philosophy shapes more paths than any other article by two orders of magnitude. 
 Curiously, we also observe a gravitation towards topical articles such as 
 Health Care and Fossil Fuel. 
 These findings enrich our view of the connections and structure of
@@ -161,7 +159,7 @@ existed.
 Wikipedia contains 37 million articles in 283 languages, 
 with coverage spanning everything from little known ancient battles to the latest pharmaceutical drugs 
 \cite{drugs, stats}.
-All this information does not lie dormant. 
+Demonstrating its relevance to modern inquiry,
 Wikipedia is the sixth most visited
 site in the world, surpassing 18 billion page views and 26 million edits in a single month
 \cite{wiki_edits, wiki_views}.
@@ -175,7 +173,7 @@ the topics covered
 \cite{coverage},
 and bias against portions of the population
 \cite{bias_women}.
-Wikipedia's content has also proven a powerful tool. 
+Wikipedia's content has also proven to be a powerful tool. 
 Researchers have used Wikipedia to identify missing dictionary entries
 \cite{missing_entries},
 cluster short text
@@ -201,8 +199,9 @@ We treat a hyperlink as a mechanism connecting two topics.
 The authors of a Wikipedia article choose where and whether to include a 
 reference to another Wikipedia article
 in the HTML markup.
-For example, the authors of 
+For example, the authors of the 
 \href{https://en.wikipedia.org/wiki/Train}{``Train''}
+article
 chose
 ``Amtrak's Acela Express,'' ``steam,'' and ``head-end power'' 
 among others as relevant articles to reference in describing ``Train''
@@ -228,19 +227,20 @@ means to connect each article to another.
 By following the first hyperlink to another article in the English edition of
 Wikipedia as of November, 2014, we connect the topic of one article to that of another, ultimately forming a directed network: 
 {\it Wikipedia's First Link Network} (FLN).
+For methodological details, see section~\ref{Appendix}. 
 
 \begin{figure*}[tp!]
   \includegraphics[width=\textwidth]{graphics/Train.pdf}  
   \caption{
     \textbf{First Link Path For ``Train.''}
-    We follow the first link to another Wikipedia article
+    We follow the first link  to another Wikipedia article
     in the main body of the article---the area
     inside the green rectangle, which excludes 
-    side bar elements, the navigation bar and title. 
+    side bar elements, the navigation bar and title; the first link is circled in red. 
     In this example, the first link to another Wikipedia article is ``Rail Transport.'' 
     We can again select the first link on the ``Rail Transport''
     article, repeating the process to 
-    form a path of first links.
+    form a path of first links. After 11 links, we arrive at ``Philosophy.''
   }
   \label{fig:Train First Links}
 \end{figure*}
@@ -258,8 +258,8 @@ Our goal is to study the structure of the FLN for insight into how the informati
 We develop metrics to capture 
 the dominant features of the FLN's structure.
 We measure dynamics of the FLN as a flow, quantifying 
-aspects of the FLN from the accumulation of first links around articles 
-to the influence an article exerts in shaping the FLN.
+the accumulation of first links around articles 
+and the influence an article exerts in shaping the FLN.
 Together with cycles, in-degree, depth, and the content of the articles, 
 we build our analysis of the relations among the ideas in Wikipedia.
 
@@ -275,23 +275,18 @@ to the dynamics of social networks
 \cite{social_nets}.
 The in-degree distribution in the FLN describes how many first links point to a 
 particular article. 
-We measure the in-degree in the FLN to gauge the number of articles referencing a particular article.
 Articles with zero in-degree have no references---they are outer leaves in the FLN. 
-Similar to PageRank, the in-degree 
-provides a way to rank the articles in Wikipedia, allowing us to see 
-whether authors tend to reference all articles equally or only a few.
+The in-degree 
+provides a way to rank the articles in Wikipedia by the number of first link references.
 
-Our greater interest is lies in the richer dynamics of how many articles fit together.
 Inspired by the claim that the majority of first links lead to
 ``Philosophy''---popularized by an 
 \href{https://xkcd.com/903/}{xkcd}
 comic and subsequently
 discussed in blog posts 
-\cite{mat_blog, Ilmari_first_links, xkcd}
+\cite{xkcd, mat_blog, Ilmari_first_links}
 ---
 we holistically study how the FLN  yields a flow of connections.
-We construct a path through the FLN with each article 
-leading to the next through the first link. 
 For example ``Train'' has a first link to 
 ``Rail Transport,''
  which is itself
@@ -315,11 +310,8 @@ leading ultimately to ``Philosophy''.
 Starting at each article, we construct a path through the FLN, 
 to map the flow of connections among articles.
 The method is order agnostic with respect to which articles are selected first. As long as each article is selected eventually, the resulting metrics are equivalent.
-Grounded in the dynamics of river networks
-\cite{geo_basins},
-we characterize features of the FLN as a flow through first links.
 Previous studies have used flow to characterize the structure of river networks
-\cite{dodds} and describe the organization of food systems through transportation networks
+\cite{geo_basins, dodds} and describe the organization of food systems through transportation networks
 \cite{food_webs}.
 With paths to mark flow through the FLN, we develop metrics to 
 gauge the accumulation of references, 
@@ -355,7 +347,8 @@ An entry of $1$ indicates the path contains a given article and
 $0$ indicates the path does not.
 To compute the number of traversal visits for an article, we sum the corresponding row in our matrix.
 The traversal visits matrix for 
-our Wikipedia dataset consists of 121 million entries to account for each path through the FLN. 
+our Wikipedia dataset consists of 121 million entries encoding each path out of the more than 
+googol possible paths ($4.7*10^6*2^{4.7*10^6}$) through the FLN .
 
 By measuring the number of first links between
 two articles, we obtain an additional piece of information we call 
@@ -363,8 +356,7 @@ two articles, we obtain an additional piece of information we call
 along a column in our traversal visits matrix. 
 In our Wikipedia dataset, the sum of all path lengths is 232 million first links.
 The path length describes how closely related topics are.
-The greater the number of first links separating two articles, the greater the number of ideas needed to relate their corresponding ideas. Although
-``Train'' is related to ``Economics'' for example, there are several articles
+Although ``Train'' is related to ``Economics'' for example, there are several articles
 bridging the connection:
 ``Train'' is more specifically related to transportation, whose object
 is often goods. Goods are one of the fundamental objects of study in Economics.
@@ -388,7 +380,7 @@ to a particular article.
 
 While traversal visits measure accumulation, each article's first link also 
 influences the shape of the FLN. 
-At a large point of accumulation, a single article's first link 
+At a point of accumulation, a single article's first link 
 can exert great influence over the shape of the FLN by directing many
 references on a particular path. To distinguish between an article 
 that simply happened to fall within a cycle from an article funneling 
@@ -402,7 +394,7 @@ An article with a large number of traversal funnels directs many references
 into a particular cycle. In our sample network 
 (see Fig.~\ref{fig:Traversal Funnels}) article C 
 directs the flow of links towards the 3-cycle, while articles A and B are 
-recipients of the flow---without exerting any direct influence themselves. 
+recipients of the flow---without exerting direct influence themselves. 
 
 By studying the FLN not only as collection of directly linked pairs of articles, but
 as a flow, 
@@ -837,6 +829,7 @@ describing how the majority of links lead to ``Philosophy,'' inspiring this rese
 \newpage
 
 \section{Appendix}
+\label{Appendix}
 
 \subsection{Constructing The First Link Network}
 
