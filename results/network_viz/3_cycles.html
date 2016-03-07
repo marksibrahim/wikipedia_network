@@ -45,25 +45,30 @@ text {
 <div style="width: 100px; padding-top: 4cm; padding-left: 1cm; float: left;">
 <p style="font-size: 12px"> sized according to the number of traversal visits</p>
 
-<svg style="padding-top: .1cm">
+<svg style="padding-top: .5cm; padding-left: 0.25cm; padding-right: .5cm">
 <!-- legend circles-->
-<circle r="25"  cx="30" cy="30" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
-<circle r="17"  cx="30" cy="37" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
-<circle r="10"  cx="30" cy="45" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="35"  cx="37" cy="21" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="25"  cx="37" cy="30" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="17"  cx="37" cy="37" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
+<circle r="10"  cx="37" cy="45" fill-opacity="0.0" stroke-width="1" stroke=#999 stroke-dasharray="2 2"></circle>
 
 <!-- legend labels -->
+<text x="72" y="20" 
+    font-family="Open Sans"
+    font-size="8px"
+    fill="#93a1a1">--- 30,000 traversal visits</text>
 <text x="60" y="30" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">--- 15,000 traversal visits</text>
-<text x="50" y="40" 
+    fill="#93a1a1">------ 15,000 traversal visits</text>
+<text x="54" y="40" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">-------  7,000 traversal visits</text>
-<text x="40" y="50" 
+    fill="#93a1a1">---------  7,000 traversal visits</text>
+<text x="46" y="51" 
     font-family="Open Sans"
     font-size="8px"
-    fill="#93a1a1">---------- 2,500 traversal visits</text>
+    fill="#93a1a1">----------- 2,500 traversal visits</text>
 </svg>
 
 </div>
@@ -72,6 +77,12 @@ text {
 
 // http://blog.thomsonreuters.com/index.php/mobile-patent-suits-graphic-of-the-day/
 var links = [
+  {source: "Balkan peninsula", target:  "Balkans", type: "resolved", visits:32333},
+  {source: "Balkans", target:  "Southeast Europe", type: "resolved", visits:32333},
+  {source: "Southeast Europe", target:  "Balkan peninsula", type: "resolved", visits:32333},
+  {source: "Tree of life", target:  "Tree of life (biology)", type: "resolved", visits:29302},
+  {source: "Tree of life (biology)", target:  "Tree of life (disambiguation)", type: "resolved", visits:29302},
+  {source: "Tree of life (disambiguation)", target:  "Tree of life", type: "resolved", visits:29302},
   {source: "United States Constitution", target:  "Supremacy Clause", type: "resolved", visits:13968},
   {source: "Supremacy Clause", target:  "Article Six of the United States Constitution", type: "resolved", visits:13968},
   {source:  "Article Six of the United States Constitution", target: "United States Constitution", type: "resolved", visits:13968},
@@ -100,8 +111,8 @@ links.forEach(function(link) {
   link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, visits: link.visits});
 });
 
-var width = 660,
-    height = 600;
+var width = 800,
+    height = 700;
 
 var force = d3.layout.force()
     .nodes(d3.values(nodes))
@@ -115,7 +126,8 @@ var force = d3.layout.force()
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height)
-    .attr("float", "left");
+    .attr("float", "left")
+    .attr("padding-left", "0.5cm");
 
 // Per-type markers, as they don't inherit styles.
 svg.append("defs").selectAll("marker")

@@ -8,7 +8,7 @@
 
 .link {
   fill: none;
-  stroke: #666;
+  stroke: #93a1a1;
   stroke-width: 1.5px;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .link.resolved {
-  stroke-dasharray: 0,2 1;
+  stroke: #93a1a1;
 }
 
 circle {
@@ -90,10 +90,10 @@ svg.append("defs").selectAll("marker")
   .enter().append("marker")
     .attr("id", function(d) { return d; })
     .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 28)
-    .attr("refY", -1.5)
-    .attr("markerWidth", 6)
-    .attr("markerHeight", 6)
+    .attr("refX", 19)
+    .attr("refY", -.65)
+    .attr("markerWidth", 10)
+    .attr("markerHeight", 10)
     .style("fill", "#93a1a1")
     .attr("orient", "auto")
   .append("path")
@@ -110,12 +110,7 @@ var circle = svg.append("g").selectAll("circle")
   .enter().append("circle")
     .attr("r", 15)
     .style("fill", function(d) { 
-    if (d.visits == 1) {
-    return "#74c476";
-    }
-    else {
-        return "hsla(208, 49%, 83%, 0.92)";
-    }
+        return "rgba(191, 213, 233, 0.95)"
     })
     .on("mouseover", function(d) {
         d3.select(this)
@@ -127,9 +122,20 @@ var circle = svg.append("g").selectAll("circle")
         .style("stroke", "#93a1a1")
         .style("stroke-width", "1.5px")
     })
+//    .on("click", function(d) {
+//        d3.select(this)
+//        .style("fill", "#74c476")
+//    })
     .on("click", function(d) {
-        d3.select(this)
-        .style("fill", "#74c476")
+                var currentColor = this.style.fill;
+                console.log(currentColor);
+                if (currentColor == "rgb(116, 196, 118)") {
+                    var nextColor = "rgba(191, 213, 233, 0.95)";
+                } else {
+                    var nextColor = "rgb(116, 196, 118)";
+                }
+                d3.select(this)
+                .style("fill", nextColor)
     })
     .call(force.drag);
 
@@ -141,12 +147,12 @@ var text = svg.append("g").selectAll("text")
     .text(function(d) { return d.name; });
 
 //title
-svg.append("text")
-      .attr("x", (width / 2))             
-      .attr("y", 40)
-      .attr("text-anchor", "middle")
-      .style("font-size", "24px")
-      .text("traversal funnel path for article G");
+//svg.append("text")
+//      .attr("x", (width / 2))             
+//      .attr("y", 40)
+//      .attr("text-anchor", "middle")
+//      .style("font-size", "24px")
+//      .text("traversal funnel path for article G");
 
 // Use elliptical arc path segments to doubly-encode directionality.
 function tick() {

@@ -83,6 +83,8 @@ var links = [
   {source: "BBC", target: "Broadcasting House", type: "resolved", visits:8952},
   {source: "Secondary School", target: "Secondary Education", type: "resolved", visits:7563},
   {source: "Secondary Education", target: "Secondary School", type: "resolved", visits:7563},
+  {source: "Dam", target: "Reservoir", type: "resolved", visits:7043},
+  {source: "Reservoir", target: "Dam", type: "resolved", visits:7043},
   {source: "Biological Network", target: "Biological System", type: "resolved", visits:5574},
   {source: "Biological System", target: "Biological Network", type: "resolved", visits:5574},
   {source: "Photography", target: "Photograph", type: "resolved", visits:4594},
@@ -91,8 +93,10 @@ var links = [
   {source: "Hayastan (disambiguation)", target: "Armenia", type: "resolved", visits:3948},
   {source: "Namibia", target: "Angola", type: "resolved", visits:2800},
   {source: "Angola", target: "Namibia", type: "resolved", visits:2800},
-  {source: "Hospital", target: "Cancer", type: "resolved", visits:3364},
-  {source: "Cancer", target: "Hospital", type: "resolved", visits:3364}
+  {source: "Malignancy", target: "Cancer", type: "resolved", visits:3364},
+  {source: "Cancer", target: "Malignancy", type: "resolved", visits:3364},
+  {source: "Web document", target: "Web page", type: "resolved", visits:3140},
+  {source: "Web page", target: "Web document", type: "resolved", visits:3140}
 ];
 
 var nodes = {};
@@ -103,7 +107,7 @@ links.forEach(function(link) {
   link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, visits: link.visits});
 });
 
-var width = 660,
+var width = 700,
     height = 600;
 
 var force = d3.layout.force()
