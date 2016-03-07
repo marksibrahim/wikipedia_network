@@ -208,6 +208,22 @@ among others as relevant articles to reference in describing ``Train''
 \cite{wiki_train}
 .
 
+\begin{figure*}[tp!]
+  \includegraphics[width=\textwidth]{graphics/Train.pdf}  
+  \caption{
+    \textbf{First Link Path For ``Train.''}
+    We follow the first link  to another Wikipedia article
+    in the main body of the article---the area
+    inside the green rectangle, which excludes 
+    side bar elements, the navigation bar and title; the first link is circled in red. 
+    In this example, the first link to another Wikipedia article is ``Rail Transport.'' 
+    We can again select the first link on the ``Rail Transport''
+    article, repeating the process to 
+    form a path of first links. After 11 links, we arrive at ``Philosophy.''
+  }
+  \label{fig:Train First Links}
+\end{figure*}
+
 By focusing our attention on the main body of an article---excluding
 elements in the side bars and headings---we 
 systematically capture the core description of a topic.
@@ -229,21 +245,6 @@ Wikipedia as of November, 2014, we connect the topic of one article to that of a
 {\it Wikipedia's First Link Network} (FLN).
 For methodological details, see section~\ref{Appendix}. 
 
-\begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{graphics/Train.pdf}  
-  \caption{
-    \textbf{First Link Path For ``Train.''}
-    We follow the first link  to another Wikipedia article
-    in the main body of the article---the area
-    inside the green rectangle, which excludes 
-    side bar elements, the navigation bar and title; the first link is circled in red. 
-    In this example, the first link to another Wikipedia article is ``Rail Transport.'' 
-    We can again select the first link on the ``Rail Transport''
-    article, repeating the process to 
-    form a path of first links. After 11 links, we arrive at ``Philosophy.''
-  }
-  \label{fig:Train First Links}
-\end{figure*}
 
 The FLN is a wealth of relations among inventions, places,
 figures, objects, and events across space and time.
@@ -301,7 +302,10 @@ leading ultimately to ``Philosophy''.
   \includegraphics[width=\textwidth]{graphics/traversal_visit_algo_figure.pdf}  
   \caption{
     \textbf{Traversal Visit Algorithm on a sample network.}
-     The traversal visit vectors are an adjacency matrix for the paths through the network: the first column is indicates the path formed starting with article A. The number of traversal visits for article A is then the number of paths containing A or the sum of the first row in our matrix:
+     The traversal visit vectors are an adjacency matrix for the paths through the network: 
+     the first column indicates the path formed starting with article A. 
+     The number of traversal visits for article A is then the number of paths containing A 
+     or the sum of the first row in our matrix:
      $\sum_{i=1}^7 A_{\text{visit, i}} = 7$.
   }
   \label{fig:Traversal Visits}
@@ -428,7 +432,7 @@ and developed nations such as ``France,'' ``Japan,'' ``Russia,'' ``Australia,'' 
 the ``Netherlands.'' These high ranking articles are useful abstractions: nations
 describe a collection of individuals with a common culture, language, or 
 geographical proximity; sports teams describe an ever changing collection of 
-sports players often associated with a cultural identity or a geographical 
+players often associated with a cultural identity or a geographical 
 region. 
 Since abstractions such as nations and teams are inherently comprised
 of many parts, authors reference the abstraction when describing a part.
@@ -443,7 +447,7 @@ While many articles accumulate at ``Philosophy'' (see traversal visits discussio
 the accumulation is not the 
 result of many articles directly referencing ``Philosophy.'' 
 Instead, first links flow towards ``Philosophy'' as the 
-ultimate anchor, by generalizing from specific articles to broader notions.
+ultimate anchor, by generalizing from specific to broad.
 
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
@@ -459,22 +463,22 @@ power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$.
 
 The FLN's in-degree exhibits a decaying power law distribution where a few articles 
 receive most direct first references, while most articles receive few or none.
-The average in-degree for all 11 million articles is 3.6 direct first links with a standard deviation of 89.5 links.
+The average in-degree for all 11 million articles is 3.6 direct first links with a standard deviation of 89.5.
 Less than $1\%$ of articles have more than 100 direct first links and $75\%$ of articles
 have fewer than 9. 
-We fit the in-degree distribution against each article's rank with a log-log (base 10) linear regression model.
+We fit the in-degree distribution against each article's rank with a log-log (base 10) linear regression model
+(see Fig.~\ref{fig:degree distribution}).
 We obtain a Pearson's Correlation Coefficient of $-0.98$
 with a corresponding  power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$. 
 
 
 \subsection{Depth of the FLN}
 
-We first seek to describe the depth of the FLN: how many links does a 
-connection among articles span? 
+How many links does a connection among articles span? 
 We find the longest path length is 365,
 corresponding to the yearly calendar of Orthodox Liturgics.
 Each day's Liturgics links to the next day's. On the last calendar day, the last article simply links back to January 1, forming a 365-cycle 
-(see discussion of cycles).
+(see discussion of cycles ~\ref{cycles}).
 We also find similarly lengthy paths following the evolution of a place or topic through time: 
 ``1953 in Scotland'' or ``1560s Architecture,'' with articles sequentially proceeding by year, decade or era.
 In general, the longest paths connect temporally organized ideas.
@@ -531,8 +535,8 @@ $\alpha = -0.579$ and a size exponent $\gamma = -0.727$.}
 
 \end{figure}
 
-In Fig.~\ref{fig:Distribution of Visits}, we show a log-log (base 10) plot for the entire dataset: traversal visits against rank. 
-We obtain an excellent fit with regimes corresponding to power law rank exponents of 
+In Fig.~\ref{fig:Distribution of Visits}, we show traversal visits against rank, yielding
+an excellent fit with regimes corresponding to power law rank exponents of 
 $\alpha = -1.23 (\gamma = 0.187$) and $\alpha = -0.579 (\gamma = -0.727)$.
 On the aggregate, the distribution suggests
 a handful of the highest ranking articles contain a disproportionate number of traversal visits, while most have none. The skew in the distribution is not terribly surprising when considering the heuristic of how the links flow: from specific to general. 
@@ -544,8 +548,8 @@ a handful of the highest ranking articles contain a disproportionate number of t
     \textbf{Highest ranking articles by number of traversal visits.}
 We compute the number of traversal visits for each article in the FLN (see 
 Traversal Algorithm section for details). In doing so, we can rank each article
-by the accumulation of first links. Articles with a greater number of traversal visits
-mark greater points of first link accumulation. The highest ranking articles by traversal visits reveal where the greatest accumulation occurs.}
+by the accumulation of first links.
+The highest ranking articles by traversal visits reveal where the greatest accumulation occurs.}
   \label{fig:highest visits}
 \end{figure}
 
@@ -566,11 +570,12 @@ a few notions foundational to society.
 We identify pairs of articles whose first links point to one another, forming
 a 2-cycle. We then rank each pair of articles by the total number of 
 traversal visits to gauge the most referenced groups of two articles linked
-to each other. The area of the circles in the figure indicates the number of traversal visits. We find 2-cycles often capture synonyms or articles representing nearly the 
+to each other. We find 2-cycles often capture synonyms or articles representing nearly the 
 same concepts as opposed to distinct concepts.}
   \label{fig:2-cycles}
 \end{figure*}
 \subsection{Network Cycles}
+\label{cycles}
 
 \begin{figure*}[tp!]
   \includegraphics[width=\textwidth]{graphics/3_cycles.pdf}
@@ -584,7 +589,7 @@ The area of the circles in the figure indicates the number of traversal visits.}
   \label{fig:3-cycles}
 \end{figure*}
 We identify 2-cycles, meaning a pair of articles with first link pointing to one another.
-Of the 11 million articles, 84,000 are 2-cycles. 
+Of the 11 million articles, roughly 84,000 are memebers of 2-cycles. 
 The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly so) rather than distinct, yet connected topics:
 ``Health Care'' and ``Medical Case Management,'' ``Broadcasting House,'' and ``BBC,'' ``Secondary Education'' and ``Secondary School'' 
 (see Fig.~\ref{fig:2-cycles}).
@@ -626,7 +631,7 @@ include concepts around ``Mathematics,'' ``Scientific,'' ``Experiments,''
 ``Biology,'' and ``Fact.''
 These paths link many specific articles to ``Philosophy,'' each funneled through a particular domain.
 
-Excluding basins around ``Philosophy,'' we find other basins around 
+Moving beyon basins around ``Philosophy,'' we find other basins around 
 foundational concepts such as ``Community,'' ``Landmass,'' ``Federal Government,'' 
 ``Presentation,'' and ``Belief System.'' 
 The basins around each of these foundational notions are 
@@ -699,7 +704,7 @@ The highest-ranking list also includes ``Hip Hop,'' ``Cancer,'' and ``Web Page.'
 
 As a distribution, we find few articles influence the structure of the 
 FLN. Only $17, 821$ articles have one or more traversal funnels, leaving
-an more than $99\%$ with none---most articles are recipients of 
+more than $99\%$ with none---most articles are recipients of 
 the references flowing through the articles with at least one traversal funnel.
 When fit to a log-log linear model we find the $99\%$ of articles with zero
 traversal funnels form one regime (with log(rank) less than 4).
@@ -707,7 +712,8 @@ The top regime, corresponding to the $17, 821$ articles with at least one
 traversal funnel strongly fits a linear model with
 a Pearson's Correlation Coefficient of $-0.99$ and a 
 corresponding power law rank exponent $\alpha = -1.08$
-and a size exponent $\gamma = 0.074$. Even within the few articles
+and a size exponent $\gamma = 0.074$ 
+(see Fig.~\ref{fig:Funnels Distribution}). Even within the few articles
 influencing the structure of the FLN, only a handful of these exert most of the 
 control. 
 
@@ -721,7 +727,7 @@ for Highest ranking 1000 articles.}
 We use the total number of page views provided by Wikipedia for the month
 of October 2015 to compare each article's popularity to traversal visits.
 While the most popular articles do not necessarily correspond to the articles
-with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases. The greatest number of articles fall within $10^{3.8}-10^5$ traversal visits and page views.}
+with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases. The greatest number of articles fall within roughly 1 million traversal visits and page views.}
   \label{fig:Views and Visits}
 
 \end{figure}
@@ -742,7 +748,9 @@ reaching fewer than $73$ thousand page views in October.
 The article for ``United States'' has the most page 
 views of the highest ranking $1000$ articles by traversal visits with 
 $1.4$ million views in October. The next most popular articles are 
-``India,'' ``World War II,'' and the ``United Kingdom'' each with $0.7-1.03$ million page views. 
+``India,'' ``World War II,'' and the ``United Kingdom'' each with roughly 1 million page views. 
+The ``Philosophy'' article, despite outranking every article by traversal visits,
+has only $240$ thousand page views in October.
 
 
 \begin{figure}[tp!]
@@ -758,10 +766,6 @@ The greatest number of articles falls within $10^3-10^5$ page views,
 but only $10^{1.2}-10^2$ traversal funnels.}
   \label{fig:Views and Funnels}
 \end{figure}
-The ``Philosophy'' article, despite outranking every article by traversal visits,
-has only $240$ thousand page views in October compared to the $1.4$ million
-page views for ``United States''.
-
 
 
 
@@ -775,10 +779,10 @@ Other popular articles include ``Scientology'' ($463$ thousand views), ``Clint E
 ($341$ thousand views),
 and the ``Cold War'' ($298$ thousand views) although each has significantly fewer views compared to the views for ``Halloween''.
 Other standout popular October articles include ``24-hour'' and ``12-hour'' clocks likely due
-to Daylight savings in October and ``Marriage'' likely due to the drop in the number of
+to Daylight savings in October and ``Marriage'' possibly due to the drop in the number of
 weddings in the months following October
 \cite{weddings}.
-``Philosophy'' which ranks seventh among the most popular of the highest ranking articles by traversal funnels, appears no where in the top 20
+``Philosophy'' which ranks seventh among the most popular of the highest ranking articles by traversal funnels, appears nowhere in the top 20
 by traversal visits. ``Philosophy'' is a relatively popular article 
 among articles influencing the shape of the network, but less popular among 
 highly-ranked articles by accumulation.
@@ -792,16 +796,16 @@ highly-ranked articles by accumulation.
 \section{Concluding Remarks}
 
 The findings here should only be considered within the limitations of their context.
-We examined only the English editiion of Wikipedia at a particular moment in time, 
-considering only the first link in in each article as a means to related one article to another.
-Finally, Wikipedia, while the largest 
+We examined only the English edition of Wikipedia at a particular moment in time, 
+considering only the first link in in each article as a means to relate articles.
+Finally, Wikipedia, while the largest digital 
 collection of human knowledge, is rife with the biases of the many contributing editors
-\cite{bias}
-. Nevertheless, the findings do reveal
+\cite{bias}.
+Nevertheless, the findings do reveal
 generalizable relationships and point to foundational notions.
 
 
-Among our observations is the multiple appearance of scale-free distributions within the network. 
+Among our observations is the appearance of multiple scale-free distributions within the network. 
 Few articles have most traversal visits, few paths have an exceptionally long path length, and even fewer
 articles are responsible for funneling most paths. When measured against the traversal funnels, 
 ``Philosophy'' emerges as an exceptional article by orders of magnitude. 
@@ -816,14 +820,18 @@ These findings also form the basis for the creation of a taxonomy where
 every idea, event, or object sits within a hierarchy of connected notions.
 The taxonomy would extend a traditional word thesaurus beyond mere synonyms to a related hierarchy of concepts.
 Applications could range from an enhanced network of ideas to psychological insights into how humans form associations.
-Specifically, an ever-evolving reference of related hierarchical concepts could be applied to search engine algorithms 
-or natural language processing.
+Specifically, an ever-evolving reference of related hierarchical concepts could be 
+used to improve search engine algorithms or natural language processing.
 
 
 \acknowledgments
 MI is grateful to RJ for pointing out the Reddit post 
 \cite{reddit}
 describing how the majority of links lead to ``Philosophy,'' inspiring this research.
+
+PSD and CMD acknowledge support from NSF Big Data Grand $\#1447634$.
+
+The authors also acknowledge support from the Vermont Advanced Computing Core which is supported by NASA (NNX 06AC88G), at the University of Vermont for providing High Performance Computing resources that have contributed to the research results reported within this paper.
 
 
 \newpage
@@ -841,15 +849,14 @@ The November raw dump consists of 11 million articles: 4.7 million unique articl
 and disambiguations.
 Knowing Wikipedia is an ever-evolving project with 10 edits every second and 750 new articles per day on average
 \cite{wiki_edits},
-our aim is to characterize the dynamics of the First Link Network, not record a particular link between one
-article and another.
+our aim is to characterize the structure of the First Link Network.
 
 Wikipedia renders and stores articles in MediaWiki markup, a markup language with syntax and keywords to format and mark elements in a page. Along with special syntax for links, MediaWiki markup includes templates for audio files, images, and side-bar
 information.
-While a human could accurately identify the first link, to map the entire First Link network of 11 million articles, we needed to programmatically untangled the body text from side-bar, header box, and invalid link elements.
+While a human could manually identify the first link, to map the entire First Link network of 11 million articles, we needed to programmatically untangled the body text from side-bar, header box, and invalid link elements.
 
 While some libraries exist for MediaWiki Markup,
-Approaches using existing libraries led to several bugs 
+approaches using existing libraries led to several bugs 
 including trouble with nested links, nested parenthesis, unclosed tags, escape characters 
 as well as compatibility with other libraries used to parse the XML.
 Consequently,  we developed an algorithm for parsing the first link in the XML version of each article.
@@ -881,7 +888,7 @@ The first link of an article is then the earliest valid link with unraised flags
 
 To process the entirety of Wikipedia, we distributed the parsing and processing of the XML dump
 across 112 cores of the UVM supercomputer cluster
-\cite{vacc}
+\cite{vacc}.
 We then joined the results to form a hash table containing every Wikipedia article and its corresponding
 first link. The resulting network map is the basis of our analysis.
 
@@ -934,8 +941,7 @@ An online appendix containing all of the code and data used can be accessed \hre
     \bibitem{hist_thesaurus} What is the Historical Thesaurus of the OED - Oxford English Dictionary (Oxford English Dictionary)
     http://public.oed.com/historical-thesaurus-of-the-oed/what-is-the-historical-thesaurus-of-the-oed/
 
-    \bibitem{vacc} The authors acknowledge the Vermont Advanced Computing Core which is supported by NASA (NNX 06AC88G), at the University of Vermont for providing High Performance Computing resources that have contributed to the research results reported within this paper.
-    \url{http://www.uvm.edu/vacc}
+    \bibitem{vacc}  Vermont Advanced Computing Core, \url{http://www.uvm.edu/vacc}.
 
     \bibitem{wiki_views} Page Views for Wikipedia, Non-mobile site, Normalized (Page Views for Wikipedia, Non-mobile site, Normalized)
     \url{https://stats.wikimedia.org/EN/TablesPageViewsMonthly.htm}
