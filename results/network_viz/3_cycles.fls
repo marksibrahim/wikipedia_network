@@ -1,0 +1,6 @@
+PWD /Users/mark/Dropbox/Math/Complex_Systems/research/wikipedia-network/paper/results/network_viz
+INPUT /usr/local/texlive/2015/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-var/web2c/xetex/xelatex.fmt
+INPUT 3_cycles.html
+OUTPUT 3_cycles.log

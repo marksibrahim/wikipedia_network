@@ -420,6 +420,17 @@ From accumulated references, cycles, and basins, we can measure how the many art
     We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent geographical and biological abstractions. A full online appendix of the results and data is available \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.}
   \label{fig:indegree list}
 \end{figure}
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
+  \caption{
+    \textbf{FLN Degree Distribution.}
+We fit the in-degree distribution with a linear $\log_{10}-\log_{10}$ model. 
+The result is a 
+an excellent fit with a Pearson's Correlation Coefficient of $-0.98$, yielding a 
+power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$. 
+}
+  \label{fig:degree distribution}
+\end{figure}
 
 We rank all 11 million articles by in-degree to find 
 the ``United States'' with 80,249 direct first links as the most referenced
@@ -449,17 +460,6 @@ result of many articles directly referencing ``Philosophy.''
 Instead, first links flow towards ``Philosophy'' as the 
 ultimate anchor, by generalizing from specific to broad.
 
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
-  \caption{
-    \textbf{FLN Degree Distribution.}
-We fit the in-degree distribution with a linear $\log_{10}-\log_{10}$ model. 
-The result is a 
-an excellent fit with a Pearson's Correlation Coefficient of $-0.98$, yielding a 
-power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$. 
-}
-  \label{fig:degree distribution}
-\end{figure}
 
 The FLN's in-degree exhibits a decaying power law distribution where a few articles 
 receive most direct first references, while most articles receive few or none.
@@ -496,6 +496,37 @@ $0$ and $50$ links.}
 \end{figure}
 
 Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{graphics/traversals_per_article.png} 
+  \caption{
+    \textbf{Distribution of Traversal Visits.}
+We fit the distribution of traversal visits against article rank with a log-log (base 10) linear regression model log-log model and uncover two regimes: 
+with a cutoff rank of $10^{5}$.
+The top regime ($\log_{10}$(rank) $< 5$) has a Pearson's Correlation 
+Coefficient of $-0.99$ 
+with a corresponding power law rank exponent 
+$\alpha = -1.23$ and a size exponent $\gamma = 0.187$.
+The horizontal flattening around the highest
+ranking articles is a result of the cyclic structure (see discussion on cycles).
+The bottom regime has a Pearson's Correlation Coefficient of $-0.93$
+with a corresponding power law rank exponent 
+$\alpha = -0.579$ and a size exponent $\gamma = -0.727$.}
+  \label{fig:Distribution of Visits}
+
+\end{figure}
+
+
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{graphics/articles_ranked.png}
+  \caption{
+    \textbf{Highest ranking articles by number of traversal visits.}
+We compute the number of traversal visits for each article in the FLN (see 
+Traversal Algorithm section for details). In doing so, we can rank each article
+by the accumulation of first links.
+The highest ranking articles by traversal visits reveal where the greatest accumulation occurs.}
+  \label{fig:highest visits}
+\end{figure}
+
 This roughly corresponds to the official number of articles on Wikipedia: 
 $~4.7$ million as of November 2014---approximately half of the 11 million 
 articles in the XML dump are redirects or disambiguations, not full articles.
@@ -516,42 +547,23 @@ first link references accumulate at a few articles.
 Specifically, $99.76\%$ of articles have fewer than $100$ traversal visits; nearly $80\%$ have none. 
 Meanwhile, the highest ranking 30 articles have an extremely disproportionate number of traversal visits.
 
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{graphics/traversals_per_article.png} 
+\begin{figure*}[tph!]
+  \includegraphics[width=\textwidth]{graphics/2_and_3_cycles.pdf}
   \caption{
-    \textbf{Distribution of Traversal Visits.}
-We fit the distribution of traversal visits against article rank with a log-log (base 10) linear regression model log-log model and uncover two regimes: 
-with a cutoff rank of $10^{5}$.
-The top regime ($\log_{10}$(rank) $< 5$) has a Pearson's Correlation 
-Coefficient of $-0.99$ 
-with a corresponding power law rank exponent 
-$\alpha = -1.23$ and a size exponent $\gamma = 0.187$.
-The horizontal flattening around the highest
-ranking articles is a result of the cyclic structure (see discussion on cycles).
-The bottom regime has a Pearson's Correlation Coefficient of $-0.93$
-with a corresponding power law rank exponent 
-$\alpha = -0.579$ and a size exponent $\gamma = -0.727$.}
-  \label{fig:Distribution of Visits}
-
-\end{figure}
-
-In Fig.~\ref{fig:Distribution of Visits}, we show traversal visits against rank, yielding
-an excellent fit with regimes corresponding to power law rank exponents of 
+    \textbf{Highest ranking 2-cycles and 3-cycles.}
+We identify pairs of articles whose first links point to one another, forming
+a 2-cycle. We then rank each pair of articles by the total number of 
+traversal visits to gauge the most referenced groups of two articles linked
+to each other. We find 2-cycles often capture synonyms or articles representing nearly the 
+same concepts as opposed to distinct concepts. Similarly, we identify and 
+rank 3-cycles to find they appear to capture three closely related ideas or synonyms.}
+  \label{fig:2-cycles}
+\end{figure*}
+In Fig.~\ref{fig:Distribution of Visits}, we fit traversal visits against rank
+to two regimes corresponding to power law rank exponents of 
 $\alpha = -1.23 (\gamma = 0.187$) and $\alpha = -0.579 (\gamma = -0.727)$.
 On the aggregate, the distribution suggests
 a handful of the highest ranking articles contain a disproportionate number of traversal visits, while most have none. The skew in the distribution is not terribly surprising when considering the heuristic of how the links flow: from specific to general. 
-
-
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{graphics/articles_ranked.png}
-  \caption{
-    \textbf{Highest ranking articles by number of traversal visits.}
-We compute the number of traversal visits for each article in the FLN (see 
-Traversal Algorithm section for details). In doing so, we can rank each article
-by the accumulation of first links.
-The highest ranking articles by traversal visits reveal where the greatest accumulation occurs.}
-  \label{fig:highest visits}
-\end{figure}
 
 The highest ranking articles by traversal visits are broad topics spanning academic disciplines 
 or notions fundamental to society~(Fig. \ref{fig:highest visits}): ``Science,'' ``Mathematics,'' `` Geography,'' and ``Philosophy''
@@ -563,31 +575,21 @@ culminate with ``Science'' and ``Philosophy.''
 The first links anchor the wealth of specific knowledge on Wikipedia to 
 a few notions foundational to society. 
 
-\begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{graphics/2_cycles.pdf}
-  \caption{
-    \textbf{Highest ranking 2-cycles.}
-We identify pairs of articles whose first links point to one another, forming
-a 2-cycle. We then rank each pair of articles by the total number of 
-traversal visits to gauge the most referenced groups of two articles linked
-to each other. We find 2-cycles often capture synonyms or articles representing nearly the 
-same concepts as opposed to distinct concepts.}
-  \label{fig:2-cycles}
-\end{figure*}
 \subsection{Network Cycles}
 \label{cycles}
-
-\begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{graphics/3_cycles.pdf}
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{graphics/top_funnels.png}
   \caption{
-\textbf{Highest ranking 3-cycles.}
-We identify groups of three articles whose links form a 3-cycle with the 
-last article in the group linking back to the first article.
-We rank each 3-cycle by the total number of traversal visits to gauge
-the most referenced group of three linked articles. 
-The area of the circles in the figure indicates the number of traversal visits.}
-  \label{fig:3-cycles}
-\end{figure*}
+    \textbf{Funnels.}
+We represent the highest-ranking articles by the number of traversal 
+funnels to gauge the influence each article exerts in shaping the 
+structure of the FLN. 
+We find ``Philosophy'' exerts an overwhelming proportion
+of the influence, with other abstract notions and topical concepts ranking
+next.}
+  \label{fig:Funnels}
+\end{figure}
+
 We identify 2-cycles, meaning a pair of articles with first link pointing to one another.
 Of the 11 million articles, roughly 84,000 are memebers of 2-cycles. 
 The highest ranking 2-cycles by traversal visits tend to be synonyms (or nearly so) rather than distinct, yet connected topics:
@@ -605,10 +607,6 @@ Once we extend our cycle size beyond a length of 6 however,
 The longest cycle in the network spans 365 articles of Eastern Orthodox Liturgics for each calendar day.
 Other lengthy cycles span $60-75$ articles including collections of articles on national histories such as ``Japanese Eras'' 
 or judicial bodies such as the ``Legislative Assembly of Ontario.''
-
-
-
-
 
 
 
@@ -646,28 +644,6 @@ a community (or society) and then build up to ``Community.''
 Other basins around landmass for example begin at specific geographical regions
 such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''.
 
-
-\subsection{Traversal Funnels}
-
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{graphics/top_funnels.png}
-  \caption{
-    \textbf{Funnels.}
-We represent the highest-ranking articles by the number of traversal 
-funnels to gauge the influence each article exerts in shaping the 
-structure of the FLN. 
-We find ``Philosophy'' exerts an overwhelming proportion
-of the influence, with other abstract notions and topical concepts ranking
-next.}
-  \label{fig:Funnels}
-\end{figure}
-To analyze the influence an article exerts in shaping the 
-structure of the FLN, we compute the number of traversal funnels for each.
-Articles directing more paths exert a greater influence over the structure
-of the FLN by increasing the accumulation of first links
-on a particular path. By measuring traversal funnels, we distinguish between an article that simply happened to fall within a cycle from an article funneling 
-many first links.
-
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{graphics/funnels_distribution.png}
   \caption{
@@ -682,6 +658,16 @@ The bottom horizontal regime corresponds to the more than $99\%$ of articles
 which hold zero traversal funnels.}
   \label{fig:Funnels Distribution}
 \end{figure}
+
+\subsection{Traversal Funnels}
+
+To analyze the influence an article exerts in shaping the 
+structure of the FLN, we compute the number of traversal funnels for each.
+Articles directing more paths exert a greater influence over the structure
+of the FLN by increasing the accumulation of first links
+on a particular path. By measuring traversal funnels, we distinguish between an article that simply happened to fall within a cycle from an article funneling 
+many first links.
+
 Ranking articles by the number of traversal funnels we find 
 ``Philosophy'' to be by far the highest-ranking article with 
 $7.37$ million paths
@@ -702,6 +688,18 @@ Other high ranking articles include key historical events such as the ``Cold War
 media discussion such as ``Fossil Fuel.'' 
 The highest-ranking list also includes ``Hip Hop,'' ``Cancer,'' and ``Web Page.''
 
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{graphics/popularity_visits.pdf}
+  \caption{
+\textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal visits.}
+We use the total number of page views provided by Wikipedia for the month
+of October 2015 to compare each article's popularity to traversal visits.
+While the most popular articles do not necessarily correspond to the articles
+with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases. The greatest number of articles fall within roughly 1 million traversal visits and page views. Overall, the page views for the top 1000 articles articles by traversal visits appear to be log-normally distributed. 
+}
+  \label{fig:Views and Visits}
+
+\end{figure}
 As a distribution, we find few articles influence the structure of the 
 FLN. Only $17, 821$ articles have one or more traversal funnels, leaving
 more than $99\%$ with none---most articles are recipients of 
@@ -717,20 +715,17 @@ and a size exponent $\gamma = 0.074$
 influencing the structure of the FLN, only a handful of these exert most of the 
 control. 
 
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{graphics/popularity_funnels.pdf}
+  \caption{
+\textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal funnels.}
+We use the total number of page views provided by Wikipedia for the month
+of October 2015 to compare each article's popularity to traversal funnels.
+}
+  \label{fig:Views and Funnels}
+\end{figure}
 \subsection{Article Popularity}
 
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{graphics/views_visits.png}
-  \caption{
-\textbf{Article Popularity (by page views) compared to Traversal Visits 
-for Highest ranking 1000 articles.}
-We use the total number of page views provided by Wikipedia for the month
-of October 2015 to compare each article's popularity to traversal visits.
-While the most popular articles do not necessarily correspond to the articles
-with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases. The greatest number of articles fall within roughly 1 million traversal visits and page views.}
-  \label{fig:Views and Visits}
-
-\end{figure}
 Wikipedia released an API to measure article popularity by page views
 starting November 2015. 
 Page views add another dimension to our
@@ -753,19 +748,6 @@ The ``Philosophy'' article, despite outranking every article by traversal visits
 has only $240$ thousand page views in October.
 
 
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{graphics/funnels_visits.png}
-  \caption{
-    \textbf{Article Popularity (by page views) compared to Traversal Funnels
-    for Highest ranking 1000 articles.}
-We use the total number of page views provided by Wikipedia for the month
-of October 2015 to compare each article's popularity to traversal funnels.
-In the top left is ``Halloween'' with a significantly greater 
-number of page views in the month of October. 
-The greatest number of articles falls within $10^3-10^5$ page views, 
-but only $10^{1.2}-10^2$ traversal funnels.}
-  \label{fig:Views and Funnels}
-\end{figure}
 
 
 
@@ -891,7 +873,6 @@ across 112 cores of the UVM supercomputer cluster
 \cite{vacc}.
 We then joined the results to form a hash table containing every Wikipedia article and its corresponding
 first link. The resulting network map is the basis of our analysis.
-
 An online appendix containing all of the code and data used can be accessed \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.
 
 
