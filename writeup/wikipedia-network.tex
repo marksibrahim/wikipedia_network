@@ -81,7 +81,7 @@
 
 \title{\protect
 Connecting every bit of knowledge: \\
-The structure of Wikipedia's first link network
+The structure of Wikipedia's Flrst Link Network
 }
 
 \date{\today}
@@ -123,7 +123,6 @@ The structure of Wikipedia's first link network
     Vermont Advanced Computing Core,
     The University of Vermont, Burlington, VT 05401.}
 
-
 \begin{abstract}
   \protect
 Apples, porcupines, and the most obscure Bob Dylan song---is every topic a few clicks from Philosophy? 
@@ -134,15 +133,15 @@ More than information about a topic, Wikipedia is a web of naturally emerging re
 By following the first link in each article, we algorithmically construct a directed network of 
 all 4.7 million articles: Wikipedia's First Link Network.
 Here, we study the English edition of Wikipedia's First Link Network for insight into how the many 
-inventions, places, people, objects, and events are related and organized.  
+articles on inventions, places, people, objects, and events are related and organized.  
 We traverse every path, measuring the accumulation of first links, path lengths, basins, cycles, 
 and the influence each article exerts in shaping the network.
-We discover scale-free distributions describe path length, 
+We find scale-free distributions describe path length, 
 accumulation, and influence. Far from dispersed, first links disproportionately accumulate 
 at a few articles---flowing from specific to general and culminating around fundamental notions such as
 Community, State, and Science. 
-Philosophy shapes more paths than any other article by two orders of magnitude. 
-Curiously, we also observe a gravitation towards topical articles such as 
+Philosophy funnels more paths than any other article by two orders of magnitude. 
+We also observe a gravitation towards topical articles such as 
 Health Care and Fossil Fuel. 
 These findings enrich our view of the connections and structure of
 Wikipedia's ever growing store of knowledge.
@@ -151,9 +150,22 @@ Wikipedia's ever growing store of knowledge.
 
 \maketitle
 
+%TODO:
+% Abstract 
+    % In traversing every path, we measure ?
+    % Our findings... braided network (what does this mean?)
+% Formatting
+    % incorporate into template
+% Intro
+    % add month to monthly view stats
+% Method
+    % what to cite for drainage basin in geomorphology
+
+% continue on Page 3
+
 \section{Introduction}
 
-Wikipedia is a towering achievement of the modern era. 
+Wikipedia is a towering achievement of the Internet age. 
 At no point in history has a larger or more meticulously indexed collection of human knowledge 
 existed.
 Wikipedia contains 37 million articles in 283 languages, 
@@ -161,7 +173,7 @@ with coverage spanning everything from little known ancient battles to the lates
 \cite{drugs, stats}.
 Demonstrating its relevance to modern inquiry,
 Wikipedia is the sixth most visited
-site in the world, surpassing 18 billion page views and 26 million edits in a single month
+site in the world, surpassing 18 billion page views and 11 million edits in a single month.
 \cite{wiki_edits, wiki_views}.
 
 Wikipedia has naturally become the object of many studies. 
@@ -183,8 +195,7 @@ compute semantic relatedness
 and disambiguate meaning \cite{disambiguating}.
 
 While these many studies have dissected and fruitfully applied Wikipedia's content,
-few have examined the connections among the many articles
-\cite{links_that_speak}.
+here we examine the connections among the many articles.
 A hyperlink from one Wikipedia article to another
 naturally indicates a relationship between the two articles
 \cite{relevance}.
@@ -194,15 +205,15 @@ such as PageRank
 \cite{pagerank} 
 to topic classification
 \cite{classifier}.
-We treat a hyperlink as a mechanism connecting two topics.
+Here, we treat a hyperlink as a mechanism connecting two topics.
 
 The authors of a Wikipedia article choose where and whether to include a 
 reference to another Wikipedia article
 in the HTML markup.
-For example, the authors of the 
+For example, as of November 2014, the authors of the 
 \href{https://en.wikipedia.org/wiki/Train}{``Train''}
 article
-chose
+had collectively chosen
 ``Amtrak's Acela Express,'' ``steam,'' and ``head-end power'' 
 among others as relevant articles to reference in describing ``Train''
 \cite{wiki_train}
@@ -225,8 +236,8 @@ among others as relevant articles to reference in describing ``Train''
 \end{figure*}
 
 By focusing our attention on the main body of an article---excluding
-elements in the side bars and headings---we 
-systematically capture the core description of a topic.
+elements in side bars and headings---we 
+attempt to systematically capture the core description of a topic.
 Within the body text, the first link marks the earliest moment in a topic's introduction where the 
 authors choose to directly reference another article. 
 While many links reference relevant details, 
@@ -234,31 +245,42 @@ the first link is an association within a topic's initial
 description. While 
 ``Amtrak's Acela Express,'' ``steam,'' and ``head-end power'' 
 are links detailing particulars, the first link, ``rail transport,''
-is the topic the authors associate with ``Train'' in the introduction. 
+is the topic the authors associate with ``Train'' in the introduction
+(Fig.~\ref{fig:Train First Links}).
 ``Banana'' has a first link to ``fruit,'' ``Bob Dylan'' has a first link to 
 ``Blowing in the Wind,'' and ``Physics'' has a first link to ``natural science.''
-Collectively, the first links provide a pragmatic and interpretable 
+Collectively, first links provide a pragmatic and interpretable 
 means to connect each article to another.
 
-By following the first hyperlink to another article in the English edition of
-Wikipedia as of November, 2014, we connect the topic of one article to that of another, ultimately forming a directed network: 
+By following the first hyperlink contained in all articles of the English edition of
+Wikipedia as of November, 2014, we form a directed network:
 {\it Wikipedia's First Link Network} (FLN).
-For methodological details, see section~\ref{Appendix}. 
+Inspired by the claim that the majority of first links lead to
+``Philosophy''---popularized by an 
+\href{https://xkcd.com/903/}{xkcd}
+comic and subsequently
+discussed in blog posts 
+\cite{xkcd, mat_blog, Ilmari_first_links}
+---
+we holistically study how the FLN  yields a flow of connections.
+For methodological details, see Sec.~\ref{Appendix}. 
 
 
 The FLN is a wealth of relations among inventions, places,
 figures, objects, and events across space and time.
 ``Train'' for example, links to a parent node, ``Rail Transport,''
 while many child nodes such as ``Steel'' and ``Horsepower'' link to ``Train.''
+As shown in Fig.~\ref{fig:Train First Links}, the path starting at ``Train'' 
+contains ``Goods,'' ``Economics,'' ``Social Science,''
+leading ultimately to ``Philosophy''.
 Unlike previous taxonomies created by individuals
 \cite{locke, descartes, aristotle, hist_thesaurus},
 the relations in the FLN emerge without a centralized effort 
 as the aggregate of each article's authors choice of first link.
 
 Our goal is to study the structure of the FLN for insight into how the information on Wikipedia is organized and related.
-We develop metrics to capture 
-the dominant features of the FLN's structure.
-We measure dynamics of the FLN as a flow, quantifying 
+Informed by river network metrics,
+we consider the FLN as a flow, quantifying 
 the accumulation of first links around articles 
 and the influence an article exerts in shaping the FLN.
 Together with cycles, in-degree, depth, and the content of the articles, 
@@ -276,27 +298,8 @@ to the dynamics of social networks
 \cite{social_nets}.
 The in-degree distribution in the FLN describes how many first links point to a 
 particular article. 
-Articles with zero in-degree have no references---they are outer leaves in the FLN. 
-The in-degree 
-provides a way to rank the articles in Wikipedia by the number of first link references.
-
-Inspired by the claim that the majority of first links lead to
-``Philosophy''---popularized by an 
-\href{https://xkcd.com/903/}{xkcd}
-comic and subsequently
-discussed in blog posts 
-\cite{xkcd, mat_blog, Ilmari_first_links}
----
-we holistically study how the FLN  yields a flow of connections.
-For example ``Train'' has a first link to 
-``Rail Transport,''
- which is itself
-an article with a first link to 
-``Conveyance of Passengers and Goods,''
-and so on.
-As shown in Fig.~\ref{fig:Train First Links}, the path starting at ``Train'' 
-contains ``Goods,'' ``Economics,'' ``Social Science,''
-leading ultimately to ``Philosophy''.
+Articles with zero in-degree have no references---they are outer leaves in the FLN 
+or are disconnected entirely. 
 
 \begin{figure*}[tp!]
   \includegraphics[width=\textwidth]{graphics/traversal_visit_algo_figure.pdf}  
@@ -315,28 +318,25 @@ Starting at each article, we construct a path through the FLN,
 to map the flow of connections among articles.
 The method is order agnostic with respect to which articles are selected first. As long as each article is selected eventually, the resulting metrics are equivalent.
 Previous studies have used flow to characterize the structure of river networks
-\cite{geo_basins, dodds} and describe the organization of food systems through transportation networks
+\cite{geo_basins, dodds} and describe the organization of 
+blood networks, food systems, and transportation networks
 \cite{food_webs}.
-With paths to mark flow through the FLN, we develop metrics to 
-gauge the accumulation of references, 
-the length of the path relating articles, and the influence a particular
-article exerts in shaping the flow of links through the FLN.
-
 
 The first metric we develop quantifies the accumulation of first links.
 The algorithm begins by selecting an article, then traversing the path formed
 by following the first links. Each time a first link references an article, we increment a count
 associated with the article. 
-We continue until the first link is retraced or is invalid---defined here to mean outside of Wikipedia.
+We continue until a page is revisited or is invalid---defined here to mean pointing to a page outside of Wikipedia.
 We select a second article and repeat the process until we have 
-constructed a path for each article in the network. We call the resulting count for each article the number of {\it traversal visits}. The number of traversal visits of an article 
-measures the number of references flowing to the ideas in the article---equivalent
-to basin area in geomorphology. 
+constructed a path for each article in the network. 
+We define the number of {\it traversal visits} of an article 
+to be the number of references flowing to the ideas in the article---equivalent
+to drainage basin area in geomorphology. 
 
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{graphics/traversal_funnel_algo_figure.pdf}
   \caption{
-    \textbf{Traversal Funnel Algorithm on a sample network.}
+    \textbf{Traversal Funnel Algorithm on a simple network.}
   The algorithm for traversal funnels is identical to the previous algorithm for traversal visits with one alteration: the path ends at the start of a cycle to distinguish articles directing a path into a cycle from articles that simply happen to be in a highly traversed path. We can construct similar vectors by considering each path through the network, measuring traversal funnels for a particular article as the sum of the entries in its corresponding row. For example
   the number of traversal funnels for article $E$ is 
   $\sum_{i=1}^7 E_{\text{funnel, i}} = 2$.}
@@ -810,6 +810,8 @@ used to improve search engine algorithms or natural language processing.
 MI is grateful to RJ for pointing out the Reddit post 
 \cite{reddit}
 describing how the majority of links lead to ``Philosophy,'' inspiring this research.
+
+The authors are also grateful for the suggestions and input provided by Randall Harp.
 
 PSD and CMD acknowledge support from NSF Big Data Grand $\#1447634$.
 
