@@ -1,53 +1,216 @@
-%merlin.mbs apsrev4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
-%Control: key (0)
-%Control: author (8) initials jnrlst
-%Control: editor formatted (1) identically to author
-%Control: production of article title (-1) disabled
-%Control: page (0) single
-%Control: year (1) truncated
-%Control: production of eprint (0) enabled
-\begin{thebibliography}{0}%
-\makeatletter
-\providecommand \@ifxundefined [1]{%
- \@ifx{#1\undefined}
-}%
-\providecommand \@ifnum [1]{%
- \ifnum #1\expandafter \@firstoftwo
- \else \expandafter \@secondoftwo
- \fi
-}%
-\providecommand \@ifx [1]{%
- \ifx #1\expandafter \@firstoftwo
- \else \expandafter \@secondoftwo
- \fi
-}%
-\providecommand \natexlab [1]{#1}%
-\providecommand \enquote  [1]{``#1''}%
-\providecommand \bibnamefont  [1]{#1}%
-\providecommand \bibfnamefont [1]{#1}%
-\providecommand \citenamefont [1]{#1}%
-\providecommand \href@noop [0]{\@secondoftwo}%
-\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
-\providecommand \@href[1]{\@@startlink{#1}\@@href}%
-\providecommand \@@href[1]{\endgroup#1\@@endlink}%
-\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
-  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
-\providecommand \@@startlink[1]{}%
-\providecommand \@@endlink[0]{}%
-\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
-\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
-\providecommand \urlprefix  [0]{URL }%
-\providecommand \Eprint [0]{\href }%
-\providecommand \doibase [0]{http://dx.doi.org/}%
-\providecommand \selectlanguage [0]{\@gobble}%
-\providecommand \bibinfo  [0]{\@secondoftwo}%
-\providecommand \bibfield  [0]{\@secondoftwo}%
-\providecommand \translation [1]{[#1]}%
-\providecommand \BibitemOpen [0]{}%
-\providecommand \bibitemStop [0]{}%
-\providecommand \bibitemNoStop [0]{.\EOS\space}%
-\providecommand \EOS [0]{\spacefactor3000\relax}%
-\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
-\let\auto@bib@innerbib\@empty
-%</preamble>
-\end{thebibliography}%
+\begin{thebibliography}{10}
+
+\bibitem{banerjee2007clustering}
+Somnath Banerjee, Krishnan Ramanathan, and Ajay Gupta.
+\newblock Clustering short texts using wikipedia.
+\newblock In {\em Proceedings of the 30th annual international ACM SIGIR
+  conference on Research and development in information retrieval}, pages
+  787--788. ACM, 2007.
+
+\bibitem{Bolton2007}
+Martha~Brandt Bolton.
+\newblock The taxonomy of ideas in locke's essay.
+\newblock In Lex Newman, editor, {\em The Cambridge Companion to Locke's}.
+  Cambridge University Press, 2007.
+
+\bibitem{chakrabarti2001integrating}
+Soumen Chakrabarti.
+\newblock Integrating the document object model with hyperlinks for enhanced
+  topic distillation and information extraction.
+\newblock In {\em Proceedings of the 10th international conference on World
+  Wide Web}, pages 211--220. ACM, 2001.
+
+\bibitem{clauson2008scope}
+Kevin~A Clauson, Hyla~H Polen, Maged N~Kamel Boulos, and Joan~H Dzenowagis.
+\newblock Scope, completeness, and accuracy of drug information in wikipedia.
+\newblock {\em Annals of Pharmacotherapy}, 42(12):1814--1821, 2008.
+
+\bibitem{cucerzan2007large}
+Silviu Cucerzan.
+\newblock Large-scale named entity disambiguation based on wikipedia data.
+\newblock In {\em EMNLP-CoNLL}, volume~7, pages 708--716, 2007.
+
+\bibitem{hist_thesaurus}
+Oxford~English Dictionary.
+\newblock What is the historical thesaurus of the oed - oxford english
+  dictionary.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{dodds1999unified}
+Peter~Sheridan Dodds and Daniel~H Rothman.
+\newblock Unified view of scaling laws for river networks.
+\newblock {\em Physical Review E}, 59(5):4865, 1999.
+
+\bibitem{eubank2004modelling}
+Stephen Eubank, Hasan Guclu, VS~Anil Kumar, Madhav~V Marathe, Aravind
+  Srinivasan, Zoltan Toroczkai, and Nan Wang.
+\newblock Modelling disease outbreaks in realistic urban social networks.
+\newblock {\em Nature}, 429(6988):180--184, 2004.
+
+\bibitem{gabrilovich2007computing}
+Evgeniy Gabrilovich and Shaul Markovitch.
+\newblock Computing semantic relatedness using wikipedia-based explicit
+  semantic analysis.
+\newblock In {\em IJCAI}, volume~7, pages 1606--1611, 2007.
+
+\bibitem{garlaschelli2003universal}
+Diego Garlaschelli, Guido Caldarelli, and Luciano Pietronero.
+\newblock Universal scaling relations in food webs.
+\newblock {\em Nature}, 423(6936):165--168, 2003.
+
+\bibitem{giles2005internet}
+Jim Giles.
+\newblock Internet encyclopaedias go head to head.
+\newblock {\em Nature}, 438(7070):900--901, 2005.
+
+\bibitem{halavais2008analysis}
+Alexander Halavais and Derek Lackaff.
+\newblock An analysis of topical coverage of wikipedia.
+\newblock {\em Journal of Computer-Mediated Communication}, 13(2):429--440,
+  2008.
+
+\bibitem{hill2013wikipedia}
+Benjamin~Mako Hill and Aaron Shaw.
+\newblock The wikipedia gender gap revisited: Characterizing survey response
+  bias with propensity score estimation.
+\newblock {\em PloS one}, 8(6):e65782, 2013.
+
+\bibitem{holman2008comparison}
+Lucy Holman~Rector.
+\newblock Comparison of wikipedia and other encyclopedias for accuracy,
+  breadth, and depth in historical articles.
+\newblock {\em Reference services review}, 36(1):7--22, 2008.
+
+\bibitem{horton1945erosional}
+Robert~E Horton.
+\newblock Erosional development of streams and their drainage basins;
+  hydrophysical approach to quantitative morphology.
+\newblock {\em Geological society of America bulletin}, 56:275--370, 1945.
+
+\bibitem{iba2010analyzing}
+Takashi Iba, Keiichi Nemoto, Bernd Peters, and Peter~A Gloor.
+\newblock Analyzing the creative editing behavior of wikipedia editors: Through
+  dynamic social network analysis.
+\newblock {\em Procedia-Social and Behavioral Sciences}, 2(4):6441--6456, 2010.
+
+\bibitem{kamps2009wikipedia}
+Jaap Kamps and Marijn Koolen.
+\newblock Is wikipedia link structure different?
+\newblock In {\em Proceedings of the second ACM international conference on Web
+  search and data mining}, pages 232--241. ACM, 2009.
+
+\bibitem{mat_blog}
+Mat Kelcey.
+\newblock do all first links on wikipedia lead to philosophy?
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{newman2003structure}
+Mark~EJ Newman.
+\newblock The structure and function of complex networks.
+\newblock {\em SIAM review}, 45(2):167--256, 2003.
+
+\bibitem{newman2002random}
+Mark~EJ Newman, Duncan~J Watts, and Steven~H Strogatz.
+\newblock Random graph models of social networks.
+\newblock {\em Proceedings of the National Academy of Sciences}, 99(suppl
+  1):2566--2572, 2002.
+
+\bibitem{page1999pagerank}
+Lawrence Page, Sergey Brin, Rajeev Motwani, and Terry Winograd.
+\newblock The pagerank citation ranking: bringing order to the web.
+\newblock {\em Stanford InfoLab}, 1999.
+
+\bibitem{reddit}
+Reddit.
+\newblock Almost every wikipedia page links to philosophy if you keep clicking
+  the first link in every article.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{samoilenko2016linguistic}
+Anna Samoilenko, Fariba Karimi, Daniel Edler, J{\'e}r{\^o}me Kunegis, and
+  Markus Strohmaier.
+\newblock Linguistic neighbourhoods: explaining cultural borders on wikipedia
+  through multilingual co-editing activity.
+\newblock {\em EPJ Data Science}, 5(1):1, 2016.
+
+\bibitem{descartes}
+Kurt Smith.
+\newblock Descartes' theory of ideas.
+\newblock In Edward~N. Zalta, editor, {\em The Stanford Encyclopedia of
+  Philosophy}. Spring 2014 edition, 2014.
+
+\bibitem{weddings}
+SoundVision.com.
+\newblock Wedding statistics in the united states.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{aristotle}
+Paul Studtmann.
+\newblock Aristotle's categories.
+\newblock In Edward~N. Zalta, editor, {\em The Stanford Encyclopedia of
+  Philosophy}. Summer 2014 edition, 2014.
+
+\bibitem{scientology}
+2015. USA Today.~Gannett.
+\newblock Leah remini on scientology: What we learned from 20/20.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{vacc}
+UVM.
+\newblock University of vermont.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{wagner2015s}
+Claudia Wagner, David Garcia, Mohsen Jadidi, and Markus Strohmaier.
+\newblock It's a man's wikipedia? assessing gender inequality in an online
+  encyclopedia.
+\newblock {\em arXiv preprint arXiv:1501.06307}, 2015.
+
+\bibitem{bob_west}
+Bob West.
+\newblock Wikipedia's fixed point.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{media_wiki_templates}
+Wikimedia.
+\newblock Help:templates.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{wiki_views}
+Wikipedia.
+\newblock Page views for wikipedia, non-mobile site, normalized.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{Ilmari_first_links}
+Wikipedia.
+\newblock User:ilmari karonen/first link.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{stats}
+Wikipedia.
+\newblock Wikipedia:statistics. from wikipedia, the free encyclopedia.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{wiki_train}
+Wikipedia.
+\newblock Train --- wikipedia{,} the free encyclopedia, 2016.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{williams2015identifying}
+Jake~Ryland Williams, Eric~M Clark, James~P Bagrow, Christopher~M Danforth, and
+  Peter~Sheridan Dodds.
+\newblock Identifying missing dictionary entries with frequency-conserving
+  context models.
+\newblock {\em Physical Review E}, 92(4):042808, 2015.
+
+\bibitem{xkcd}
+xkcd.
+\newblock xkcd: Extended mind.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{wiki_edits}
+Erik Zachte.
+\newblock Wikipedia statistics: edits per month, April 2016.
+\newblock [Online; accessed 22-April-2016].
+
+\end{thebibliography}

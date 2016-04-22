@@ -162,7 +162,6 @@ Wikipedia's ever growing store of knowledge.
     % change name from traversal funnels to non-cycle traversal visits?
 % Results
     % run MLE; what do i compare against?
-
 \section{Introduction}
 
 Wikipedia is a towering achievement of the Internet age. 
@@ -170,7 +169,7 @@ At no point in history has a larger or more meticulously indexed collection of h
 existed.
 Wikipedia contains 37 million articles in 283 languages, 
 with coverage spanning everything from little known ancient battles to the latest pharmaceutical drugs 
-\cite{drugs, stats}.
+\cite{clauson2008scope, stats}.
 Demonstrating its relevance to modern inquiry,
 Wikipedia is the sixth most visited
 site in the world, surpassing 18 billion page views and 10 million edits in January, 2013 alone.
@@ -178,33 +177,33 @@ site in the world, surpassing 18 billion page views and 10 million edits in Janu
 
 Wikipedia has naturally become the object of many studies. 
 Researchers have examined the cultural dynamics among editors
-\cite{editors, culture_coediting},
+\cite{iba2010analyzing, samoilenko2016linguistic},
 the accuracy of the content relative to traditional encyclopedias
-\cite{accuracy1, accuracy2},
+\cite{holman2008comparison, giles2005internet},
 the topics covered 
-\cite{coverage},
+\cite{halavais2008analysis},
 and bias against portions of the population
-\cite{bias_women}.
+\cite{hill2013wikipedia}.
 Wikipedia's content has also proven to be a powerful tool. 
 Researchers have used Wikipedia to identify missing dictionary entries
-\cite{missing_entries},
+\cite{williams2015identifying},
 cluster short text
-\cite{clustering},
+\cite{banerjee2007clustering},
 compute semantic relatedness
-\cite{semantic_relatedness},
-and disambiguate meaning \cite{disambiguating}.
+\cite{gabrilovich2007computing},
+and disambiguate meaning \cite{cucerzan2007large}.
 
 While these many studies have dissected and fruitfully applied Wikipedia's content,
 here we examine the connections among the many articles.
 A hyperlink from one Wikipedia article to another
 naturally indicates a relationship between the two articles
-\cite{relevance}.
+\cite{kamps2009wikipedia}.
 The notion that hyperlinks convey information about the content of a
 page has proved enormously successful in multiple domains from search engine algorithms 
 such as PageRank 
-\cite{pagerank} 
+\cite{page1999pagerank} 
 to topic classification
-\cite{classifier}.
+\cite{chakrabarti2001integrating}.
 Here, we treat a hyperlink as a mechanism connecting two topics.
 
 The authors of a Wikipedia article choose where and whether to include a 
@@ -260,7 +259,8 @@ Inspired by the claim that the majority of first links lead to
 \href{https://xkcd.com/903/}{xkcd}
 comic and subsequently
 discussed in blog posts 
-\cite{xkcd, mat_blog, Ilmari_first_links}
+\cite{xkcd, mat_blog, Ilmari_first_links, 
+bob_west}
 ---
 we holistically study how the FLN  yields a flow of connections.
 For methodological details, see Sec.~\ref{Appendix}. 
@@ -274,7 +274,7 @@ As shown in Fig.~\ref{fig:Train First Links}, the path starting at ``Train''
 contains ``Goods,'' ``Economics,'' ``Social Science,''
 leading ultimately to ``Philosophy''.
 Unlike previous taxonomies created by individuals
-\cite{locke, descartes, aristotle, hist_thesaurus},
+\cite{Bolton2007, descartes, aristotle, hist_thesaurus},
 the relations in the FLN emerge without a centralized effort 
 as the aggregate of each article's authors choice of first link.
 
@@ -292,11 +292,11 @@ we build our analysis of the relations among the ideas in Wikipedia.
 \label{Traversal Algorithm}
 
 An essential feature of a directed network's structure is the degree distribution 
-\cite{newman}. 
+\cite{newman2003structure}. 
 The degree distribution has been used to study many phenomena from disease outbreak 
-\cite{disease} 
+\cite{eubank2004modelling} 
 to the dynamics of social networks 
-\cite{social_nets}.
+\cite{newman2002random}.
 The in-degree distribution in the FLN describes how many first links point to a 
 particular article. 
 Articles with zero in-degree have no references---they are outer leaves in the FLN 
@@ -319,9 +319,9 @@ Starting at each article, we construct a path through the FLN,
 to map the flow of connections among articles.
 The method is order agnostic with respect to which articles are selected first. As long as each article is selected eventually, the resulting metrics are equivalent.
 Previous studies have used flow to characterize the structure of river networks
-\cite{geo_basins, dodds} and describe the organization of 
+\cite{horton1945erosional, dodds1999unified} and describe the organization of 
 blood networks, food systems, and transportation networks
-\cite{food_webs}.
+\cite{garlaschelli2003universal}.
 
 The first metric we develop quantifies the accumulation of first links.
 The algorithm begins by selecting an article, then traversing the path formed
@@ -766,7 +766,7 @@ We examined only the English edition of Wikipedia at a particular moment in time
 considering only the first link in in each article as a means to relate articles.
 Finally, Wikipedia, while the largest digital 
 collection of human knowledge, is rife with the biases of the many contributing editors
-\cite{bias}.
+\cite{wagner2015s}.
 Nevertheless, the findings do reveal
 generalizable relationships and point to foundational notions.
 
@@ -863,105 +863,8 @@ An online appendix containing all of the code and data used can be accessed \hre
 
 
 
-
-
-\begin{thebibliography}{1}
-
-      \bibitem{editors} Iba, Takashi, et al. ``Analyzing the creative editing behavior of Wikipedia editors: Through dynamic social network analysis.'' Procedia-Social and Behavioral Sciences 2.4 (2010): 6441-6456.
-
-      \bibitem{accuracy1} Holman Rector, Lucy. ``Comparison of Wikipedia and other encyclopedias for accuracy, breadth, and depth in historical articles.'' Reference services review 36.1 (2008): 7-22.
-
-      \bibitem{accuracy2} Giles, Jim. ``Internet encyclopaedias go head to head.'' Nature 438.7070 (2005): 900-901.
-
-       \bibitem{coverage} Halavais, Alexander, and Derek Lackaff. ``An analysis of topical coverage of Wikipedia.'' Journal of Computer Mediated Communication 13.2 (2008): 429-440.
-
-        \bibitem{bias_women} Hill, Benjamin Mako, and Aaron Shaw. ``The Wikipedia gender gap revisited: characterizing survey response bias with propensity score estimation.'' PloS one 8.6 (2013): e65782.
-
-      \bibitem{missing_entries} Williams, Jake Ryland, Clark, Eric M., Bagrow, James P., Danforth, Christopher M. \& Dodds, Peter Sheridan (2015). Identifying missing dictionary entries with frequency-conserving context models. Phys. Rev. E, 92, 042808.
-
-      \bibitem{clustering} Banerjee, Somnath, Krishnan Ramanathan, and Ajay Gupta. ``Clustering short texts using wikipedia.'' Proceedings of the 30th annual international ACM SIGIR conference on Research and development in information retrieval. ACM, 2007.
-
-      \bibitem{semantic_relatedness} Gabrilovich, Evgeniy, and Shaul Markovitch. ``Computing Semantic Relatedness Using Wikipedia-based Explicit Semantic Analysis.'' IJCAI. Vol. 7. 2007.
-
-      \bibitem{disambiguating} Cucerzan, Silviu. ``Large-Scale Named Entity Disambiguation Based on Wikipedia Data.'' EMNLP-CoNLL. Vol. 7. 2007.
-
-      \bibitem{drugs} Clauson, Kevin A., et al. ``Scope, completeness, and accuracy of drug information in Wikipedia.'' Annals of Pharmacotherapy 42.12 (2008): 1814-1821.
-
-      \bibitem{stats} Wikipedia contributors. ``Wikipedia:Statistics.'' Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 9 Nov. 2015. Web. 13 Nov. 2015.
-
-      \bibitem{pagerank} Page, Lawrence, et al. ``The PageRank citation ranking: bringing order to the Web.'' (1999).
-
-      \bibitem{classifier} Chakrabarti, Soumen, Mukul Joshi, and Vivek Tawde. ``Enhanced topic distillation using text, markup tags, and hyperlinks.'' Proceedings of the 24th annual international ACM SIGIR conference on Research and development in information retrieval. ACM, 2001.
-
-      \bibitem{relevance} Kamps, Jaap, and Marijn Koolen. ``Is Wikipedia link structure different?.'' Proceedings of the second ACM international conference on Web search and data mining. ACM, 2009.
-          
-      \bibitem{wiki_train} Wikipedia contributors. ``Train.'' Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 
-          \url{https://en.wikipedia.org/wiki/Train}
-
-    \bibitem{locke} Bolton, Martha Brandt. ``The Taxonomy of Ideas in Locke\textquotesingle s {\it Essay},'' The Cambridge Companion to Locke's ``Essay Concerning Human Understanding.'' Ed.Lex Newman.. 1st ed. Cambridge: Cambridge University Press, 2007. 67-100. Cambridge Companions Online. Web. 13 November 2015. http://dx.doi.org/10.1017/CCOL0521834333.004.
-
-    \bibitem{aristotle} Studtmann, Paul, ``Aristotle's Categories,'' The Stanford Encyclopedia of Philosophy (Summer 2014 Edition), Edward N. Zalta (ed.), \url{http://plato.stanford.edu/archives/sum2014/entries/aristotle-categories/}
-
-    \bibitem{descartes} Smith, Kurt, ``Descartes' Theory of Ideas,'' The Stanford Encyclopedia of Philosophy (Spring 2014 Edition), Edward N. Zalta (ed.), \url{http://plato.stanford.edu/archives/spr2014/entries/descartes-ideas/}
-
-
-    \bibitem{hist_thesaurus} What is the Historical Thesaurus of the OED - Oxford English Dictionary (Oxford English Dictionary)
-    http://public.oed.com/historical-thesaurus-of-the-oed/what-is-the-historical-thesaurus-of-the-oed/
-
-    \bibitem{vacc}  Vermont Advanced Computing Core, \url{http://www.uvm.edu/vacc}.
-
-    \bibitem{wiki_views} Page Views for Wikipedia, Non-mobile site, Normalized (Page Views for Wikipedia, Non-mobile site, Normalized)
-    \url{https://stats.wikimedia.org/EN/TablesPageViewsMonthly.htm}
-
-    \bibitem{weddings} Wedding statistics in the United States (Wedding statistics in the United States)
-    \url{http://www.soundvision.com/article/wedding-statistics-in-the-united-states}
-
-    \bibitem{six_degrees} Elmacioglu, Ergin, and Dongwon Lee. ``On six degrees of separation in DBLP-DB and more.'' ACM SIGMOD Record 34.2 (2005): 33-40.
-
-    \bibitem{wordnet} Princeton University ``About WordNet.'' WordNet. Princeton University. 2010. 
-    \url{http://wordnet.princeton.edu}
-
-    \bibitem{newman} Newman, Mark E.J. ``The structure and function of complex networks.'' SIAM review 45.2 (2003): 167-256.
-
-    \bibitem{disease} Eubank, Stephen, et al. ``Modelling disease outbreaks in realistic urban social networks.'' Nature 429.6988 (2004): 180-184.
-
-    \bibitem{social_nets} Newman, Mark E.J., Duncan J. Watts, and Steven H. Strogatz. ``Random graph models of social networks.'' Proceedings of the National Academy of Sciences 99.suppl 1 (2002): 2566-2572.
-
-    \bibitem{geo_basins} Horton, Robert E. ``Erosional development of streams and their drainage basins; hydrophysical approach to quantitative morphology.'' Geological society of America bulletin 56.3 (1945): 275-370.
-    APA
-
-    \bibitem{dodds} Dodds, Peter Sheridan, and Daniel H. Rothman. ``Unified view of scaling laws for river networks.'' Physical Review E 59.5 (1999): 4865.
-
-    \bibitem{food_webs} Garlaschelli, Diego, Guido Caldarelli, and Luciano Pietronero. ``Universal scaling relations in food webs.'' Nature 423.6936 (2003): 165-168.
-    
-    \bibitem{mat_blog} Brain of Mat Kelcey.
-    ``Do all first links lead to Philosophy?''
-    \url{http://matpalm.com/blog/2011/08/13/wikipedia-philosophy/}
-
-    \bibitem{Ilmari_first_links} User:Ilmari Karonen/First link (Wikipedia)
-    \url{https://en.wikipedia.org/wiki/User:Ilmari_Karonen/First_link}
-
-    \bibitem{xkcd} xkcd: Extended Mind (xkcd: Extended Mind)
-    \url{http://xkcd.com/903/}
-
-    \bibitem{reddit} Almost every Wikipedia page links to Philosophy if you keep clicking the first link in every article. 
-    \url{https://www.reddit.com/r/InternetIsBeautiful/comments/35asgt/almost_every_wikipedia_page_links_to_philosophy/}
-
-    \bibitem{bias} Wagner, Claudia, et al. ``It's a Man's Wikipedia? Assessing Gender Inequality in an Online Encyclopedia.'' arXiv preprint arXiv:1501.06307 (2015).
-
-    \bibitem{wiki_edits} Wikipedia:Statistics 
-    \url{https://en.wikipedia.org/wiki/Wikipedia:Statistics}
-
-    \bibitem{media_wiki_templates} MediaWiki: ``Help: Templates''
-    \url{https://www.mediawiki.org/wiki/Help:Templates}
-
-    \bibitem{links_that_speak} Ronen, Shahar, Bruno Gonçalves, Kevin Z. Hu, Alessandro Vespignani, Steven Pinker, and César A. Hidalgo. ``'Links That Speak: The Global Language Network and Its Association with Global Fame.'' Proceedings of the National Academy of Sciences Proc Natl Acad Sci USA 111.52 (2014).
-
-    \bibitem{scientology} "Leah Remini on Scientology: What We Learned from '20/20'" USA Today. Gannett, 2015. Web. 
-    \url{http://www.usatoday.com/story/life/people/2015/10/31/leah-remini-scientology-what-we-learned-2020/74937324/}
-
-    \bibitem{culture_coediting} Samoilenko, Anna, et al. "Linguistic neighbourhoods: explaining cultural borders on Wikipedia through multilingual co-editing activity." EPJ Data Science 5.1 (2016): 1.
-\end{thebibliography}
+\bibliography{wikipedia-network}{}
+\bibliographystyle{plain}
 
 
 \end{document}
