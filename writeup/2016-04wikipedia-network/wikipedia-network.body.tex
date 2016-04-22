@@ -1,168 +1,3 @@
-\documentclass[pre,twocolumn,twoside,superscriptaddress,floatfix, aps, 10pt]{revtex4-1}
-
-\usepackage{currfile}
-\lefthyphenmin=3
-\righthyphenmin=2
-
-\usepackage{graphicx,epsfig,verbatim,enumerate}
-\usepackage{amssymb,amsmath}
-\usepackage{ifthen}
-
-% Fonts and typesetting settings
-\usepackage[sc]{mathpazo}
-\usepackage[T1]{fontenc}
-\linespread{1.05} % Palatino needs more space between lines
-\usepackage{microtype}
-\usepackage{textcomp}
-
-\usepackage{longtable}
-
-
-\usepackage{mathtools}
-
-\newboolean{twocolswitch}
-
-\newcommand{\www}[1]{\url{#1}}
-\newcommand{\req}[1]{(\ref{#1})}
-\newcommand{\Req}[1]{Eq.~(\ref{#1})}
-
-% Lettrines
-\usepackage{lettrine}
-
-%useful shortcuts
-\def\R{\ensuremath{\mathbb{R}}} %\ensuremath adds math mode, if forgotten
-\def\Q{\ensuremath{\mathbb{Q}}}
-\def\N{\ensuremath{\mathbb{N}}}
-\def\Z{\ensuremath{\mathbb{Z}}}
-\def\C{\ensuremath{\mathbb{C}}}
-
-%shorcuts with arguments
-\newcommand{\abs}[1]{\left\vert#1\right\vert} %nice absolute values
-\newcommand{\bt}[1]{\textbf{#1}} %bold
-\newcommand{\eq}[1]{\begin{align*}#1\end{align*}} %aligned equations
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert} %vector norm
-\renewcommand{\eq}[1]{\begin{align*}#1\end{align*}} %aligned equations
-
-%piecewise function
-
-%\begin{displaymath}
-%   f(x) = \left\{
-%     \begin{array}{lr}
-%       1 & : x \in \mathbb{Q}\\
-%       0 & : x \notin \mathbb{Q}
-%     \end{array}
-%   \right.
-%\end{displaymath} 
-
-
-%environment
-\newcommand{\tab}{\phantom{ssss}}
-
-\usepackage{hyperref}
-\usepackage{color}
-\newcommand{\todo}[1]{\noindent\textcolor{blue}{{$\Box$ #1}}}
-
-%colors
-\definecolor{javagreen}{rgb}{0.25,0.5,0.35} %dark green color
-\definecolor{lightblue}{rgb}{0.149,0.545,0.824} %solarized blue
-\definecolor{sred}{rgb}{0.863, 0.196, 0.184} %solarized red
-
-\newcommand{\blue}[1]{{\leavevmode\color{lightblue}{#1}}} %solarized blue 
-\newcommand{\green}[1]{{\leavevmode\color{javagreen}{#1}}} %command for green
-\newcommand{\red}[1]{{\leavevmode\color{sred}{#1}}} %solarized red
-\newcommand{\gray}[1]{{\leavevmode\color[gray]{0.5}{#1}}} %gray text
-\newcommand{\Prob}[1]{{\rm Pr}\left(#1\right)}
-
-
-\setboolean{twocolswitch}{true}
-
-
-\begin{document}
-
-\title{\protect
-Connecting every bit of knowledge: \\
-The structure of Wikipedia's First Link Network
-}
-
-\date{\today}
-
-\author{
-\firstname{Mark}
-\surname{Ibrahim}
-}
-\email{mark.s.ibrahim@uvm.edu}
-
-\affiliation{Department of Mathematics \& Statistics, 
-    Computational Story Lab,  \\
-    Vermont Complex Systems Center,
-    Vermont Advanced Computing Core,
-    The University of Vermont, Burlington, VT 05401.}
-
-\author{
-\firstname{Christopher}
-\surname{M. Danforth}
-}
-\email{chris.danforth@uvm.edu}
-
-\affiliation{Department of Mathematics \& Statistics, 
-    Computational Story Lab,  \\
-    Vermont Complex Systems Center,
-    Vermont Advanced Computing Core,
-    The University of Vermont, Burlington, VT 05401.}
-
-\author{
-\firstname{Peter}
-\surname{Sheridan Dodds}
-}
-
-\email{peter.dodds@uvm.edu}
-
-\affiliation{Department of Mathematics \& Statistics, 
-    Computational Story Lab,  \\
-    Vermont Complex Systems Center,
-    Vermont Advanced Computing Core,
-    The University of Vermont, Burlington, VT 05401.}
-
-\begin{abstract}
-  \protect
-Apples, porcupines, and the most obscure Bob Dylan song---is every topic a few clicks from Philosophy? 
-Within Wikipedia, the surprising answer is yes: nearly all 
-paths lead to Philosophy.
-Wikipedia is the largest, most meticulously indexed collection of human knowledge ever amassed. 
-More than information about a topic, Wikipedia is a web of naturally emerging relationships.  
-By following the first link in each article, we algorithmically construct a directed network of 
-all 4.7 million articles: Wikipedia's First Link Network.
-Here, we study the English edition of Wikipedia's First Link Network for insight into how the many 
-articles on inventions, places, people, objects, and events are related and organized.  
-By traversing every path, we measure the accumulation of first links, path lengths, basins, cycles, 
-and the influence each article exerts in shaping the network.
-We find scale-free distributions describe path length, 
-accumulation, and influence. Far from dispersed, first links disproportionately accumulate 
-at a few articles---flowing from specific to general and culminating around fundamental notions such as
-Community, State, and Science. 
-Philosophy directs more paths than any other article by two orders of magnitude. 
-We also observe a gravitation towards topical articles such as 
-Health Care and Fossil Fuel. 
-These findings enrich our view of the connections and structure of
-Wikipedia's ever growing store of knowledge.
-
-\end{abstract}
-
-\maketitle
-
-%TODO:
-% Formatting
-    % incorporate into template
-% Abstract 
-    % Our findings... braided network (not sure I understand what this means? braided networks don't come up in the paper)
-        % is the idea to say "we developed an algorithm that's generalizable to a broader class of networks?"
-% Method
-    % what to cite for drainage basin in geomorphology
-    % clarify basin discussion of method
-    % change name from traversal funnels to non-cycle traversal visits?
-% Results
-    % run MLE; what do i compare against?
-
 \section{Introduction}
 
 Wikipedia is a towering achievement of the Internet age. 
@@ -170,7 +5,7 @@ At no point in history has a larger or more meticulously indexed collection of h
 existed.
 Wikipedia contains 37 million articles in 283 languages, 
 with coverage spanning everything from little known ancient battles to the latest pharmaceutical drugs 
-\cite{drugs, stats}.
+\cite{clauson2008scope, stats}.
 Demonstrating its relevance to modern inquiry,
 Wikipedia is the sixth most visited
 site in the world, surpassing 18 billion page views and 10 million edits in January, 2013 alone.
@@ -178,33 +13,33 @@ site in the world, surpassing 18 billion page views and 10 million edits in Janu
 
 Wikipedia has naturally become the object of many studies. 
 Researchers have examined the cultural dynamics among editors
-\cite{editors, culture_coediting},
+\cite{iba2010analyzing, samoilenko2016linguistic},
 the accuracy of the content relative to traditional encyclopedias
-\cite{accuracy1, accuracy2},
+\cite{holman2008comparison, giles2005internet},
 the topics covered 
-\cite{coverage},
+\cite{halavais2008analysis},
 and bias against portions of the population
-\cite{bias_women}.
+\cite{hill2013wikipedia}.
 Wikipedia's content has also proven to be a powerful tool. 
 Researchers have used Wikipedia to identify missing dictionary entries
-\cite{missing_entries},
+\cite{williams2015identifying},
 cluster short text
-\cite{clustering},
+\cite{banerjee2007clustering},
 compute semantic relatedness
-\cite{semantic_relatedness},
-and disambiguate meaning \cite{disambiguating}.
+\cite{gabrilovich2007computing},
+and disambiguate meaning \cite{cucerzan2007large}.
 
 While these many studies have dissected and fruitfully applied Wikipedia's content,
 here we examine the connections among the many articles.
 A hyperlink from one Wikipedia article to another
 naturally indicates a relationship between the two articles
-\cite{relevance}.
+\cite{kamps2009wikipedia}.
 The notion that hyperlinks convey information about the content of a
 page has proved enormously successful in multiple domains from search engine algorithms 
 such as PageRank 
-\cite{pagerank} 
+\cite{page1999pagerank} 
 to topic classification
-\cite{classifier}.
+\cite{chakrabarti2001integrating}.
 Here, we treat a hyperlink as a mechanism connecting two topics.
 
 The authors of a Wikipedia article choose where and whether to include a 
@@ -260,7 +95,8 @@ Inspired by the claim that the majority of first links lead to
 \href{https://xkcd.com/903/}{xkcd}
 comic and subsequently
 discussed in blog posts 
-\cite{xkcd, mat_blog, Ilmari_first_links}
+\cite{xkcd, mat_blog, Ilmari_first_links, 
+bob_west}
 ---
 we holistically study how the FLN  yields a flow of connections.
 For methodological details, see Sec.~\ref{Appendix}. 
@@ -274,7 +110,7 @@ As shown in Fig.~\ref{fig:Train First Links}, the path starting at ``Train''
 contains ``Goods,'' ``Economics,'' ``Social Science,''
 leading ultimately to ``Philosophy''.
 Unlike previous taxonomies created by individuals
-\cite{locke, descartes, aristotle, hist_thesaurus},
+\cite{Bolton2007, descartes, aristotle, hist_thesaurus},
 the relations in the FLN emerge without a centralized effort 
 as the aggregate of each article's authors choice of first link.
 
@@ -292,11 +128,11 @@ we build our analysis of the relations among the ideas in Wikipedia.
 \label{Traversal Algorithm}
 
 An essential feature of a directed network's structure is the degree distribution 
-\cite{newman}. 
+\cite{newman2003structure}. 
 The degree distribution has been used to study many phenomena from disease outbreak 
-\cite{disease} 
+\cite{eubank2004modelling} 
 to the dynamics of social networks 
-\cite{social_nets}.
+\cite{newman2002random}.
 The in-degree distribution in the FLN describes how many first links point to a 
 particular article. 
 Articles with zero in-degree have no references---they are outer leaves in the FLN 
@@ -319,9 +155,9 @@ Starting at each article, we construct a path through the FLN,
 to map the flow of connections among articles.
 The method is order agnostic with respect to which articles are selected first. As long as each article is selected eventually, the resulting metrics are equivalent.
 Previous studies have used flow to characterize the structure of river networks
-\cite{geo_basins, dodds} and describe the organization of 
+\cite{horton1945erosional, dodds1999unified} and describe the organization of 
 blood networks, food systems, and transportation networks
-\cite{food_webs}.
+\cite{garlaschelli2003universal}.
 
 The first metric we develop quantifies the accumulation of first links.
 The algorithm begins by selecting an article, then traversing the path formed
@@ -766,7 +602,7 @@ We examined only the English edition of Wikipedia at a particular moment in time
 considering only the first link in in each article as a means to relate articles.
 Finally, Wikipedia, while the largest digital 
 collection of human knowledge, is rife with the biases of the many contributing editors
-\cite{bias}.
+\cite{wagner2015s}.
 Nevertheless, the findings do reveal
 generalizable relationships and point to foundational notions.
 
@@ -804,164 +640,3 @@ The authors also acknowledge support from the Vermont Advanced Computing Core wh
 
 \newpage
 
-\section{Appendix}
-\label{Appendix}
-
-\subsection{Constructing The First Link Network}
-
-To map Wikipedia's First Link Network, we use the freely-available XML dump of the English edition of Wikipedia. 
-Rather than rely on a sample of articles from which to generalize, we opted to process the entirety of Wikipedia, 
-eliminating any statistical error due to sampling.
-We analyze the snapshot provided on November 2014, representing the state of Wikipedia at the time.
-The November raw dump consists of 11 million articles: 4.7 million unique articles along with redirects
-and disambiguations.
-Knowing Wikipedia is an ever-evolving project with 10 edits every second and 750 new articles per day on average
-\cite{wiki_edits},
-our aim is to characterize the structure of the First Link Network.
-
-Wikipedia renders and stores articles in MediaWiki markup, a markup language with syntax and keywords to format and mark elements in a page. Along with special syntax for links, MediaWiki markup includes templates for audio files, images, and side-bar
-information.
-While a human could manually identify the first link, to map the entire First Link network of 11 million articles, we needed to programmatically untangled the body text from side-bar, header box, and invalid link elements.
-
-While some libraries exist for MediaWiki Markup,
-approaches using existing libraries led to several bugs 
-including trouble with nested links, nested parenthesis, unclosed tags, escape characters 
-as well as compatibility with other libraries used to parse the XML.
-Consequently,  we developed an algorithm for parsing the first link in the XML version of each article.
-Our parsing algorithm aimed to: 
-1) accurately identify the first link among other page elements, and 
-2) efficiently do so---that is without needing for several passes through the data.
-To process an article in a single pass, we developed a hierarchical system of flags:
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{graphics/flags.pdf}  
-  \caption{
-    \textbf{Parsing Algorithm of Wikipedia's XML dump.}
-The highest flag in the hierarchy indicates a Wikimedia template used to mark an element in the side bar, display an image, link to an external file, or another Wikimedia project outside of Wikipeida. Next, to catch any remaining elements outside the main body we have a second flag for <ref>, <div> elements. Finally, we identify parenthesis to ensure we do not capture a link to a pronunciation key.}
-  \label{fig:parsing algorithm}
-\end{figure}
-
-
-The algorithm loops in three-character chunks to account for potentially nested elements, 
-shifting by one character steps through the article markup.
-If any markup triggers for a flag are detected, a flag is raised. 
-Once a flag is raised, we stop processing and proceed to the next character
-until the flag's closing markup.
-A first link is identified only if Flags 1, 2, and 3 are all off.
-In this case, the entire link is retrieved. 
-We then confirm the link is valid by filtering for MediaWiki keywords indicating external page or other projects
-as well as common file extensions for 
-images, audio files, and the like 
-\cite{media_wiki_templates}.
-The first link of an article is then the earliest valid link with unraised flags.
-
-To process the entirety of Wikipedia, we distributed the parsing and processing of the XML dump
-across 112 cores of the UVM supercomputer cluster
-\cite{vacc}.
-We then joined the results to form a hash table containing every Wikipedia article and its corresponding
-first link. The resulting network map is the basis of our analysis.
-An online appendix containing all of the code and data used can be accessed \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.
-
-
-
-
-
-\begin{thebibliography}{1}
-
-      \bibitem{editors} Iba, Takashi, et al. ``Analyzing the creative editing behavior of Wikipedia editors: Through dynamic social network analysis.'' Procedia-Social and Behavioral Sciences 2.4 (2010): 6441-6456.
-
-      \bibitem{accuracy1} Holman Rector, Lucy. ``Comparison of Wikipedia and other encyclopedias for accuracy, breadth, and depth in historical articles.'' Reference services review 36.1 (2008): 7-22.
-
-      \bibitem{accuracy2} Giles, Jim. ``Internet encyclopaedias go head to head.'' Nature 438.7070 (2005): 900-901.
-
-       \bibitem{coverage} Halavais, Alexander, and Derek Lackaff. ``An analysis of topical coverage of Wikipedia.'' Journal of Computer Mediated Communication 13.2 (2008): 429-440.
-
-        \bibitem{bias_women} Hill, Benjamin Mako, and Aaron Shaw. ``The Wikipedia gender gap revisited: characterizing survey response bias with propensity score estimation.'' PloS one 8.6 (2013): e65782.
-
-      \bibitem{missing_entries} Williams, Jake Ryland, Clark, Eric M., Bagrow, James P., Danforth, Christopher M. \& Dodds, Peter Sheridan (2015). Identifying missing dictionary entries with frequency-conserving context models. Phys. Rev. E, 92, 042808.
-
-      \bibitem{clustering} Banerjee, Somnath, Krishnan Ramanathan, and Ajay Gupta. ``Clustering short texts using wikipedia.'' Proceedings of the 30th annual international ACM SIGIR conference on Research and development in information retrieval. ACM, 2007.
-
-      \bibitem{semantic_relatedness} Gabrilovich, Evgeniy, and Shaul Markovitch. ``Computing Semantic Relatedness Using Wikipedia-based Explicit Semantic Analysis.'' IJCAI. Vol. 7. 2007.
-
-      \bibitem{disambiguating} Cucerzan, Silviu. ``Large-Scale Named Entity Disambiguation Based on Wikipedia Data.'' EMNLP-CoNLL. Vol. 7. 2007.
-
-      \bibitem{drugs} Clauson, Kevin A., et al. ``Scope, completeness, and accuracy of drug information in Wikipedia.'' Annals of Pharmacotherapy 42.12 (2008): 1814-1821.
-
-      \bibitem{stats} Wikipedia contributors. ``Wikipedia:Statistics.'' Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 9 Nov. 2015. Web. 13 Nov. 2015.
-
-      \bibitem{pagerank} Page, Lawrence, et al. ``The PageRank citation ranking: bringing order to the Web.'' (1999).
-
-      \bibitem{classifier} Chakrabarti, Soumen, Mukul Joshi, and Vivek Tawde. ``Enhanced topic distillation using text, markup tags, and hyperlinks.'' Proceedings of the 24th annual international ACM SIGIR conference on Research and development in information retrieval. ACM, 2001.
-
-      \bibitem{relevance} Kamps, Jaap, and Marijn Koolen. ``Is Wikipedia link structure different?.'' Proceedings of the second ACM international conference on Web search and data mining. ACM, 2009.
-          
-      \bibitem{wiki_train} Wikipedia contributors. ``Train.'' Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 
-          \url{https://en.wikipedia.org/wiki/Train}
-
-    \bibitem{locke} Bolton, Martha Brandt. ``The Taxonomy of Ideas in Locke\textquotesingle s {\it Essay},'' The Cambridge Companion to Locke's ``Essay Concerning Human Understanding.'' Ed.Lex Newman.. 1st ed. Cambridge: Cambridge University Press, 2007. 67-100. Cambridge Companions Online. Web. 13 November 2015. http://dx.doi.org/10.1017/CCOL0521834333.004.
-
-    \bibitem{aristotle} Studtmann, Paul, ``Aristotle's Categories,'' The Stanford Encyclopedia of Philosophy (Summer 2014 Edition), Edward N. Zalta (ed.), \url{http://plato.stanford.edu/archives/sum2014/entries/aristotle-categories/}
-
-    \bibitem{descartes} Smith, Kurt, ``Descartes' Theory of Ideas,'' The Stanford Encyclopedia of Philosophy (Spring 2014 Edition), Edward N. Zalta (ed.), \url{http://plato.stanford.edu/archives/spr2014/entries/descartes-ideas/}
-
-
-    \bibitem{hist_thesaurus} What is the Historical Thesaurus of the OED - Oxford English Dictionary (Oxford English Dictionary)
-    http://public.oed.com/historical-thesaurus-of-the-oed/what-is-the-historical-thesaurus-of-the-oed/
-
-    \bibitem{vacc}  Vermont Advanced Computing Core, \url{http://www.uvm.edu/vacc}.
-
-    \bibitem{wiki_views} Page Views for Wikipedia, Non-mobile site, Normalized (Page Views for Wikipedia, Non-mobile site, Normalized)
-    \url{https://stats.wikimedia.org/EN/TablesPageViewsMonthly.htm}
-
-    \bibitem{weddings} Wedding statistics in the United States (Wedding statistics in the United States)
-    \url{http://www.soundvision.com/article/wedding-statistics-in-the-united-states}
-
-    \bibitem{six_degrees} Elmacioglu, Ergin, and Dongwon Lee. ``On six degrees of separation in DBLP-DB and more.'' ACM SIGMOD Record 34.2 (2005): 33-40.
-
-    \bibitem{wordnet} Princeton University ``About WordNet.'' WordNet. Princeton University. 2010. 
-    \url{http://wordnet.princeton.edu}
-
-    \bibitem{newman} Newman, Mark E.J. ``The structure and function of complex networks.'' SIAM review 45.2 (2003): 167-256.
-
-    \bibitem{disease} Eubank, Stephen, et al. ``Modelling disease outbreaks in realistic urban social networks.'' Nature 429.6988 (2004): 180-184.
-
-    \bibitem{social_nets} Newman, Mark E.J., Duncan J. Watts, and Steven H. Strogatz. ``Random graph models of social networks.'' Proceedings of the National Academy of Sciences 99.suppl 1 (2002): 2566-2572.
-
-    \bibitem{geo_basins} Horton, Robert E. ``Erosional development of streams and their drainage basins; hydrophysical approach to quantitative morphology.'' Geological society of America bulletin 56.3 (1945): 275-370.
-    APA
-
-    \bibitem{dodds} Dodds, Peter Sheridan, and Daniel H. Rothman. ``Unified view of scaling laws for river networks.'' Physical Review E 59.5 (1999): 4865.
-
-    \bibitem{food_webs} Garlaschelli, Diego, Guido Caldarelli, and Luciano Pietronero. ``Universal scaling relations in food webs.'' Nature 423.6936 (2003): 165-168.
-    
-    \bibitem{mat_blog} Brain of Mat Kelcey.
-    ``Do all first links lead to Philosophy?''
-    \url{http://matpalm.com/blog/2011/08/13/wikipedia-philosophy/}
-
-    \bibitem{Ilmari_first_links} User:Ilmari Karonen/First link (Wikipedia)
-    \url{https://en.wikipedia.org/wiki/User:Ilmari_Karonen/First_link}
-
-    \bibitem{xkcd} xkcd: Extended Mind (xkcd: Extended Mind)
-    \url{http://xkcd.com/903/}
-
-    \bibitem{reddit} Almost every Wikipedia page links to Philosophy if you keep clicking the first link in every article. 
-    \url{https://www.reddit.com/r/InternetIsBeautiful/comments/35asgt/almost_every_wikipedia_page_links_to_philosophy/}
-
-    \bibitem{bias} Wagner, Claudia, et al. ``It's a Man's Wikipedia? Assessing Gender Inequality in an Online Encyclopedia.'' arXiv preprint arXiv:1501.06307 (2015).
-
-    \bibitem{wiki_edits} Wikipedia:Statistics 
-    \url{https://en.wikipedia.org/wiki/Wikipedia:Statistics}
-
-    \bibitem{media_wiki_templates} MediaWiki: ``Help: Templates''
-    \url{https://www.mediawiki.org/wiki/Help:Templates}
-
-    \bibitem{links_that_speak} Ronen, Shahar, Bruno Gonçalves, Kevin Z. Hu, Alessandro Vespignani, Steven Pinker, and César A. Hidalgo. ``'Links That Speak: The Global Language Network and Its Association with Global Fame.'' Proceedings of the National Academy of Sciences Proc Natl Acad Sci USA 111.52 (2014).
-
-    \bibitem{scientology} "Leah Remini on Scientology: What We Learned from '20/20'" USA Today. Gannett, 2015. Web. 
-    \url{http://www.usatoday.com/story/life/people/2015/10/31/leah-remini-scientology-what-we-learned-2020/74937324/}
-
-    \bibitem{culture_coediting} Samoilenko, Anna, et al. "Linguistic neighbourhoods: explaining cultural borders on Wikipedia through multilingual co-editing activity." EPJ Data Science 5.1 (2016): 1.
-\end{thebibliography}
-
-
-\end{document}
