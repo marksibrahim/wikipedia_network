@@ -159,7 +159,7 @@ Wikipedia's ever growing store of knowledge.
 % Method
     % what to cite for drainage basin in geomorphology
     % clarify basin discussion of method
-    % change name from traversal funnels to non-cycle traversal visits?
+    % cite power law papers (clauset and package)
 % Results
     % run MLE; what do i compare against?
 \section{Introduction}
@@ -417,14 +417,13 @@ With accumulated references, cycles, and basins, we can explore how the many art
     We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent geographical and biological abstractions. A full online appendix of the results and data is available \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.}
   \label{fig:indegree list}
 \end{figure}
+
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{graphics/ndegree_loglog.png}
   \caption{
     \textbf{FLN Degree Distribution.}
-We fit the in-degree distribution with a linear $\log_{10}-\log_{10}$ model. 
-The result is a 
-an excellent fit with a Pearson's Correlation Coefficient of $-0.98$, yielding a 
-power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$. 
+    We plot the indegree distribution against rank for all articles with an indegree of at least 1 on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
+    distribution using the Maximum Likelihood Estimator with xmin as the indegree minimizing Kolmogorov-Smirnov distance. We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$.
 }
   \label{fig:degree distribution}
 \end{figure}
@@ -461,10 +460,11 @@ receive most direct first references, while most articles receive few or none.
 The average in-degree for all 11 million articles is 3.6 direct first links with a standard deviation of 89.5.
 Less than $1\%$ of articles have more than 100 direct first links and $75\%$ of articles
 have fewer than 9. 
-We fit the in-degree distribution against each article's rank with a log-log (base 10) linear regression model
+We plot the in-degree distribution against each article's rank with a log-log (base 10) and fit the data to a power law 
+distribution using the Maximum Likelihood Estimator with xmin as the indegree minimizing Kolmogorov-Smirnov distance.
 (see Fig.~\ref{fig:degree distribution}).
-We obtain a Pearson's Correlation Coefficient of $-0.98$
-with a corresponding  power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$. 
+We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$. 
+Finally, we compare the fit against alternative distributions using a Kolmogorov-Smirnov Test. We find a significant log likelihood ratio favoring a  truncated power law ($R < 0, p=4.5\times10^{-13}$) given the limits on the maximum possible indegree.  We find an inconclusive log likelihood ratio for a lognormal distribution and significant log likelihood ratios favoring a power law fit to an exponential ($R  > 0, p=0$) and to a stretched exponential ($R > 0, p = 3.0\times10^{-50}$). 
 
 
 \subsection{Depth of the FLN}
@@ -507,7 +507,6 @@ The bottom regime has a Pearson's Correlation Coefficient of $-0.93$
 with a corresponding power law rank exponent 
 $\alpha = -0.579$ and a size exponent $\gamma = -0.727$.}
   \label{fig:Distribution of Visits}
-
 \end{figure}
 
 
