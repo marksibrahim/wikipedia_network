@@ -106,3 +106,14 @@ template.logline.tex
 
 1 to 3 sentences summarizing the paper.
 Used by some journals, essential for all papers.
+
+
+## Notes (Mark)
+
+* "make-single-latex-file.pl": combines the pieces (title, body, acknowledgements etc.) into a name-revtex4.tex
+* does not compile the latex code
+
+To compile after combining, run "makerevtex4.pl"
+
+
+

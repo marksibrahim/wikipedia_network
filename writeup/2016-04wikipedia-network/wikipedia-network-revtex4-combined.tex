@@ -243,7 +243,7 @@ among others as relevant articles to reference in describing ``Train''
 .
 
 \begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{../graphics/Train.pdf}  
+  \includegraphics[width=\textwidth]{.../graphics/Train.pdf}  
   \caption{
     \textbf{First Link Path For ``Train.''}
     We follow the first link  to another Wikipedia article
@@ -324,7 +324,7 @@ Articles with zero in-degree have no references---they are outer leaves in the F
 or are disconnected entirely. 
 
 \begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{../graphics/traversal_visit_algo_figure.pdf}  
+  \includegraphics[width=\textwidth]{.../graphics/traversal_visit_algo_figure.pdf}  
   \caption{
     \textbf{Traversal Visit Algorithm on a sample network.}
      The traversal visit vectors are an adjacency matrix for the paths through the network: 
@@ -356,7 +356,7 @@ to be the number of references flowing to the ideas in the article---equivalent
 to drainage basin area in geomorphology. 
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/traversal_funnel_algo_figure.pdf}
+  \includegraphics[width=\columnwidth]{.../graphics/traversal_funnel_algo_figure.pdf}
   \caption{
     \textbf{Traversal Funnel Algorithm on a simple network.}
   The algorithm for traversal funnels is identical to the previous algorithm for traversal visits with one alteration: the path ends at the start of a cycle to distinguish articles directing a path into a cycle from articles that simply happen to be in a highly traversed path. We can construct similar vectors by considering each path through the network, measuring traversal funnels for a particular article as the sum of the entries in its corresponding row. For example
@@ -427,21 +427,19 @@ With accumulated references, cycles, and basins, we can explore how the many art
 \subsection{Degree Distribution}
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/articles_ndegree.png}
+  \includegraphics[width=\columnwidth]{.../graphics/articles_ndegree.png}
   \caption{
     \textbf{Highest Ranking Articles by in-degree.}
-    We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent geographical and biological abstractions. 
-}
+    We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent geographical and biological abstractions. A full online appendix of the results and data is available \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.}
   \label{fig:indegree list}
 \end{figure}
+
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/ndegree_loglog.png}
+  \includegraphics[width=\columnwidth]{.../graphics/ndegree_loglog.png}
   \caption{
     \textbf{FLN Degree Distribution.}
-We fit the in-degree distribution with a linear $\log_{10}-\log_{10}$ model. 
-The result is a 
-an excellent fit with a Pearson's Correlation Coefficient of $-0.98$, yielding a 
-power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$. 
+    We plot the indegree distribution against rank for all articles with an indegree of at least 1 on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
+    distribution using the Maximum Likelihood Estimator with xmin as the indegree minimizing Kolmogorov-Smirnov distance. We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$.
 }
   \label{fig:degree distribution}
 \end{figure}
@@ -477,10 +475,11 @@ receive most direct first references, while most articles receive few or none.
 The average in-degree for all 11 million articles is 3.6 direct first links with a standard deviation of 89.5.
 Less than $1\%$ of articles have more than 100 direct first links and $75\%$ of articles
 have fewer than 9. 
-We fit the in-degree distribution against each article's rank with a log-log (base 10) linear regression model
+We plot the in-degree distribution against each article's rank with a log-log (base 10) and fit the data to a power law 
+distribution using the Maximum Likelihood Estimator with xmin as the indegree minimizing Kolmogorov-Smirnov distance.
 (see Fig.~\ref{fig:degree distribution}).
-We obtain a Pearson's Correlation Coefficient of $-0.98$
-with a corresponding  power law rank exponent $\alpha = -0.788$ and a size exponent $\gamma = -0.266$. 
+We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$. 
+Finally, we compare the fit against alternative distributions using a Kolmogorov-Smirnov Test. We find a significant log likelihood ratio favoring a  truncated power law ($R < 0, p=4.5\times10^{-13}$) given the limits on the maximum possible indegree.  We find an inconclusive log likelihood ratio for a lognormal distribution and significant log likelihood ratios favoring a power law fit to an exponential ($R  > 0, p=0$) and to a stretched exponential ($R > 0, p = 3.0\times10^{-50}$). 
 
 \subsection{Depth of the FLN}
 
@@ -494,7 +493,7 @@ We also find similarly lengthy paths following the evolution of a place or topic
 In general, the longest paths connect temporally organized ideas.
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/path_lengths_dist.png}
+  \includegraphics[width=\columnwidth]{.../graphics/path_lengths_dist.png}
   \caption{
     \textbf{Path Length Distribution.}
 The network depth appears to have a bimodal distribution with a median of 29 first links in a path.
@@ -507,7 +506,7 @@ $0$ and $50$ links.}
 
 Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/traversals_per_article.png} 
+  \includegraphics[width=\columnwidth]{.../graphics/traversals_per_article.png} 
   \caption{
     \textbf{Distribution of Traversal Visits.}
 We fit the distribution of traversal visits against article rank with a log-log (base 10) linear regression model log-log model and uncover two regimes: 
@@ -522,11 +521,10 @@ The bottom regime has a Pearson's Correlation Coefficient of $-0.93$
 with a corresponding power law rank exponent 
 $\alpha = -0.579$ and a size exponent $\gamma = -0.727$.}
   \label{fig:Distribution of Visits}
-
 \end{figure}
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/articles_ranked.png}
+  \includegraphics[width=\columnwidth]{.../graphics/articles_ranked.png}
   \caption{
     \textbf{Highest ranking articles by number of traversal visits.}
 We compute the number of traversal visits for each article in the FLN (see 
@@ -554,7 +552,7 @@ Specifically, $99.76\%$ of articles have fewer than $100$ traversal visits; near
 Meanwhile, the highest ranking 30 articles have an extremely disproportionate number of traversal visits.
 
 \begin{figure*}[tph!]
-  \includegraphics[width=\textwidth]{../graphics/2_and_3_cycles.pdf}
+  \includegraphics[width=\textwidth]{.../graphics/2_and_3_cycles.pdf}
   \caption{
     \textbf{Highest ranking 2-cycles and 3-cycles.}
 We identify pairs of articles whose first links point to one another, forming
@@ -584,7 +582,7 @@ a few foundational notions.
 \subsection{Network Cycles}
 \label{cycles}
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/top_funnels.png}
+  \includegraphics[width=\columnwidth]{.../graphics/top_funnels.png}
   \caption{
     \textbf{Funnels.}
 We represent the highest-ranking articles by the number of traversal 
@@ -643,7 +641,7 @@ Other basins around landmass for example begin at specific geographical regions
 such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''.
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/funnels_distribution.png}
+  \includegraphics[width=\columnwidth]{.../graphics/funnels_distribution.png}
   \caption{
     \textbf{Distribution of Traversal Funnels.}
 We fit the distribution with a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed number of traversal funnels. 
@@ -685,7 +683,7 @@ The highest-ranking list also includes ``Hip Hop,'' ``Cancer,'' and ``Web Page.'
 Traversal funnels are comparatively resilient to changes in the FLN over time. While a few links can alter a cycle, potentially changing the number of traversal visits for an article, traversal funnels do not depend on cycles. Even when the particular links between articles change, the overall influence measured by traversal funnels is relatively resilient. 
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/popularity_visits.pdf}
+  \includegraphics[width=\columnwidth]{.../graphics/popularity_visits.pdf}
   \caption{
 \textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal visits.}
 We use the total number of page views provided by Wikipedia for the month
@@ -712,7 +710,7 @@ influencing the structure of the FLN, only a handful of these exert most of the
 control. 
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/popularity_funnels.pdf}
+  \includegraphics[width=\columnwidth]{.../graphics/popularity_funnels.pdf}
   \caption{
 \textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal funnels.}
 We use the total number of page views provided by Wikipedia for the month
