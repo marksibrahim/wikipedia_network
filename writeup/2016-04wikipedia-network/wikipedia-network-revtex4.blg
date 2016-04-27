@@ -6,45 +6,45 @@ Database file #1: wikipedia-network-revtex4Notes.bib
 Database file #2: wikipedia-network.bib
 Warning--empty publisher in descartes
 Warning--empty publisher in aristotle
-You've used 36 entries,
+You've used 38 entries,
             1795 wiz_defined-function locations,
-            647 strings with 8575 characters,
-and the built_in function-call counts, 7769 in all, are:
-= -- 692
-> -- 282
+            657 strings with 8847 characters,
+and the built_in function-call counts, 8253 in all, are:
+= -- 735
+> -- 304
 < -- 7
-+ -- 112
-- -- 76
-* -- 437
-:= -- 1171
-add.period$ -- 114
-call.type$ -- 36
-change.case$ -- 38
++ -- 120
+- -- 82
+* -- 479
+:= -- 1249
+add.period$ -- 120
+call.type$ -- 38
+change.case$ -- 40
 chr.to.int$ -- 0
-cite$ -- 38
-duplicate$ -- 348
-empty$ -- 855
-format.name$ -- 76
-if$ -- 1784
+cite$ -- 40
+duplicate$ -- 366
+empty$ -- 902
+format.name$ -- 82
+if$ -- 1888
 int.to.chr$ -- 0
-int.to.str$ -- 36
-missing$ -- 24
-newline$ -- 183
-num.names$ -- 42
-pop$ -- 175
+int.to.str$ -- 38
+missing$ -- 26
+newline$ -- 193
+num.names$ -- 44
+pop$ -- 177
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 170
+skip$ -- 176
 stack$ -- 0
-substring$ -- 478
-swap$ -- 90
+substring$ -- 521
+swap$ -- 92
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 78
-width$ -- 38
-write$ -- 379
+while$ -- 83
+width$ -- 40
+write$ -- 401
 (There were 2 warnings)

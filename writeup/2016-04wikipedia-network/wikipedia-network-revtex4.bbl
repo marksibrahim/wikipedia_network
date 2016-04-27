@@ -179,6 +179,17 @@ D.~Garlaschelli, G.~Caldarelli, and L.~Pietronero.
 \newblock Universal scaling relations in food webs.
 \newblock {\em Nature}, 423(6936):165--168, 2003.
 
+\bibitem{clauset2009power}
+A.~Clauset, C.~R. Shalizi, and M.~E. Newman.
+\newblock Power-law distributions in empirical data.
+\newblock {\em SIAM review}, 51(4):661--703, 2009.
+
+\bibitem{alstott2014powerlaw}
+J.~Alstott, E.~Bullmore, and D.~Plenz.
+\newblock powerlaw: a python package for analysis of heavy-tailed
+  distributions.
+\newblock {\em PloS one}, 9(1):e85777, 2014.
+
 \bibitem{scientology}
 .~USA Today.~Gannett.
 \newblock Leah remini on scientology: What we learned from 20/20.

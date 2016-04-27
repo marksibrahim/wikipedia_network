@@ -1,0 +1,66 @@
+\section{Appendix}
+\label{Appendix}
+
+\subsection{Constructing The First Link Network}
+
+To map Wikipedia's First Link Network, we use the freely-available XML dump of the English edition of Wikipedia. 
+Rather than rely on a sample of articles from which to generalize, we opted to process the entirety of Wikipedia, 
+eliminating any statistical error due to sampling.
+We analyze the snapshot provided on November 2014, representing the state of Wikipedia at the time.
+The November raw dump consists of 11 million articles: 4.7 million unique articles along with redirects
+and disambiguations.
+Knowing Wikipedia is an ever-evolving project with 10 edits every second and 750 new articles per day on average
+\cite{wiki_edits},
+our aim is to characterize the structure of the First Link Network.
+
+Wikipedia renders and stores articles in MediaWiki markup, a markup language with syntax and keywords to format and mark elements in a page. Along with special syntax for links, MediaWiki markup includes templates for audio files, images, and side-bar
+information.
+While a human could manually identify the first link, to map the entire First Link network of 11 million articles, we needed to programmatically untangled the body text from side-bar, header box, and invalid link elements.
+
+While some libraries exist for MediaWiki Markup,
+approaches using existing libraries led to several bugs 
+including trouble with nested links, nested parenthesis, unclosed tags, escape characters 
+as well as compatibility with other libraries used to parse the XML.
+Consequently,  we developed an algorithm for parsing the first link in the XML version of each article.
+Our parsing algorithm aimed to: 
+1) accurately identify the first link among other page elements, and 
+2) efficiently do so---that is without needing for several passes through the data.
+To process an article in a single pass, we developed a hierarchical system of flags:
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{../graphics/flags.pdf}  
+  \caption{
+    \textbf{Parsing Algorithm of Wikipedia's XML dump.}
+The highest flag in the hierarchy indicates a Wikimedia template used to mark an element in the side bar, display an image, link to an external file, or another Wikimedia project outside of Wikipeida. Next, to catch any remaining elements outside the main body we have a second flag for <ref>, <div> elements. Finally, we identify parenthesis to ensure we do not capture a link to a pronunciation key.}
+  \label{fig:parsing algorithm}
+\end{figure}
+
+
+The algorithm loops in three-character chunks to account for potentially nested elements, 
+shifting by one character steps through the article markup.
+If any markup triggers for a flag are detected, a flag is raised. 
+Once a flag is raised, we stop processing and proceed to the next character
+until the flag's closing markup.
+A first link is identified only if Flags 1, 2, and 3 are all off.
+In this case, the entire link is retrieved. 
+We then confirm the link is valid by filtering for MediaWiki keywords indicating external page or other projects
+as well as common file extensions for 
+images, audio files, and the like 
+\cite{media_wiki_templates}.
+The first link of an article is then the earliest valid link with unraised flags.
+
+To process the entirety of Wikipedia, we distributed the parsing and processing of the XML dump
+across 112 cores of the UVM supercomputer cluster
+\cite{vacc}.
+We then joined the results to form a hash table containing every Wikipedia article and its corresponding
+first link. The resulting network map is the basis of our analysis.
+An online appendix containing all of the code and data used can be accessed \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.
+
+
+\subsection{Power Law Alternative Distributions}
+\label{power_law_comp}
+
+Using the powerlaw Python package developed by Alstott, we apply MLE to fit a power law exponent and compare the fit to alternative distributions
+\cite{clauset2009power, alstott2014powerlaw}.
+For in-degree, we find a significant log likelihood ratio favoring a  truncated power law ($R < 0, p=4.5\times10^{-13}$) given the maximum in-degree is limited by the number of articles in the FLN. We find an inconclusive log likelihood ratio for a lognormal distribution and significant log likelihood ratios favoring a power law fit against an exponential ($R  > 0, p=0$) and against a stretched exponential ($R > 0, p = 3.0\times10^{-50}$). 
+
+

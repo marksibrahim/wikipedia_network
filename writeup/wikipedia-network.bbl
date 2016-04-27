@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{alstott2014powerlaw}
+Jeff Alstott, Ed~Bullmore, and Dietmar Plenz.
+\newblock powerlaw: a python package for analysis of heavy-tailed
+  distributions.
+\newblock {\em PloS one}, 9(1):e85777, 2014.
+
 \bibitem{banerjee2007clustering}
 Somnath Banerjee, Krishnan Ramanathan, and Ajay Gupta.
 \newblock Clustering short texts using wikipedia.
@@ -19,6 +25,11 @@ Soumen Chakrabarti.
   topic distillation and information extraction.
 \newblock In {\em Proceedings of the 10th international conference on World
   Wide Web}, pages 211--220. ACM, 2001.
+
+\bibitem{clauset2009power}
+Aaron Clauset, Cosma~Rohilla Shalizi, and Mark~EJ Newman.
+\newblock Power-law distributions in empirical data.
+\newblock {\em SIAM review}, 51(4):661--703, 2009.
 
 \bibitem{clauson2008scope}
 Kevin~A Clauson, Hyla~H Polen, Maged N~Kamel Boulos, and Joan~H Dzenowagis.

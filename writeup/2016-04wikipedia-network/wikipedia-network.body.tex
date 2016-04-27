@@ -213,12 +213,9 @@ We can readily identify
 the types of cycle structures within the FLN
 and rank each by 
 the number of references directed towards a cycle. 
+We can also identify and rank {\it groups of 
+path-connected articles}, not necessarily forming a perfect cycle.
 
-
-We can also form and rank {\it basins} in the network by identifying groups of 
-path-connected articles, not necessarily forming a perfect cycle.
-A basin connects a group of articles and identifies the paths 
-to a particular article.
 
 While traversal visits measure accumulation, each article's first link also 
 influences the shape of the FLN. 
@@ -238,7 +235,7 @@ recipients of the flow---without exerting direct influence themselves.
 
 By considering the FLN not only as collection of directly linked pairs of articles, but
 as a flow, 
-With accumulated references, cycles, and basins, we can explore how the many articles in Wikipedia are organized and related.
+With accumulated references, cycles, and path-connected groups, we can explore how the many articles in Wikipedia are organized and related.
 
 
 
@@ -260,8 +257,8 @@ With accumulated references, cycles, and basins, we can explore how the many art
   \includegraphics[width=\columnwidth]{../graphics/ndegree_loglog.png}
   \caption{
     \textbf{FLN Degree Distribution.}
-    We plot the indegree distribution against rank for all articles with an indegree of at least 1 on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
-    distribution using the Maximum Likelihood Estimator with xmin as the indegree minimizing Kolmogorov-Smirnov distance. We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$.
+    We plot the in-degree distribution against rank for all articles with an in-degree of at least 1 on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
+    distribution using the Maximum Likelihood Estimator with xmin as the in-degree minimizing Kolmogorov-Smirnov distance. We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$.
 }
   \label{fig:degree distribution}
 \end{figure}
@@ -299,10 +296,13 @@ The average in-degree for all 11 million articles is 3.6 direct first links with
 Less than $1\%$ of articles have more than 100 direct first links and $75\%$ of articles
 have fewer than 9. 
 We plot the in-degree distribution against each article's rank with a log-log (base 10) and fit the data to a power law 
-distribution using the Maximum Likelihood Estimator with xmin as the indegree minimizing Kolmogorov-Smirnov distance.
-(see Fig.~\ref{fig:degree distribution}).
+distribution using the Maximum Likelihood Estimator with xmin as the in-degree minimizing Kolmogorov-Smirnov distance
+(see Fig.~\ref{fig:degree distribution}) 
+\cite{clauset2009power, alstott2014powerlaw}
+.
 We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$. 
-Finally, we compare the fit against alternative distributions using a Kolmogorov-Smirnov Test. We find a significant log likelihood ratio favoring a  truncated power law ($R < 0, p=4.5\times10^{-13}$) given the maximum indegree is limited by the number of articles in the FLN. We find an inconclusive log likelihood ratio for a lognormal distribution and significant log likelihood ratios favoring a power law fit against an exponential ($R  > 0, p=0$) and against a stretched exponential ($R > 0, p = 3.0\times10^{-50}$). 
+We also compare the fit against alternative distributions using the log likelikhood ratio of a Kolmogorov-Smirnov Test 
+(see Sec.~\ref{power_law_comp}).
 
 
 \subsection{Depth of the FLN}
@@ -328,7 +328,6 @@ $0$ and $50$ links.}
   \label{fig:Path Length Distribution}
 \end{figure}
 
-Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{../graphics/traversals_per_article.png} 
   \caption{
@@ -352,7 +351,7 @@ In doing so, we can rank each article by the accumulation of first links.
 The highest ranking articles by traversal visits reveal where the greatest accumulation occurs.}
   \label{fig:highest visits}
 \end{figure}
-
+Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
 This roughly corresponds to the official number of articles on Wikipedia: 
 $~4.7$ million as of November 2014---approximately half of the 11 million 
 articles in the XML dump are redirects or disambiguations, not full articles.
@@ -386,7 +385,7 @@ rank 3-cycles to find they appear to capture three closely related ideas or syno
 \end{figure*}
 In Fig.~\ref{fig:Distribution of Visits}, we fit traversal visits against a power law distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha = 1.7$ and a size exponent $\gamma = 1.6$.
 We also compared the fit against alternative distributions and found signficiant likelihood ratios favoring a power law fit to an exponential ($R>0, p=2.5\times10^{-60}$) and stretched exponential ($R > 0, p=.0001$).
-Similarly to indegree, we found an inconclusive comparison against a lognormal distribution and a signficiant loglikelihood ratio favoring a truncated power law given the max number of traversal visits is restricted by the number of articles in the FLN. 
+Similarly to in-degree, we found an inconclusive comparison against a lognormal distribution and a signficiant loglikelihood ratio favoring a truncated power law given the max number of traversal visits is restricted by the number of articles in the FLN. 
 On the aggregate, the distribution of traversal visits suggests
 a handful of the highest ranking articles contain a disproportionate number of traversal visits, while most have none. The skew in the distribution is not terribly surprising when considering the heuristic of how the links flow: from specific to general. 
 
@@ -435,12 +434,12 @@ or judicial bodies such as the ``Legislative Assembly of Ontario.''
 
 
 
-\subsection{Basins}
+\subsection{Path-Connected Articles}
 
-The highest ranking basins (Sec.~\ref{Traversal Algorithm}) by the number of traversal visits are groups of articles around ``Philosophy.'' 
+The highest ranking groups of path-connected articles (Sec.~\ref{Traversal Algorithm}) by the number of traversal visits are articles around ``Philosophy.'' 
 The highest ranking paths include branches of philosophy flowing through 
 ``Awareness,'' ``Existence,'' and ``Consciousness'' to ``Philosophy,'' 
-which form a cycle of seven articles. As of April 10, 2016 the basin flowing from 
+which form a cycle of seven articles. As of April 10, 2016 the path-connected group around
 ``Philosophy'' has changed to contain instead ``Ancient Greece,'' ``Greek,'' and 
 ``Indo-European Languages'' (see network resilience Sec.~\ref{Traversal Funnels}).
 Other paths
@@ -448,19 +447,19 @@ include concepts around ``Mathematics,'' ``Scientific,'' ``Experiments,''
 ``Biology,'' and ``Fact.''
 These paths link many specific articles to ``Philosophy,'' each funneled through a particular domain.
 
-Moving beyond basins around ``Philosophy,'' we find other basins around 
+Moving beyond ``Philosophy,'' we find other groups around 
 foundational concepts such as ``Community,'' ``Landmass,'' ``Federal Government,'' 
 ``Presentation,'' and ``Belief System.'' 
-The basins around each of these foundational notions are 
-various paths containing related articles. For example around 
-``Community'' we find basins
-flowing from ``United States'' to ``Federal Republic'' to ``Political Union'' to ``State'' culminating at ``Community''; we also find basins flowing from 
+The groups around each of these foundational notions are 
+contain closely related articles. For example the group connecting
+``Community''
+flows from ``United States'' to ``Federal Republic'' to ``Political Union'' to ``State'' culminating at ``Community''; we also find groups flowing from 
 ``Public Policy'' to ``Executive (government)'' to ``Government'' to ``State'' and then 
 to ``Community''; we also find paths flowing through a similar chain beginning
 with ``Democracy,'' another beginning with ``Constitution,'' another at 
 ``Dictatorship,'' and so on. The articles build from specific means of organizing
 a community (or society) and then build up to ``Community.'' 
-Other basins around landmass for example begin at specific geographical regions
+Other path-connected groups around landmass for example begin at specific geographical regions
 such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''.
 
 \begin{figure}[tp!]
@@ -602,12 +601,13 @@ Few articles have most traversal visits, few paths have an exceptionally long pa
 articles are responsible for funneling most paths. When measured against the traversal funnels, 
 ``Philosophy'' emerges as an exceptional article by orders of magnitude. 
 Nevertheless, many other foundational concepts emerged naturally within FLN. 
-Basins around ``Community'', ``State'', and ``Science'' reveal a foundational structure within the network. 
+Path connected-groups around ``Community'', ``State'', and ``Science'' reveal a foundational structure within the network. 
 More curious is the emergence of recently prominent political and economics topics such as ``Fossil Fuel'' and ``Health Care'' 
 within the highest ranking funnels. 
 Wikipedia seems to reflect not only timeless foundations, but also the topical (at least within English speaking society).
 
 Future work could examine other language versions of Wikipedia for potentially telling cultural or regional differences as well as expand the network to more than the first link.
+In addition, the work provides a general algorithm for assessing the structure and measuring influence in a directed network (or any braided flow structure).
 These findings also form the basis for the creation of a taxonomy where 
 every idea, event, or object sits within a hierarchy of connected notions.
 The taxonomy would extend a traditional word thesaurus beyond mere synonyms to a related hierarchy of concepts.
