@@ -1,3 +1,5 @@
+%% :%s/{../graphics/{..graphics
+
 \section{Introduction}
 
 Wikipedia is a towering achievement of the Internet age. 
@@ -300,7 +302,7 @@ We plot the in-degree distribution against each article's rank with a log-log (b
 distribution using the Maximum Likelihood Estimator with xmin as the indegree minimizing Kolmogorov-Smirnov distance.
 (see Fig.~\ref{fig:degree distribution}).
 We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$. 
-Finally, we compare the fit against alternative distributions using a Kolmogorov-Smirnov Test. We find a significant log likelihood ratio favoring a  truncated power law ($R < 0, p=4.5\times10^{-13}$) given the limits on the maximum possible indegree.  We find an inconclusive log likelihood ratio for a lognormal distribution and significant log likelihood ratios favoring a power law fit to an exponential ($R  > 0, p=0$) and to a stretched exponential ($R > 0, p = 3.0\times10^{-50}$). 
+Finally, we compare the fit against alternative distributions using a Kolmogorov-Smirnov Test. We find a significant log likelihood ratio favoring a  truncated power law ($R < 0, p=4.5\times10^{-13}$) given the maximum indegree is limited by the number of articles in the FLN. We find an inconclusive log likelihood ratio for a lognormal distribution and significant log likelihood ratios favoring a power law fit against an exponential ($R  > 0, p=0$) and against a stretched exponential ($R > 0, p = 3.0\times10^{-50}$). 
 
 
 \subsection{Depth of the FLN}
@@ -331,17 +333,11 @@ Of the 11 million articles, 5.5 million had an invalid link or linked back to th
   \includegraphics[width=\columnwidth]{../graphics/traversals_per_article.png} 
   \caption{
     \textbf{Distribution of Traversal Visits.}
-We fit the distribution of traversal visits against article rank with a log-log (base 10) linear regression model log-log model and uncover two regimes: 
-with a cutoff rank of $10^{5}$.
-The top regime ($\log_{10}$(rank) $< 5$) has a Pearson's Correlation 
-Coefficient of $-0.99$ 
-with a corresponding power law rank exponent 
-$\alpha = -1.23$ and a size exponent $\gamma = 0.187$.
+    We plot the number of traversal visits for each article by rank on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
+    distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha = 1.7$ and a size exponent $\gamma = 1.6$.
 The horizontal flattening around the highest
-ranking articles is a result of the cyclic structure (see discussion on cycles).
-The bottom regime has a Pearson's Correlation Coefficient of $-0.93$
-with a corresponding power law rank exponent 
-$\alpha = -0.579$ and a size exponent $\gamma = -0.727$.}
+ranking articles is a result of the cyclic structure (see discussion of Cycles ~\ref{cycles}).
+}
   \label{fig:Distribution of Visits}
 \end{figure}
 
@@ -388,10 +384,10 @@ same concepts as opposed to distinct concepts. Similarly, we identify and
 rank 3-cycles to find they appear to capture three closely related ideas or synonyms.}
   \label{fig:cycles}
 \end{figure*}
-In Fig.~\ref{fig:Distribution of Visits}, we fit traversal visits against rank
-to two regimes corresponding to power law rank exponents of 
-$\alpha = -1.23 (\gamma = 0.187$) and $\alpha = -0.579 (\gamma = -0.727)$.
-On the aggregate, the distribution suggests
+In Fig.~\ref{fig:Distribution of Visits}, we fit traversal visits against a power law distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha = 1.7$ and a size exponent $\gamma = 1.6$.
+We also compared the fit against alternative distributions and found signficiant likelihood ratios favoring a power law fit to an exponential ($R>0, p=2.5\times10^{-60}$) and stretched exponential ($R > 0, p=.0001$).
+Similarly to indegree, we found an inconclusive comparison against a lognormal distribution and a signficiant loglikelihood ratio favoring a truncated power law given the max number of traversal visits is restricted by the number of articles in the FLN. 
+On the aggregate, the distribution of traversal visits suggests
 a handful of the highest ranking articles contain a disproportionate number of traversal visits, while most have none. The skew in the distribution is not terribly surprising when considering the heuristic of how the links flow: from specific to general. 
 
 The highest ranking articles by traversal visits are broad topics spanning academic disciplines 
@@ -471,14 +467,10 @@ such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''
   \includegraphics[width=\columnwidth]{../graphics/funnels_distribution.png}
   \caption{
     \textbf{Distribution of Traversal Funnels.}
-We fit the distribution with a linear log-log model by considering the log (base 10) transformed rank of each article against log (base 10) transformed number of traversal funnels. 
-We find two regimes with the top regime (log(rank) < 4) 
-well-explained by a linear fit, yielding Pearson's 
-Correlation Coefficient of $-0.99$ and a 
-corresponding power law rank exponent $\alpha = -1.08$
-and a size exponent $\gamma = 0.074$. 
-The bottom horizontal regime corresponds to the more than $99\%$ of articles
-which hold zero traversal funnels.}
+    We plot the number of traversal funnels for each article by rank on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
+    distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 30 with a corresponding power law rank exponent $\alpha = 1.73$ and a size exponent $\gamma = 1.57$.
+    The outlier on the top left is Philosophy with more traversal funnels than the second highest ranking article by two orders of magnitude.
+}
   \label{fig:Funnels Distribution}
 \end{figure}
 
@@ -507,7 +499,9 @@ Other high ranking articles include key historical events such as the ``Cold War
 media discussion such as ``Fossil Fuel.'' 
 The highest-ranking list also includes ``Hip Hop,'' ``Cancer,'' and ``Web Page.''
 
-Traversal funnels are comparatively resilient to changes in the FLN over time. While a few links can alter a cycle, potentially changing the number of traversal visits for an article, traversal funnels do not depend on cycles. Even when the particular links between articles change, the overall influence measured by traversal funnels is relatively resilient. 
+In contrast to traversal visits, traversal funnels are comparatively resilient to changes in the FLN over time. 
+While a few links can alter a cycle, potentially displacing an article that was the recipient of references, traversal funnels remain stable even when cycles change.
+
 
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{../graphics/popularity_visits.pdf}
@@ -525,14 +519,11 @@ As a distribution, we find few articles influence the structure of the
 FLN. Only $17, 821$ articles have one or more traversal funnels, leaving
 more than $99\%$ with none---most articles are recipients of 
 the references flowing through the articles with at least one traversal funnel.
-When fit to a log-log linear model we find the $99\%$ of articles with zero
-traversal funnels form one regime (with $\log_{10}$(rank) less than 4).
-The top regime, corresponding to the $17, 821$ articles with at least one 
-traversal funnel strongly fits a linear model with
-a Pearson's Correlation Coefficient of $-0.99$ and a 
-corresponding power law rank exponent $\alpha = -1.08$
-and a size exponent $\gamma = 0.074$ 
-(see Fig.~\ref{fig:Funnels Distribution}). Even within the few articles
+When to a power law 
+    distribution (using the Maximum Likelihood Estimator) with xmin as the number of traversal funnels minimizing Kolmogorov-Smirnov distance), we find xmin to be 30 with a corresponding power law rank exponent $\alpha = 1.73$ and a size exponent $\gamma = 1.57$
+(see Fig.~\ref{fig:Funnels Distribution}). 
+When compared against alternative distributions, we find inconclusive results for lognormal and truncated power law distributions and significant log likelihood ratios favoring a power law for exponential ($R>0, p=5.3\times10^{-6}$) and stretched exponential ($R>0, p = 1.8\times10^{-8}$) distributions.
+Even within the few articles
 influencing the structure of the FLN, only a handful of these exert most of the 
 control. 
 
@@ -623,19 +614,4 @@ The taxonomy would extend a traditional word thesaurus beyond mere synonyms to a
 Applications could range from an enhanced network of ideas to psychological insights into how humans form associations.
 Specifically, an ever-evolving reference of related hierarchical concepts could be 
 used to improve search engine algorithms or natural language processing.
-
-
-\acknowledgments
-MI is grateful to RJ for pointing out the Reddit post 
-\cite{reddit}
-describing how the majority of links lead to ``Philosophy,'' inspiring this research.
-
-The authors are also grateful for the suggestions and input provided by Randall Harp.
-
-PSD and CMD acknowledge support from NSF Big Data Grant $\#1447634$.
-
-The authors also acknowledge support from the Vermont Advanced Computing Core which is supported by NASA (NNX 06AC88G), at the University of Vermont for providing High Performance Computing resources that have contributed to the research results reported within this paper.
-
-
-\newpage
 
