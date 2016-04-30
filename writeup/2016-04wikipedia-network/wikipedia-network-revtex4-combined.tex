@@ -175,7 +175,8 @@ By following the first link in each article, we algorithmically construct a dire
 all 4.7 million articles: Wikipedia's First Link Network.
 Here, we study the English edition of Wikipedia's First Link Network for insight into how the many 
 articles on inventions, places, people, objects, and events are related and organized.  
-By traversing every path, we measure the accumulation of first links, path lengths, basins, cycles, 
+By traversing every path, we measure the accumulation of first links, path lengths,
+groups of path-connected articles, cycles,
 and the influence each article exerts in shaping the network.
 We find scale-free distributions describe path length, 
 accumulation, and influence. Far from dispersed, first links disproportionately accumulate 
@@ -251,7 +252,7 @@ among others as relevant articles to reference in describing ``Train''
 .
 
 \begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{../graphics/Train.pdf}  
+  \includegraphics[width=\textwidth]{figures/Train.pdf}  
   \caption{
     \textbf{First Link Path For ``Train.''}
     We follow the first link  to another Wikipedia article
@@ -298,7 +299,7 @@ we holistically study how the FLN  yields a flow of connections.
 For methodological details, see Sec.~\ref{Appendix}. 
 
 The FLN is a wealth of relations among inventions, places,
-figures, objects, and events across space and time.
+{figures, objects, and events across space and time.
 ``Train'' for example, links to a parent node, ``Rail Transport,''
 while many child nodes such as ``Steel'' and ``Horsepower'' link to ``Train.''
 As shown in Fig.~\ref{fig:Train First Links}, the path starting at ``Train'' 
@@ -332,7 +333,7 @@ Articles with zero in-degree have no references---they are outer leaves in the F
 or are disconnected entirely. 
 
 \begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{../graphics/traversal_visit_algo_figure.pdf}  
+  \includegraphics[width=\textwidth]{figures/traversal_visit_algo_figure.pdf}  
   \caption{
     \textbf{Traversal Visit Algorithm on a sample network.}
      The traversal visit vectors are an adjacency matrix for the paths through the network: 
@@ -364,7 +365,7 @@ to be the number of references flowing to the ideas in the article---equivalent
 to drainage basin area in geomorphology. 
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/traversal_funnel_algo_figure.pdf}
+  \includegraphics[width=\columnwidth]{figures/traversal_funnel_algo_figure.pdf}
   \caption{
     \textbf{Traversal Funnel Algorithm on a simple network.}
   The algorithm for traversal funnels is identical to the previous algorithm for traversal visits with one alteration: the path ends at the start of a cycle to distinguish articles directing a path into a cycle from articles that simply happen to be in a highly traversed path. We can construct similar vectors by considering each path through the network, measuring traversal funnels for a particular article as the sum of the entries in its corresponding row. For example
@@ -424,15 +425,14 @@ directs the flow of links towards the 3-cycle, while articles A and B are
 recipients of the flow---without exerting direct influence themselves. 
 
 By considering the FLN not only as collection of directly linked pairs of articles, but
-as a flow, 
-With accumulated references, cycles, and path-connected groups, we can explore how the many articles in Wikipedia are organized and related.
+as a flow, with accumulated references, cycles, and path-connected groups, we can explore how the many articles in Wikipedia are organized and related.
 
 \section{Results}
 
 \subsection{Degree Distribution}
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/articles_ndegree.png}
+  \includegraphics[width=\columnwidth]{figures/articles_ndegree.png}
   \caption{
     \textbf{Highest Ranking Articles by in-degree.}
     We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent geographical and biological abstractions. A full online appendix of the results and data is available \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.}
@@ -440,11 +440,11 @@ With accumulated references, cycles, and path-connected groups, we can explore h
 \end{figure}
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/ndegree_loglog.png}
+  \includegraphics[width=\columnwidth]{figures/ndegree_loglog.png}
   \caption{
     \textbf{FLN Degree Distribution.}
     We plot the in-degree distribution against rank for all articles with an in-degree of at least 1 on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
-    distribution using the Maximum Likelihood Estimator with xmin as the in-degree minimizing Kolmogorov-Smirnov distance. We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$.
+    distribution using the Maximum Likelihood Estimator with xmin as the in-degree minimizing Kolmogorov-Smirnov distance. We find xmin to be 5 links with a corresponding power law rank exponent $\alpha \simeq 2.44$ and a size exponent $\gamma \simeq 1.41$.
 }
   \label{fig:degree distribution}
 \end{figure}
@@ -485,7 +485,13 @@ distribution using the Maximum Likelihood Estimator with xmin as the in-degree m
 (see Fig.~\ref{fig:degree distribution}) 
 \cite{clauset2009power, alstott2014powerlaw}
 .
-We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$. 
+A power law distribution obeys $Y = r^{-\alpha}$ where $r$ is the rank and $\alpha$ is Zipf's rank
+exponent
+\cite{zipf1949human}
+. We can also examine the size distribution by measuring the number of articles, size $S$, above
+a particular in-degree, which is distributed according to: $S^{-\gamma}$ ($\gamma$ is the size exponent). 
+The two exponents obey the relationship: $\alpha = \frac{1}{\gamma -1}$.
+For in-degree, we find xmin to be 5 links with a corresponding power law rank exponent $\alpha \simeq 2.44$ and a size exponent $\gamma \simeq 1.41$. 
 We also compare the fit against alternative distributions using the log likelikhood ratio of a Kolmogorov-Smirnov Test 
 (see Sec.~\ref{power_law_comp}).
 
@@ -501,7 +507,7 @@ We also find similarly lengthy paths following the evolution of a place or topic
 In general, the longest paths connect temporally organized ideas.
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/path_lengths_dist.png}
+  \includegraphics[width=\columnwidth]{figures/path_lengths_dist.png}
   \caption{
     \textbf{Path Length Distribution.}
 The network depth appears to have a bimodal distribution with a median of 29 first links in a path.
@@ -513,11 +519,11 @@ $0$ and $50$ links.}
 \end{figure}
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/traversals_per_article.png} 
+  \includegraphics[width=\columnwidth]{figures/traversals_per_article.png} 
   \caption{
     \textbf{Distribution of Traversal Visits.}
     We plot the number of traversal visits for each article by rank on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
-    distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha = 1.7$ and a size exponent $\gamma = 1.6$.
+    distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha \simeq 1.72$ and a size exponent $\gamma \simeq 1.58$.
 The horizontal flattening around the highest
 ranking articles is a result of the cyclic structure (see discussion of Cycles ~\ref{cycles}).
 }
@@ -525,7 +531,7 @@ ranking articles is a result of the cyclic structure (see discussion of Cycles ~
 \end{figure}
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/articles_ranked.png}
+  \includegraphics[width=\columnwidth]{figures/articles_ranked.png}
   \caption{
     \textbf{Highest ranking articles by number of traversal visits.}
 We compute the number of traversal visits for each article in the FLN (see 
@@ -553,7 +559,7 @@ Specifically, $99.76\%$ of articles have fewer than $100$ traversal visits; near
 Meanwhile, the highest ranking 30 articles have an extremely disproportionate number of traversal visits.
 
 \begin{figure*}[tph!]
-  \includegraphics[width=\textwidth]{../graphics/2_and_3_cycles.pdf}
+  \includegraphics[width=\textwidth]{figures/2_and_3_cycles.pdf}
   \caption{
     \textbf{Highest ranking 2-cycles and 3-cycles.}
 We identify pairs of articles whose first links point to one another, forming
@@ -564,7 +570,7 @@ same concepts as opposed to distinct concepts. Similarly, we identify and
 rank 3-cycles to find they appear to capture three closely related ideas or synonyms.}
   \label{fig:cycles}
 \end{figure*}
-In Fig.~\ref{fig:Distribution of Visits}, we fit traversal visits against a power law distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha = 1.7$ and a size exponent $\gamma = 1.6$.
+In Fig.~\ref{fig:Distribution of Visits}, we fit traversal visits against a power law distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha \simeq 1.72$ and a size exponent $\gamma \simeq 1.58$.
 We also compared the fit against alternative distributions and found signficiant likelihood ratios favoring a power law fit to an exponential ($R>0, p=2.5\times10^{-60}$) and stretched exponential ($R > 0, p=.0001$).
 Similarly to in-degree, we found an inconclusive comparison against a lognormal distribution and a signficiant loglikelihood ratio favoring a truncated power law given the max number of traversal visits is restricted by the number of articles in the FLN. 
 On the aggregate, the distribution of traversal visits suggests
@@ -583,7 +589,7 @@ a few foundational notions.
 \subsection{Network Cycles}
 \label{cycles}
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/top_funnels.png}
+  \includegraphics[width=\columnwidth]{figures/top_funnels.png}
   \caption{
     \textbf{Funnels.}
 We represent the highest-ranking articles by the number of traversal 
@@ -642,11 +648,11 @@ Other path-connected groups around landmass for example begin at specific geogra
 such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''.
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/funnels_distribution.png}
+  \includegraphics[width=\columnwidth]{figures/funnels_distribution.png}
   \caption{
     \textbf{Distribution of Traversal Funnels.}
     We plot the number of traversal funnels for each article by rank on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
-    distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 30 with a corresponding power law rank exponent $\alpha = 1.73$ and a size exponent $\gamma = 1.57$.
+    distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 30 with a corresponding power law rank exponent $\alpha \simeq 1.73$ and a size exponent $\gamma \simeq 1.58$.
     The outlier on the top left is Philosophy with more traversal funnels than the second highest ranking article by two orders of magnitude.
 }
   \label{fig:Funnels Distribution}
@@ -681,7 +687,7 @@ In contrast to traversal visits, traversal funnels are comparatively resilient t
 While a few links can alter a cycle, potentially displacing an article that was the recipient of references, traversal funnels remain stable even when cycles change.
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/popularity_visits.pdf}
+  \includegraphics[width=\columnwidth]{figures/popularity_visits.pdf}
   \caption{
 \textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal visits.}
 We use the total number of page views provided by Wikipedia for the month
@@ -697,7 +703,7 @@ FLN. Only $17, 821$ articles have one or more traversal funnels, leaving
 more than $99\%$ with none---most articles are recipients of 
 the references flowing through the articles with at least one traversal funnel.
 When to a power law 
-    distribution (using the Maximum Likelihood Estimator) with xmin as the number of traversal funnels minimizing Kolmogorov-Smirnov distance), we find xmin to be 30 with a corresponding power law rank exponent $\alpha = 1.73$ and a size exponent $\gamma = 1.57$
+    distribution (using the Maximum Likelihood Estimator) with xmin as the number of traversal funnels minimizing Kolmogorov-Smirnov distance), we find xmin to be 30 with a corresponding power law rank exponent $\alpha \simeq 1.73$ and a size exponent $\gamma \simeq 1.58$
 (see Fig.~\ref{fig:Funnels Distribution}). 
 When compared against alternative distributions, we find inconclusive results for lognormal and truncated power law distributions and significant log likelihood ratios favoring a power law for exponential ($R>0, p=5.3\times10^{-6}$) and stretched exponential ($R>0, p = 1.8\times10^{-8}$) distributions.
 Even within the few articles
@@ -705,7 +711,7 @@ influencing the structure of the FLN, only a handful of these exert most of the
 control. 
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{../graphics/popularity_funnels.pdf}
+  \includegraphics[width=\columnwidth]{figures/popularity_funnels.pdf}
   \caption{
 \textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal funnels.}
 We use the total number of page views provided by Wikipedia for the month
@@ -786,6 +792,71 @@ The taxonomy would extend a traditional word thesaurus beyond mere synonyms to a
 Applications could range from an enhanced network of ideas to psychological insights into how humans form associations.
 Specifically, an ever-evolving reference of related hierarchical concepts could be 
 used to improve search engine algorithms or natural language processing.
+
+\newpage
+
+\section{Appendix}
+\label{Appendix}
+
+\subsection{Constructing The First Link Network}
+
+To map Wikipedia's First Link Network, we use the freely-available XML dump of the English edition of Wikipedia. 
+Rather than rely on a sample of articles from which to generalize, we opted to process the entirety of Wikipedia, 
+eliminating any statistical error due to sampling.
+We analyze the snapshot provided on November 2014, representing the state of Wikipedia at the time.
+The November raw dump consists of 11 million articles: 4.7 million unique articles along with redirects
+and disambiguations.
+Knowing Wikipedia is an ever-evolving project with 10 edits every second and 750 new articles per day on average
+\cite{wiki_edits},
+our aim is to characterize the structure of the First Link Network.
+
+Wikipedia renders and stores articles in MediaWiki markup, a markup language with syntax and keywords to format and mark elements in a page. Along with special syntax for links, MediaWiki markup includes templates for audio files, images, and side-bar
+information.
+While a human could manually identify the first link, to map the entire First Link network of 11 million articles, we needed to programmatically untangled the body text from side-bar, header box, and invalid link elements.
+
+While some libraries exist for MediaWiki Markup,
+approaches using existing libraries led to several bugs 
+including trouble with nested links, nested parenthesis, unclosed tags, escape characters 
+as well as compatibility with other libraries used to parse the XML.
+Consequently,  we developed an algorithm for parsing the first link in the XML version of each article.
+Our parsing algorithm aimed to: 
+1) accurately identify the first link among other page elements, and 
+2) efficiently do so---that is without needing for several passes through the data.
+To process an article in a single pass, we developed a hierarchical system of flags:
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{figures/flags.pdf}  
+  \caption{
+    \textbf{Parsing Algorithm of Wikipedia's XML dump.}
+The highest flag in the hierarchy indicates a Wikimedia template used to mark an element in the side bar, display an image, link to an external file, or another Wikimedia project outside of Wikipeida. Next, to catch any remaining elements outside the main body we have a second flag for <ref>, <div> elements. Finally, we identify parenthesis to ensure we do not capture a link to a pronunciation key.}
+  \label{fig:parsing algorithm}
+\end{figure}
+
+The algorithm loops in three-character chunks to account for potentially nested elements, 
+shifting by one character steps through the article markup.
+If any markup triggers for a flag are detected, a flag is raised. 
+Once a flag is raised, we stop processing and proceed to the next character
+until the flag's closing markup.
+A first link is identified only if Flags 1, 2, and 3 are all off.
+In this case, the entire link is retrieved. 
+We then confirm the link is valid by filtering for MediaWiki keywords indicating external page or other projects
+as well as common file extensions for 
+images, audio files, and the like 
+\cite{media_wiki_templates}.
+The first link of an article is then the earliest valid link with unraised flags.
+
+To process the entirety of Wikipedia, we distributed the parsing and processing of the XML dump
+across 112 cores of the UVM supercomputer cluster
+\cite{vacc}.
+We then joined the results to form a hash table containing every Wikipedia article and its corresponding
+first link. The resulting network map is the basis of our analysis.
+An online appendix containing all of the code and data used can be accessed \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.
+
+\subsection{Power Law Alternative Distributions}
+\label{power_law_comp}
+
+Using the powerlaw Python package developed by Alstott, we apply MLE to fit a power law exponent and compare the fit to alternative distributions
+\cite{clauset2009power, alstott2014powerlaw}.
+For in-degree, we find a significant log likelihood ratio favoring a  truncated power law ($R < 0, p=4.5\times10^{-13}$) given the maximum in-degree is limited by the number of articles in the FLN. We find an inconclusive log likelihood ratio for a lognormal distribution and significant log likelihood ratios favoring a power law fit against an exponential ($R  > 0, p=0$) and against a stretched exponential ($R > 0, p = 3.0\times10^{-50}$). 
 
 \acknowledgments
 MI is grateful to RJ for pointing out the Reddit post 
@@ -990,6 +1061,11 @@ J.~Alstott, E.~Bullmore, and D.~Plenz.
   distributions.
 \newblock {\em PloS one}, 9(1):e85777, 2014.
 
+\bibitem{zipf1949human}
+G.~K. Zipf.
+\newblock $\{$Human Behaviour and the Principle of Least-Effort$\}$.
+\newblock 1949.
+
 \bibitem{scientology}
 .~USA Today.~Gannett.
 \newblock Leah remini on scientology: What we learned from 20/20.
@@ -1005,6 +1081,16 @@ C.~Wagner, D.~Garcia, M.~Jadidi, and M.~Strohmaier.
 \newblock It's a man's wikipedia? assessing gender inequality in an online
   encyclopedia.
 \newblock {\em arXiv preprint arXiv:1501.06307}, 2015.
+
+\bibitem{media_wiki_templates}
+Wikimedia.
+\newblock Help:templates.
+\newblock [Online; accessed 22-April-2016].
+
+\bibitem{vacc}
+UVM.
+\newblock University of vermont.
+\newblock [Online; accessed 22-April-2016].
 
 \bibitem{reddit}
 Reddit.

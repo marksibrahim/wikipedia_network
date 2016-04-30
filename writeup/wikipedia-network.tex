@@ -384,8 +384,7 @@ directs the flow of links towards the 3-cycle, while articles A and B are
 recipients of the flow---without exerting direct influence themselves. 
 
 By considering the FLN not only as collection of directly linked pairs of articles, but
-as a flow, 
-With accumulated references, cycles, and path-connected groups, we can explore how the many articles in Wikipedia are organized and related.
+as a flow, with accumulated references, cycles, and path-connected groups, we can explore how the many articles in Wikipedia are organized and related.
 
 
 
@@ -408,7 +407,7 @@ With accumulated references, cycles, and path-connected groups, we can explore h
   \caption{
     \textbf{FLN Degree Distribution.}
     We plot the in-degree distribution against rank for all articles with an in-degree of at least 1 on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
-    distribution using the Maximum Likelihood Estimator with xmin as the in-degree minimizing Kolmogorov-Smirnov distance. We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$.
+    distribution using the Maximum Likelihood Estimator with xmin as the in-degree minimizing Kolmogorov-Smirnov distance. We find xmin to be 5 links with a corresponding power law rank exponent $\alpha \simeq 2.44$ and a size exponent $\gamma \simeq 1.41$.
 }
   \label{fig:degree distribution}
 \end{figure}
@@ -450,7 +449,13 @@ distribution using the Maximum Likelihood Estimator with xmin as the in-degree m
 (see Fig.~\ref{fig:degree distribution}) 
 \cite{clauset2009power, alstott2014powerlaw}
 .
-We find xmin to be 5 links with a corresponding power law rank exponent $\alpha = 2.4$ and a size exponent $\gamma = 1.4$. 
+A power law distribution obeys $Y = r^{-\alpha}$ where $r$ is the rank and $\alpha$ is Zipf's rank
+exponent
+\cite{zipf1949human}
+. We can also examine the size distribution by measuring the number of articles, size $S$, above
+a particular in-degree, which is distributed according to: $S^{-\gamma}$ ($\gamma$ is the size exponent). 
+The two exponents obey the relationship: $\alpha = \frac{1}{\gamma -1}$.
+For in-degree, we find xmin to be 5 links with a corresponding power law rank exponent $\alpha \simeq 2.44$ and a size exponent $\gamma \simeq 1.41$. 
 We also compare the fit against alternative distributions using the log likelikhood ratio of a Kolmogorov-Smirnov Test 
 (see Sec.~\ref{power_law_comp}).
 
@@ -483,7 +488,7 @@ $0$ and $50$ links.}
   \caption{
     \textbf{Distribution of Traversal Visits.}
     We plot the number of traversal visits for each article by rank on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
-    distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha = 1.7$ and a size exponent $\gamma = 1.6$.
+    distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha \simeq 1.72$ and a size exponent $\gamma \simeq 1.58$.
 The horizontal flattening around the highest
 ranking articles is a result of the cyclic structure (see discussion of Cycles ~\ref{cycles}).
 }
@@ -533,7 +538,7 @@ same concepts as opposed to distinct concepts. Similarly, we identify and
 rank 3-cycles to find they appear to capture three closely related ideas or synonyms.}
   \label{fig:cycles}
 \end{figure*}
-In Fig.~\ref{fig:Distribution of Visits}, we fit traversal visits against a power law distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha = 1.7$ and a size exponent $\gamma = 1.6$.
+In Fig.~\ref{fig:Distribution of Visits}, we fit traversal visits against a power law distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 866 with a corresponding power law rank exponent $\alpha \simeq 1.72$ and a size exponent $\gamma \simeq 1.58$.
 We also compared the fit against alternative distributions and found signficiant likelihood ratios favoring a power law fit to an exponential ($R>0, p=2.5\times10^{-60}$) and stretched exponential ($R > 0, p=.0001$).
 Similarly to in-degree, we found an inconclusive comparison against a lognormal distribution and a signficiant loglikelihood ratio favoring a truncated power law given the max number of traversal visits is restricted by the number of articles in the FLN. 
 On the aggregate, the distribution of traversal visits suggests
@@ -617,7 +622,7 @@ such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''
   \caption{
     \textbf{Distribution of Traversal Funnels.}
     We plot the number of traversal funnels for each article by rank on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
-    distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 30 with a corresponding power law rank exponent $\alpha = 1.73$ and a size exponent $\gamma = 1.57$.
+    distribution using the Maximum Likelihood Estimator with xmin as the number of traversal visits minimizing Kolmogorov-Smirnov distance. We find xmin to be 30 with a corresponding power law rank exponent $\alpha \simeq 1.73$ and a size exponent $\gamma \simeq 1.58$.
     The outlier on the top left is Philosophy with more traversal funnels than the second highest ranking article by two orders of magnitude.
 }
   \label{fig:Funnels Distribution}
@@ -669,7 +674,7 @@ FLN. Only $17, 821$ articles have one or more traversal funnels, leaving
 more than $99\%$ with none---most articles are recipients of 
 the references flowing through the articles with at least one traversal funnel.
 When to a power law 
-    distribution (using the Maximum Likelihood Estimator) with xmin as the number of traversal funnels minimizing Kolmogorov-Smirnov distance), we find xmin to be 30 with a corresponding power law rank exponent $\alpha = 1.73$ and a size exponent $\gamma = 1.57$
+    distribution (using the Maximum Likelihood Estimator) with xmin as the number of traversal funnels minimizing Kolmogorov-Smirnov distance), we find xmin to be 30 with a corresponding power law rank exponent $\alpha \simeq 1.73$ and a size exponent $\gamma \simeq 1.58$
 (see Fig.~\ref{fig:Funnels Distribution}). 
 When compared against alternative distributions, we find inconclusive results for lognormal and truncated power law distributions and significant log likelihood ratios favoring a power law for exponential ($R>0, p=5.3\times10^{-6}$) and stretched exponential ($R>0, p = 1.8\times10^{-8}$) distributions.
 Even within the few articles
