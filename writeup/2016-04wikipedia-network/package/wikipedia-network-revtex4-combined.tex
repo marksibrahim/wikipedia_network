@@ -113,6 +113,7 @@
 \newcommand{\kstat}{D}
 \newcommand{\clp}{\mbox{$p$-value}}
 \newcommand{\sigamma}{1-\simonrho}
+\graphicspath{{figures/}}
 
 \setboolean{twocolswitch}{true}
 
@@ -252,7 +253,7 @@ among others as relevant articles to reference in describing ``Train''
 .
 
 \begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{fig001_figures/Train.pdf}  
+  \includegraphics[width=\textwidth]{fig001_Train.pdf}  
   \caption{
     \textbf{First Link Path For ``Train.''}
     We follow the first link  to another Wikipedia article
@@ -333,7 +334,7 @@ Articles with zero in-degree have no references---they are outer leaves in the F
 or are disconnected entirely. 
 
 \begin{figure*}[tp!]
-  \includegraphics[width=\textwidth]{fig002_figures/traversal_visit_algo_figure.pdf}  
+  \includegraphics[width=\textwidth]{fig002_traversal_visit_algo_figure.pdf}  
   \caption{
     \textbf{Traversal Visit Algorithm on a sample network.}
      The traversal visit vectors are an adjacency matrix for the paths through the network: 
@@ -365,7 +366,7 @@ to be the number of references flowing to the ideas in the article---equivalent
 to drainage basin area in geomorphology. 
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig003_figures/traversal_funnel_algo_figure.pdf}
+  \includegraphics[width=\columnwidth]{fig003_traversal_funnel_algo_figure.pdf}
   \caption{
     \textbf{Traversal Funnel Algorithm on a simple network.}
   The algorithm for traversal funnels is identical to the previous algorithm for traversal visits with one alteration: the path ends at the start of a cycle to distinguish articles directing a path into a cycle from articles that simply happen to be in a highly traversed path. We can construct similar vectors by considering each path through the network, measuring traversal funnels for a particular article as the sum of the entries in its corresponding row. For example
@@ -432,7 +433,7 @@ as a flow, with accumulated references, cycles, and path-connected groups, we ca
 \subsection{Degree Distribution}
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig004_figures/articles_ndegree.png}
+  \includegraphics[width=\columnwidth]{fig004_articles_ndegree.pdf}
   \caption{
     \textbf{Highest Ranking Articles by in-degree.}
     We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent geographical and biological abstractions. A full online appendix of the results and data is available \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.}
@@ -440,7 +441,7 @@ as a flow, with accumulated references, cycles, and path-connected groups, we ca
 \end{figure}
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig005_figures/ndegree_loglog.png}
+  \includegraphics[width=\columnwidth]{fig005_ndegree_loglog.pdf}
   \caption{
     \textbf{FLN Degree Distribution.}
     We plot the in-degree distribution against rank for all articles with an in-degree of at least 1 on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
@@ -507,7 +508,7 @@ We also find similarly lengthy paths following the evolution of a place or topic
 In general, the longest paths connect temporally organized ideas.
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig006_figures/path_lengths_dist.png}
+  \includegraphics[width=\columnwidth]{fig006_path_lengths_dist.pdf}
   \caption{
     \textbf{Path Length Distribution.}
 The network depth appears to have a bimodal distribution with a median of 29 first links in a path.
@@ -519,7 +520,7 @@ $0$ and $50$ links.}
 \end{figure}
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig007_figures/traversals_per_article.png} 
+  \includegraphics[width=\columnwidth]{fig007_traversals_per_article.pdf} 
   \caption{
     \textbf{Distribution of Traversal Visits.}
     We plot the number of traversal visits for each article by rank on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
@@ -531,7 +532,7 @@ ranking articles is a result of the cyclic structure (see discussion of Cycles ~
 \end{figure}
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig008_figures/articles_ranked.png}
+  \includegraphics[width=\columnwidth]{fig008_articles_ranked.pdf}
   \caption{
     \textbf{Highest ranking articles by number of traversal visits.}
 We compute the number of traversal visits for each article in the FLN (see 
@@ -559,7 +560,7 @@ Specifically, $99.76\%$ of articles have fewer than $100$ traversal visits; near
 Meanwhile, the highest ranking 30 articles have an extremely disproportionate number of traversal visits.
 
 \begin{figure*}[tph!]
-  \includegraphics[width=\textwidth]{fig009_figures/2_and_3_cycles.pdf}
+  \includegraphics[width=\textwidth]{fig009_2_and_3_cycles.pdf}
   \caption{
     \textbf{Highest ranking 2-cycles and 3-cycles.}
 We identify pairs of articles whose first links point to one another, forming
@@ -589,7 +590,7 @@ a few foundational notions.
 \subsection{Network Cycles}
 \label{cycles}
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig010_figures/top_funnels.png}
+  \includegraphics[width=\columnwidth]{fig010_top_funnels.pdf}
   \caption{
     \textbf{Funnels.}
 We represent the highest-ranking articles by the number of traversal 
@@ -648,7 +649,7 @@ Other path-connected groups around landmass for example begin at specific geogra
 such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''.
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig011_figures/funnels_distribution.png}
+  \includegraphics[width=\columnwidth]{fig011_funnels_distribution.pdf}
   \caption{
     \textbf{Distribution of Traversal Funnels.}
     We plot the number of traversal funnels for each article by rank on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
@@ -687,7 +688,7 @@ In contrast to traversal visits, traversal funnels are comparatively resilient t
 While a few links can alter a cycle, potentially displacing an article that was the recipient of references, traversal funnels remain stable even when cycles change.
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig012_figures/popularity_visits.pdf}
+  \includegraphics[width=\columnwidth]{fig012_popularity_visits.pdf}
   \caption{
 \textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal visits.}
 We use the total number of page views provided by Wikipedia for the month
@@ -711,7 +712,7 @@ influencing the structure of the FLN, only a handful of these exert most of the
 control. 
 
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig013_figures/popularity_funnels.pdf}
+  \includegraphics[width=\columnwidth]{fig013_popularity_funnels.pdf}
   \caption{
 \textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal funnels.}
 We use the total number of page views provided by Wikipedia for the month
@@ -824,7 +825,7 @@ Our parsing algorithm aimed to:
 2) efficiently do so---that is without needing for several passes through the data.
 To process an article in a single pass, we developed a hierarchical system of flags:
 \begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{fig014_figures/flags.pdf}  
+  \includegraphics[width=\columnwidth]{fig014_flags.pdf}  
   \caption{
     \textbf{Parsing Algorithm of Wikipedia's XML dump.}
 The highest flag in the hierarchy indicates a Wikimedia template used to mark an element in the side bar, display an image, link to an external file, or another Wikimedia project outside of Wikipeida. Next, to catch any remaining elements outside the main body we have a second flag for <ref>, <div> elements. Finally, we identify parenthesis to ensure we do not capture a link to a pronunciation key.}
