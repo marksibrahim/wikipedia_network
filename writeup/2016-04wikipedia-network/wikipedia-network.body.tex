@@ -98,7 +98,7 @@ Inspired by the claim that the majority of first links lead to
 comic and subsequently
 discussed in blog posts 
 \cite{xkcd, mat_blog, Ilmari_first_links, 
-bob_west}
+bob_west, xefer2011philosophy}
 ---
 we holistically study how the FLN  yields a flow of connections.
 For methodological details, see Sec.~\ref{Appendix}. 
@@ -226,7 +226,7 @@ path-connected articles}, not necessarily forming a perfect cycle.
   \includegraphics[width=\columnwidth]{centrality_measures.pdf}
   \caption{
     \textbf{Centrality Measures}
-    The table above compares standard centrality measures on the sample network against traversal funnels.
+    The table above compares standard centrality measures on the sample network against traversal funnels. While betweenness centrality and eigenvector centrality both reward node A for its place in the cycle, traversal funnels only rewards node C for directing paths into the cycle.
     }
   \label{fig:Centrality Measures}
 
@@ -259,8 +259,9 @@ In addition, traversal funnels extends to directed networks with more than one o
 The same interpretation for traversal funnels as the number of paths a node directs to a cycle still holds. 
 In contrast to betweenness centrality, traversal funnels would not favor the shortest path over any other. Traversal funnels equally weighs all paths up to a cycle. 
 
-For our exploration of the FLN, by considering the FLN not only as collection of directly linked pairs of articles, but
-as a flow, with accumulated references, cycles, and path-connected groups, we can explore how the many articles in Wikipedia are organized and related.
+By considering the FLN not only as collection of directly linked pairs of articles, but
+as a flow, with accumulated references, cycles, and path-connected groups, we explore how the many articles in Wikipedia are organized and related.
+
 
 
 
@@ -533,18 +534,6 @@ In contrast to traversal visits, traversal funnels are comparatively resilient t
 While a few links can alter a cycle, potentially displacing an article that was the recipient of references, traversal funnels remain stable even when cycles change.
 
 
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{popularity_visits.pdf}
-  \caption{
-\textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal visits.}
-We use the total number of page views provided by Wikipedia for the month
-of October 2015 to compare each article's popularity to traversal visits.
-While the most popular articles do not necessarily correspond to the articles
-with the highest number of traversal visits, the variation in popularity appears to decrease as the number of traversal visits increases. The greatest number of articles fall within roughly 1 million traversal visits and page views. Overall, the page views for the top 1000 articles articles by traversal visits appear to be log-normally distributed. 
-}
-  \label{fig:Views and Visits}
-
-\end{figure}
 As a distribution, we find few articles influence the structure of the 
 FLN. Only $17, 821$ articles have one or more traversal funnels, leaving
 more than $99\%$ with none---most articles are recipients of 
@@ -557,16 +546,30 @@ Even within the few articles
 influencing the structure of the FLN, only a handful of these exert most of the 
 control. 
 
+\subsection{Article Popularity}
+
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{popularity_visits.pdf}
+  \caption{
+\textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal visits.}
+We use the total number of page views provided by Wikipedia for the month
+of October 2015 to compare each article's popularity against traversal visits.
+Overall, more page views do not correspond to higher traversal visits---Wikipedia users do not tend to visit articles with a higher accumulation in the FLN more so than they visit others. 
+However, the variation in popularity appears to decrease as the number of traversal visits increases. The greatest number of articles fall within roughly 1 million traversal visits and page views. Furthermore, page views for the top 1000 articles articles by traversal visits appear to be log-normally distributed. 
+}
+  \label{fig:Views and Visits}
+
+\end{figure}
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{popularity_funnels.pdf}
   \caption{
 \textbf{Article Popularity (by page views) for the highest ranking 1000 articles by traversal funnels.}
 We use the total number of page views provided by Wikipedia for the month
 of October 2015 to compare each article's popularity to traversal funnels.
+Similar to traversal visits, more page views do not correspond to higher traversal funnels---Wikipedia users do not tend to visit articles with a higher influence in the FLN more so than they visit others.
 }
   \label{fig:Views and Funnels}
 \end{figure}
-\subsection{Article Popularity}
 
 Wikipedia released an API to measure article popularity by page views
 starting November 2015. 
@@ -610,7 +613,7 @@ among articles influencing the shape of the network, but less popular among
 highly-ranked articles by accumulation.
 
 
-
+Overall, the contrast between page views and traversal visits or funnels highlights a difference between popularity and influence in the FLN. Although traversal funnels and visits point to influential articles where many topics culminate, Wikipedia users do not visit these articles more than others. What is popular, is not necessarily foundational, and vice versa.
 
 
 %========================Conclusion====================================
