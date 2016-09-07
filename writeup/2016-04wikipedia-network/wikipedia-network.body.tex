@@ -248,7 +248,7 @@ In the sample network
 directs the flow of links towards the 3-cycle, while articles A and B are 
 recipients of the flow---without exerting direct influence themselves. 
 
-To compute traversal funnels on a directed network, begin at each node: 1. Traverse the edge to the next node 2. Increment the next node's count 3. Repeat while the next node is unvisited. The resulting count is each node's number of traversal funnels: the number of paths the node directs up to the start of a cycle.
+To compute traversal funnels on a directed network, begin at each node: 1. Traverse the edge to the next node 2. Increment the next node's count by one 3. Repeat while the next node is unvisited. The resulting count is each node's number of traversal funnels: the number of paths the node directs up to the start of a cycle.
 
 As a measure of influence, traversal funnels differs from traditional centrality measures such as degree centrality, betweenness centrality, and eigenvector centrality. 
 Degree centrality characterizes how many articles have a first link to a particular topic, restricting influence to a single link. 
