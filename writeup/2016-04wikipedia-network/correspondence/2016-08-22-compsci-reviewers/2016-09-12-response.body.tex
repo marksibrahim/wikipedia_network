@@ -1,0 +1,62 @@
+\textbf{We thank the reviewers for their well-considered comments and
+suggestions.}
+
+\textbf{As we detail below, we have worked hard to address all concerns in full,
+  and we believe our manuscript has been strengthened.}
+
+\section*{Reviewer 1}
+
+%% \reviewercomment{1}{}
+%% \reply{}
+
+\reviewercomment{1}{This article analyses the Wikipedia(English) image and introduces a directed network based on the ``First Link'' hyperlink through which one article first references the other. Following that the authors apply several network-analytical techniques to analyze the structure of the relationships. In the process, they also introduce concepts in the form of traversal visits and traversal funnels that are relatively novel when compared to traditional network-analytical methods. Following that they present several results, most importantly characterizing the scale-free nature of the degree distribution and the traversal visits. Further they utilize the traversal funnels metric as a measure of influence and characterize the articles on this scale. Further they rightly point out that one of the chief reasons behind some of the observations is the movement from ``Specifics'' to ``General'' nature of the articles thus explaining the influential nature of articles such as
+``Philosophy''.}
+
+\reviewercomment{1}{The article is well motivated especially given the recent attention related to topic of the central position of the ``Philosophy'' article on Wikipedia, as evidenced by posts on Reddit and Quora. The authors take a principled approach in analyzing the first link network. The distinction between traversal and visits and traversal funnels very nicely discriminates the influential articles from the ``accidentally'' influential ones. The results related to the scale-free nature of some of the metrics are noteworthy. The presentation is very clear and I did not find any major typos.  Citations to existing work are adequate.}
+
+\reviewercomment{1}{
+While there are several positives about the article, it did not however come across as very novel. The analyses are in general limited to path-based techniques and there are no comparisons with traditional network analytics (measures such as various notions of centrality). For example while the notion traversal funnels is taken to represent the influence of the articles, it does not come with any analyses or comparison with traditional notions of influence. Also it was not clear from the discussions on article popularity as to what exactly is the message conveyed by figures 12 and 13.
+
+Specifically I would like the authors to address the following two aspects:
+
+(a)     Clarify a bit more with a small network or through some comparisons, the notion of the influence on a directed graph as measured by traversal funnels \\
+(b)     Add more clarity by discussing the results in figs. 12 and 13.}
+
+\reply{In response to the reviewer's suggestions, we added a section comparing traversal funnels against traditional centrality measures such as degree centrality, betweenness centrality, and eigenvector centrality. We also included a table contrasting the centrality given by each method on a sample network to demonstrate the utility of traversal funnels as a measure of influence.
+    
+    In addition, we clarified the captions of figs. 12 and 13  and added a paragraph in our discussion of article popularity. We highlight the difference between popularity and the traversal results which aim to characterize foundational notions.
+}
+
+\section*{Reviewer 2}
+
+\reviewercomment{1}{This paper examines the structure of the ``First Link'' network in Wikipedia.  They begin with the idea from an xkcd comic that claims that every path ends up at Philosophy, and observe that this is mostly true.  They analyze various other features of the graph, such as cycles, traversal funnels, etc.  The paper is largely descriptive.}
+
+\reviewercomment{1}{Here are my major concerns:
+
+1.  This paper is largely descriptive, and the originality seems low.  This idea has clearly been studied before, although admittedly not in scholarly publications.  Confirming these informal previous results does have value, but I would expect to see substantially more.  The notion of looking at how many paths use a node is not new (isn't this just betweenness centrality?), and the authors of the cited blog posts already looked at cycles.  I do like the notion of traversal funnels.
+
+2.  Readers of this journal expect to see a new method/metric/etc. that can be generalized to other datasets.  In its current state, this paper might be a better fit in a computational social science journal.}
+
+\reply{In response to the reviewer's suggestions, we elaborated on traversal funnels as a new generalizable method for measuring influence in a directed network. 
+    We compare traversal funnels against traditional centrality measures such as degree centrality, betweenness centrality, and eigenvector centrality, highlighting the utility of traversal funnels as a new measure of influence. 
+    
+    Specifically, traversal funnels isolates nodes directing paths into a cycle without spill over to other nodes in the cycle. Furthermore, traversal funnels provides an interpretable measure of influence in terms of paths. We include a table demonstrating these differences  on a sample network with a cycle. We also discuss how traversal funnels can be generalized to directed networks with more than a single outward edge.
+}
+
+\reviewercomment{1}{This paper has potential, and I like the ideas in it, but it doesn't contain enough novel content and is not generalizable.  It comes across as a sequence of observations about this particular network. These observations are certainly interesting, but are not enough for a journal paper.  Some suggestions:
+
+1.  Can any of these concepts be generalized to other datasets? \\
+}
+\reply{As noted above, we include a new section discussing traversal funnels as a generalizable method for measuring influence in a directed network, including networks with more than a single outward edge.}
+
+\reviewercomment{1}{
+2.  What happens if you look past just the first link in a wikipedia article?  Say, the first k links?  How is the first link network different from the network generated by looking at all of the links?  Is this notion of considering only the single ``most important'' out-edge something that can be useful in other networks?  How does it affect, say, the community structure of the network?  If you begin with the complete link network, is it possible to somehow identify the first links (i.e., do they have some special structural characteristics)? \\
+}
+\reply{
+    While examining the first k links would surely yield interesting results, we restrict our attention here to the first link in the main body text, noting its importance in anchoring a specific article to the next most general topic. Given our intent to characterize how topics in Wikipedia's First Link Network flow, the first link captures a more appropriate path compared to links appearing later in an article, which may link to detailed subtopics. 
+}
+
+\reviewercomment{1}{
+3.  As is, the paper comes across as very descriptive with little new in the way of methods.   The idea of the traversal funnel seems like a good candidate for a new metric that is of general interest- can you look at how this concept works on other datasets?  Can you introduce an efficient algorithm (which doesn't traverse all paths) for finding these nodes?  Can you generalize to the case when nodes may have more than one out-edge?}
+
+\reply{As noted above, we believe traversal funnels is a new generalizable measure of influence in a directed network. We include a comparison of traversal funnels against traditional centrality measures on a sample network and describe how traversal funnels can be generalized to networks with more than a single outward edge.}
