@@ -140,6 +140,7 @@ particular article.
 Articles with zero in-degree have no references---they are outer leaves in the FLN 
 or are disconnected entirely. 
 
+
 \begin{figure*}[tp!]
   \includegraphics[width=\textwidth]{traversal_visit_algo_figure.pdf}  
   \caption{
@@ -152,7 +153,6 @@ or are disconnected entirely.
   }
   \label{fig:Traversal Visits}
 \end{figure*}
-
 Starting at each article, we construct a path through the FLN, 
 to map the flow of connections among articles.
 The method is order agnostic with respect to which articles are selected first. As long as each article is selected eventually, the resulting metrics are equivalent.
@@ -208,9 +208,6 @@ the number of references directed towards a cycle.
 We can also identify and rank {\it groups of 
 path-connected articles}, not necessarily forming a perfect cycle.
 
-\subsection{Traversal Funnels}
-\label{Traversal Funnels}
-
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{traversal_funnel_algo_figure.pdf}
   \caption{
@@ -221,6 +218,9 @@ path-connected articles}, not necessarily forming a perfect cycle.
   \label{fig:Traversal Funnels}
 
 \end{figure}
+\subsection{Traversal Funnels}
+\label{Traversal Funnels}
+
 
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{centrality_measures.pdf}
@@ -268,10 +268,7 @@ By considering the FLN not only as collection of directly linked pairs of articl
 as a flow using traversal funnels, with accumulated references, cycles, and path-connected groups, we explore how the many articles in Wikipedia are organized and related.
 
 
-
-
 \section{Results}
-
 \subsection{Degree Distribution}
 
 \begin{figure}[tp!]
@@ -281,17 +278,6 @@ as a flow using traversal funnels, with accumulated references, cycles, and path
     We rank each article by the number of direct first links to the article (in-degree). The highest-ranking articles tend to represent geographical and biological abstractions. A full online appendix of the results and data is available \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{here}.}
   \label{fig:indegree list}
 \end{figure}
-
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{ndegree_loglog.pdf}
-  \caption{
-    \textbf{FLN Degree Distribution.}
-    We plot the in-degree distribution against rank for all articles with an in-degree of at least 1 on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
-    distribution using the Maximum Likelihood Estimator with xmin as the in-degree minimizing Kolmogorov-Smirnov distance. We find xmin to be 5 links with a corresponding power law rank exponent $\alpha \simeq 2.44$ and a size exponent $\gamma \simeq 1.41$.
-}
-  \label{fig:degree distribution}
-\end{figure}
-
 We rank all 11 million articles in the FLN by in-degree to find 
 the ``United States'' with 80,249 direct first links as the most referenced
 Wikipedia article 
@@ -339,17 +325,17 @@ For in-degree, we find xmin to be 5 links with a corresponding power law rank ex
 We also compare the fit against alternative distributions using the log likelikhood ratio of a Kolmogorov-Smirnov Test 
 (see Sec.~\ref{power_law_comp}).
 
+\begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{ndegree_loglog.pdf}
+  \caption{
+    \textbf{FLN Degree Distribution.}
+    We plot the in-degree distribution against rank for all articles with an in-degree of at least 1 on a $\log_{10}-\log_{10}$. We then fit the data to a power law 
+    distribution using the Maximum Likelihood Estimator with xmin as the in-degree minimizing Kolmogorov-Smirnov distance. We find xmin to be 5 links with a corresponding power law rank exponent $\alpha \simeq 2.44$ and a size exponent $\gamma \simeq 1.41$.
+}
+  \label{fig:degree distribution}
+\end{figure}
 
 \subsection{Depth of the FLN}
-
-How many links does a connection among articles span? 
-We find the longest path length is 365,
-corresponding to the yearly calendar of Orthodox Liturgics.
-Each day's Liturgics links to the next day's. On the last calendar day, the last article simply links back to January 1, forming a 365-cycle 
-(see discussion of cycles ~\ref{cycles}).
-We also find similarly lengthy paths following the evolution of a place or topic through time: 
-``1953 in Scotland'' or ``1560s Architecture,'' with articles sequentially proceeding by year, decade or era.
-In general, the longest paths connect temporally organized ideas.
 
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{path_lengths_dist.pdf}
@@ -362,6 +348,25 @@ More than $75\%$ of articles have path lengths between
 $0$ and $50$ links.}
   \label{fig:Path Length Distribution}
 \end{figure}
+How many links does a connection among articles span? 
+We find the longest path length is 365,
+corresponding to the yearly calendar of Orthodox Liturgics.
+Each day's Liturgics links to the next day's. On the last calendar day, the last article simply links back to January 1, forming a 365-cycle 
+(see discussion of cycles ~\ref{cycles}).
+We also find similarly lengthy paths following the evolution of a place or topic through time: 
+``1953 in Scotland'' or ``1560s Architecture,'' with articles sequentially proceeding by year, decade or era.
+In general, the longest paths connect temporally organized ideas.
+
+
+Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
+This roughly corresponds to the official number of articles on Wikipedia: 
+$~4.7$ million as of November 2014---approximately half of the 11 million 
+articles in the XML dump are redirects or disambiguations, not full articles.
+The most common path length is 29, with $75\%$ of path lengths ranging between 7--30 articles.
+As a distribution, more than $75\%$ of articles have a path length below 
+$50$ first links 
+while a few temporally organized paths exceed 50 links 
+(see Fig.~\ref{fig:Path Length Distribution}). 
 
 \begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{traversals_per_article.pdf} 
@@ -386,16 +391,6 @@ In doing so, we can rank each article by the accumulation of first links.
 The highest ranking articles by traversal visits reveal where the greatest accumulation occurs.}
   \label{fig:highest visits}
 \end{figure}
-Of the 11 million articles, 5.5 million had an invalid link or linked back to the same article, yielding a path length of zero. 
-This roughly corresponds to the official number of articles on Wikipedia: 
-$~4.7$ million as of November 2014---approximately half of the 11 million 
-articles in the XML dump are redirects or disambiguations, not full articles.
-The most common path length is 29, with $75\%$ of path lengths ranging between 7--30 articles.
-As a distribution, more than $75\%$ of articles have a path length below 
-$50$ first links 
-while a few temporally organized paths exceed 50 links 
-(see Fig.~\ref{fig:Path Length Distribution}). 
-
 
 
 \subsection{Traversal Visits}
@@ -436,18 +431,6 @@ a few foundational notions.
 
 \subsection{Network Cycles}
 \label{cycles}
-\begin{figure}[tp!]
-  \includegraphics[width=\columnwidth]{top_funnels.pdf}
-  \caption{
-    \textbf{Funnels.}
-We represent the highest-ranking articles by the number of traversal 
-funnels to gauge the influence each article exerts in shaping the 
-structure of the FLN. 
-We find ``Philosophy'' exerts an overwhelming proportion
-of the influence, with other abstract notions and topical concepts ranking
-next.}
-  \label{fig:Funnels}
-\end{figure}
 
 We first identify 2-cycles, meaning a pair of articles with first link pointing to one another.
 Of the 11 million articles, roughly 84,000 are members of 2-cycles. 
@@ -498,6 +481,22 @@ Other path-connected groups around landmass for example begin at specific geogra
 such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''.
 
 \begin{figure}[tp!]
+  \includegraphics[width=\columnwidth]{top_funnels.pdf}
+  \caption{
+    \textbf{Funnels.}
+We represent the highest-ranking articles by the number of traversal 
+funnels to gauge the influence each article exerts in shaping the 
+structure of the FLN. 
+We find ``Philosophy'' exerts an overwhelming proportion
+of the influence, with other abstract notions and topical concepts ranking
+next.}
+  \label{fig:Funnels}
+\end{figure}
+
+\subsection{Traversal Funnels}
+\label{Traversal Funnels}
+
+\begin{figure}[tp!]
   \includegraphics[width=\columnwidth]{funnels_distribution.pdf}
   \caption{
     \textbf{Distribution of Traversal Funnels.}
@@ -507,9 +506,6 @@ such as ``Eastern Europe'' building up to ``Continent'' and finally ``Landmass''
 }
   \label{fig:Funnels Distribution}
 \end{figure}
-
-\subsection{Traversal Funnels}
-\label{Traversal Funnels}
 
 To analyze the influence an article exerts in shaping the 
 structure of the FLN, we compute the number of traversal funnels for each.

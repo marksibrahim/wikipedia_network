@@ -1,4 +1,5 @@
 *.out
 *.log
 *.aux
+.DS_Store
 thesis_format/
