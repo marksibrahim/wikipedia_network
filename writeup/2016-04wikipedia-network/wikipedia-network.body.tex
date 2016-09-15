@@ -226,8 +226,7 @@ path-connected articles}, not necessarily forming a perfect cycle.
   \includegraphics[width=\columnwidth]{centrality_measures.pdf}
   \caption{
     \textbf{Centrality Measures}
-    The table above compares standard centrality measures on the sample network against traversal funnels. While betweenness centrality and eigenvector centrality both reward node A for its place in the cycle, traversal funnels only rewards node C for directing paths into the cycle.
-    }
+    The table above compares standard centrality measures on the sample network against traversal funnels. While betweenness centrality and eigenvector centrality both reward node A for its place in the cycle, traversal funnels only rewards node C for directing paths into the cycle. }
   \label{fig:Centrality Measures}
 
 \end{figure}
@@ -254,9 +253,12 @@ As a measure of influence, traversal funnels differs from traditional centrality
 Degree centrality characterizes how many articles have a first link to a particular topic, restricting influence to a single link. 
 Betweenness centrality and eigenvalue centrality capture flow within the network more than a single link away. 
 Unlike traversal funnels however, betweenness centrality and eigenvalue centrality reward nodes that simply happen to be in a cycle. 
-In our sample network (see Fig.~\ref{fig:Centrality Measures}), node A is has betweenness centrality of 0.17 and eigenvalue centrality of 0.58 although node A is simply the recipient of paths directed by node C.
-Eigenvector centrality even assigns the same centrality to nodes A, B, and C. In contrast, traversal funnels defines a path without a predetermined end node, following the progression of links to its culmination at the start of a cycle. Furthermore, traversal funnels provides an interpretable metric: a node's traversal funnels is the number of paths the node directs to the start of a cycle. 
-Consequently, traversal funnels allow us to isolate the paths directed by node C without any spill over effect on other nodes in its cycle. 
+We compute betweenness centrality and eigenvalue centrality on the sample network using \href{https://networkx.github.io/}{NetworkX}, a Python package for modelling complex networks (see the \href{http://compstorylab.org/share/papers/ibrahim2016a/index.html}{online appendix} for details). 
+In our sample network (see Fig.~\ref{fig:Centrality Measures}), node A has betweenness centrality of 0.17 and eigenvalue centrality of 0.58, although node A is simply the recipient of paths directed by node C.
+Eigenvector centrality even assigns the same centrality to nodes A, B, and C. 
+
+In contrast, traversal funnels defines a path without a predetermined end node, following the progression of links to its culmination at the start of a cycle. Furthermore, traversal funnels provides an interpretable metric: a node's traversal funnels is the number of paths the node directs to the start of a cycle. 
+Consequently, traversal funnels allow us to isolate the paths directed by node C, of which there are 4, without any spill over effect on other nodes in its cycle: A and B have zero traversal funnels. 
 
 In addition, traversal funnels extends to directed networks with more than one outward edge. In such a network, there may be multiple paths associated with a single starting node. 
 The same interpretation for traversal funnels as the number of paths a node directs to a cycle still holds. 
@@ -264,8 +266,6 @@ In contrast to betweenness centrality, traversal funnels would not favor the sho
 
 By considering the FLN not only as collection of directly linked pairs of articles, but
 as a flow using traversal funnels, with accumulated references, cycles, and path-connected groups, we explore how the many articles in Wikipedia are organized and related.
-
-
 
 
 
