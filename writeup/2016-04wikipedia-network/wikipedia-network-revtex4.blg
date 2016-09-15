@@ -7,45 +7,45 @@ Database file #2: wikipedia-network.bib
 Warning--empty publisher in descartes
 Warning--empty publisher in aristotle
 Warning--empty journal in zipf1949human
-You've used 41 entries,
+You've used 42 entries,
             1795 wiz_defined-function locations,
-            669 strings with 9038 characters,
-and the built_in function-call counts, 8635 in all, are:
-= -- 763
-> -- 316
+            672 strings with 9101 characters,
+and the built_in function-call counts, 8762 in all, are:
+= -- 772
+> -- 320
 < -- 7
-+ -- 126
-- -- 85
++ -- 128
+- -- 86
 * -- 482
-:= -- 1308
-add.period$ -- 129
-call.type$ -- 41
-change.case$ -- 43
+:= -- 1326
+add.period$ -- 132
+call.type$ -- 42
+change.case$ -- 44
 chr.to.int$ -- 0
-cite$ -- 44
-duplicate$ -- 384
-empty$ -- 954
-format.name$ -- 85
-if$ -- 1977
+cite$ -- 45
+duplicate$ -- 389
+empty$ -- 973
+format.name$ -- 86
+if$ -- 2008
 int.to.chr$ -- 0
-int.to.str$ -- 41
+int.to.str$ -- 42
 missing$ -- 27
-newline$ -- 208
-num.names$ -- 47
-pop$ -- 200
+newline$ -- 213
+num.names$ -- 48
+pop$ -- 209
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 185
+skip$ -- 188
 stack$ -- 0
 substring$ -- 521
-swap$ -- 94
+swap$ -- 95
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 3
-while$ -- 86
-width$ -- 43
-write$ -- 428
+while$ -- 87
+width$ -- 44
+write$ -- 437
 (There were 3 warnings)

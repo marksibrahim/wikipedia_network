@@ -1,0 +1,55 @@
+%% note: tikz loads xcolor
+\PassOptionsToPackage{svgnames,table}{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes,snakes}
+
+%% \usepackage[svgnames,table]{xcolor}
+\definecolor{lightgrey}{rgb}{0.7,0.7,0.7}
+\definecolor{grey}{rgb}{0.5,0.5,0.5}
+%% \definecolor{green}{rgb}{0.1,0.9,0.1}
+\definecolor{darkgrey}{rgb}{0.3,0.3,0.3}
+
+%% for highlighted quotes
+%% http://www.texample.net/tikz/examples/boxes-with-text-and-math/
+\tikzstyle{mybox} = [draw=grey, fill=yellow!5, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\tikzstyle{fancytitle} =[fill=grey, text=white]
+
+\newcommand{\reviewercomment}[2]{
+\bigskip
+\begin{tikzpicture}
+  \node [mybox] (box){%
+    \begin{minipage}{0.95\textwidth}
+      #2
+    \end{minipage}
+  };
+%%  \node[fancytitle, right=10pt] at (box.north west) {Reviewer #1};
+  \node[fancytitle, right=10pt] at (box.north west) {Comment};
+\end{tikzpicture}%
+
+}
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\color{black}\Large\bfseries\filcenter}{}{1em}{}
+
+\usepackage{graphics}
+\usepackage{rotating}
+\usepackage{color}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{listings}
+%% \pagestyle{empty}
+
+\newcommand{\pointRaised}[1]{\vspace{5mm}
+  \hrule
+  \vspace{5mm}
+\noindent {{\it #1}}}
+
+\newcommand{\reply}[1]{\vspace{5mm}\noindent \textbf{Reply}: #1}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\usepackage[normalem]{ulem}
+\usepackage[makeroom]{cancel}
