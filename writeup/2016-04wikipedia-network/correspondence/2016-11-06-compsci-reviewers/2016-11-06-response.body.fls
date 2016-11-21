@@ -1,0 +1,6 @@
+PWD /Users/mark/Dropbox/Math/Complex_Systems/Research/wikipedia-network/paper/writeup/2016-04wikipedia-network/correspondence/2016-11-06-compsci-reviewers
+INPUT /usr/local/texlive/2015/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-var/web2c/xetex/xelatex.fmt
+INPUT 2016-11-06-response.body.tex
+OUTPUT 2016-11-06-response.body.log

@@ -118,9 +118,9 @@ as the aggregate of each article's authors choice of first link.
 
 Our goal is to study the structure of the FLN for insight into how the information on Wikipedia is organized and related.
 Informed by river network metrics,
-we consider the FLN as a flow, quantifying 
+we consider the FLN as a flow. We quantify
 the accumulation of first links around articles 
-and the influence an article exerts in shaping the FLN.
+and develop a new method, \textit{traversal funnels}, to measure the influence an article exerts in shaping the FLN.
 Together with cycles, in-degree, depth, and the content of the articles, 
 we build our analysis of the relations among the ideas in Wikipedia.
 
@@ -159,7 +159,8 @@ The method is order agnostic with respect to which articles are selected first. 
 Previous studies have used flow to characterize the structure of river networks
 \cite{horton1945erosional, dodds1999unified} and describe the organization of 
 blood networks, food systems, and transportation networks
-\cite{garlaschelli2003universal}.
+\cite{garlaschelli2003universal}. 
+In the same vein, we use flow to measure accumulation and develop a new method for isolating influence in a directed network with cycles.
 
 \subsection{Traversal Visits}
 \label{Traversal Visits}
@@ -247,7 +248,31 @@ In the sample network
 directs the flow of links towards the 3-cycle, while articles A and B are 
 recipients of the flow---without exerting direct influence themselves. 
 
-To compute traversal funnels on a directed network, begin at each node: 1. Traverse the edge to the next node 2. Increment the next node's count by one 3. Repeat while the next node is unvisited. The resulting count is each node's number of traversal funnels: the number of paths the node directs up to the start of a cycle.
+The algorithm increments the traversal funnels count along each path, up to the start of a cycle. The resulting count is each node's number of traversal funnels: the number of paths the node directs up to the start of a cycle. Below is the pseudo-code. 
+
+\begin{verbatim}
+Traversal Funnels Algorithm
+
+// 1. Determine Cycles 
+for node in Graph
+    next_node = node.link
+    visited = {node, next_node}
+    // advance to potential cycle
+    while next_node not in visited:
+        next_node = next_node.link
+        visited.add(next_node)
+    // mark cycle
+    if (node == next_node):
+        node.in_cycle = True
+
+// 2. Compute Traversal Funnels
+for node in Graph:
+    while node.in_cycle == False:
+        node.funnels += 1
+        node = node.link
+\end{verbatim}
+
+The algorithm's average runtime is proportional to the product of the number of nodes, $n$, and the average path length, $l$. If the average path length is fixed (independent of $n$), the runtime is $O(n)$ with $O(n + l)$ auxiliary memory for storing cycles and traversing paths. In the worst case where $l$ is proportional to $n$, the runtime is $O(n^2)$ with $O(n)$ auxiliary memory for storing cycles and traversing paths. In implementation, each iteration step in the algorithm can be parallelized since the algorithm is order agnostic, as long as each node is eventually selected.
 
 As a measure of influence, traversal funnels differs from traditional centrality measures such as degree centrality, betweenness centrality, and eigenvector centrality. 
 Degree centrality characterizes how many articles have a first link to a particular topic, restricting influence to a single link. 
@@ -640,8 +665,9 @@ within the highest ranking funnels.
 Wikipedia seems to reflect not only timeless foundations, but also the topical (at least within English speaking society).
 
 Future work could examine other language versions of Wikipedia for potentially telling cultural or regional differences as well as expand the network to more than the first link.
-In addition, the work provides a general algorithm for assessing the structure and measuring influence in a directed network (or any braided flow structure).
-These findings also form the basis for the creation of a taxonomy where 
+In addition, the work provides a general algorithm for assessing the structure and measuring influence in a directed network (or any braided flow structure). 
+Traversal funnels is a new measure of influence for directed networks without spill-over into cycles in contrast to traditional network centrality measures.
+When applied to Wikipedia, these findings also form the basis for the creation of a taxonomy where 
 every idea, event, or object sits within a hierarchy of connected notions.
 The taxonomy would extend a traditional word thesaurus beyond mere synonyms to a related hierarchy of concepts.
 Applications could range from an enhanced network of ideas to psychological insights into how humans form associations.

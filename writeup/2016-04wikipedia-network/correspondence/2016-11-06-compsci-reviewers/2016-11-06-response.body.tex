@@ -1,0 +1,42 @@
+\textbf{We thank the reviewers for their well-considered comments and
+suggestions.}
+
+\textbf{As we detail below, we have worked hard to address all concerns in full,
+  and we believe our manuscript has been strengthened.}
+
+
+\section*{Reviewer 1}
+
+%% \reviewercomment{1}{}
+%% \reply{}
+
+\reviewercomment{1}{
+I am not fully satisfied with the updates that the authors have provided. After taking into account the comments by Reviewer 2, many of which are valid concerns, I would like to see another revision addressing the following two points.
+
+(a) Present in an algorithm form,  the steps that the authors used to compute the "Traversal-Funnel" based influence measure instead of a descriptive discussion. Comment on the running time complexity of the same.
+
+(b) Please double check the eigenvector centrality values. Normally the eigenvector corresponding to the top eigenvalue is selected and the entires are all non-negative. There are some negative entries present in the values shown.
+}
+
+
+\reply{In response to the reviewer's suggestions, we:
+
+(a) Included pseudo-code for the traversal funnels algorithm as well as a description of the runtime and auxiliary memory usage in section B. Traversal Funnels. We have also made all code used for this work available in the online appendix.
+
+(b) Re-rendered the Centrality Measures table (Fig. 4) to reflect the accurate, non-negative eigenvector centrality values. The previous submission contained incorrectly rendered scientific notation showing negative values. The true values included in our source code (see online appendix) are effectively zero:
+ D: $-3.65*10^{-17}$, 
+ F: $-3.81*10^{-17}$, 
+ and 
+G: $-8.26*10^{-18}$.
+The Centrality Measures table (Fig 4) now correctly displays the true values.
+}
+
+\section*{Reviewer 2}
+
+\reviewercomment{1}{
+I am satisfied with the modifications made and the author response.  I would suggest adding something to the introduction pointing out that you are introducing the new notion of traversal funnels, and make it a bit more prominent that this is a novel measure you have created.
+}
+
+\reply{
+In response to the reviewer's suggestion, we more prominently highlighted traversal funnels as new measure of influence in various sections including the abstract, introduction, and conclusion.
+}
