@@ -25,3 +25,5 @@ for node in Graph:
         # O(path length)
         node.funnels += 1
         node = node.link
+    # increment start of a cycle
+    node.funnels += 1
